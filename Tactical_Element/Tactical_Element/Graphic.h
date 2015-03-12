@@ -8,11 +8,12 @@
 class Graphic : public Display
 {
 private:
-	sf::RenderWindow & win;
 	Map & map;
 	Ressources & ress;
 
 public:
+	//faire une fonction display
+	sf::RenderWindow & win;
 	Graphic(sf::RenderWindow & w, Map & m, Ressources & r);
 	~Graphic(void);
 

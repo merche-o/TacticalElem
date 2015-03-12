@@ -3,13 +3,13 @@
 
 GameEngine::GameEngine(void)
 	: ressources(),
-		graphic(window, map, ressources),
 		menu(window, event, restart),
 		sound(),
 		map(),
+		graphic(window, map, ressources),
 		event(window)
 {
-	state = MENU;
+	state = GAME;
 
 	sound.musicOFF();
 	sound.playMusic(sound.music);
@@ -40,6 +40,7 @@ void GameEngine::run()
 		{
 			if (restart == true)
 			{
+				
 				// Initialize
 				restart = false;
 			}
@@ -52,7 +53,11 @@ void GameEngine::run()
 			// Action Functions
 
 			// Display Functions
-			
+			graphic.drawMap();	
+
+			graphic.win.display();
+
+		
 			event.checkEvent();
 		}
 	}
