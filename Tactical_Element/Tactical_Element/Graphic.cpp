@@ -26,7 +26,10 @@ void Graphic::drawMap(sf::Color c)
 			if (this->map.map[std::make_pair(x,y)])
 			{
 			sf::RectangleShape R;
-			R.setFillColor(c);
+			if (this->map.effectArea[std::make_pair(x,y)] == true)
+				R.setFillColor(sf::Color(200,0,0,255));
+			else
+				R.setFillColor(c);
 			R.setPosition((Settings::CASE_SIZE) * x + 10 , ( Settings::CASE_SIZE) * y + 10);
 			R.setSize(sf::Vector2f(Settings::CASE_SIZE - 5 , Settings::CASE_SIZE - 5));
 			win.draw(R);

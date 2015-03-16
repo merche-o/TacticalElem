@@ -13,6 +13,44 @@ Map::~Map(void)
 {
 }
 
+void Map::showEffectArea(int x, int y, int lenght, bool center)
+{
+	int x1 = x - lenght;
+	int y1 = y - lenght;
+	int save_x;
+
+	if (x1 < 0)
+		x1 = 0;
+	if (y1 < 0)
+		y1 = 0;
+	save_x = x1;
+	while (y1 <= y + lenght)
+	{
+	
+		while (x1 <= x + lenght)
+		{
+			if ((y1 - y) + (x1 - x) <= lenght 
+				&& (y1 - y) + (x1 - x) >= -lenght
+				&& (y1+y) - (x1 +x) <= lenght
+				&& (y1+y) - (x1 + x) >= - lenght )
+			{	
+				
+				if (x1 == x && y1 == y && center == false)
+					this->effectArea[std::make_pair(x1,y1)] = false;
+				else
+					this->effectArea[std::make_pair(x1,y1)] = true;
+				
+			}
+				//alterate map color
+			//	this->map[std::make_pair(x1,y1)]
+			x1++;
+		}
+		x1 = save_x;
+		y1++;
+	}
+
+}
+
 void Map::createMap()
 {
 	int x = 0;
@@ -22,8 +60,7 @@ void Map::createMap()
 	{
 		while (x < w)
 		{
-			this->map[std::make_pair(x,y)] = new Case();
-		
+			this->map[std::make_pair(x,y)] = new Case();		
 			x++;
 		}
 		x = 0;
