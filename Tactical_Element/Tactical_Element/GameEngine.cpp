@@ -53,9 +53,9 @@ void GameEngine::run()
 			// Action Functions
 
 			// Display Functions
-			graphic.drawMap();	
+			graphic.drawMap(sf::Color(70,46,28,255));	
 
-			graphic.win.display();
+			graphic.display();
 
 		
 			event.checkEvent();

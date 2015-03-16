@@ -11,7 +11,7 @@ Graphic::~Graphic(void)
 {
 }
 
-void Graphic::drawMap()
+void Graphic::drawMap(sf::Color c)
 {
 	int x = 0;
 	int y = 0;
@@ -25,11 +25,11 @@ void Graphic::drawMap()
 
 			if (this->map.map[std::make_pair(x,y)])
 			{
-			sf::RectangleShape r;
-			r.setFillColor(sf::Color(255,255,255,255));
-			r.setPosition((Settings::CASE_SIZE) * x + 10 , ( Settings::CASE_SIZE) * y + 10);
-			r.setSize(sf::Vector2f(Settings::CASE_SIZE - 5 , Settings::CASE_SIZE - 5));
-			win.draw(r);
+			sf::RectangleShape R;
+			R.setFillColor(c);
+			R.setPosition((Settings::CASE_SIZE) * x + 10 , ( Settings::CASE_SIZE) * y + 10);
+			R.setSize(sf::Vector2f(Settings::CASE_SIZE - 5 , Settings::CASE_SIZE - 5));
+			win.draw(R);
 			}
 			x++;
 		}
@@ -37,4 +37,9 @@ void Graphic::drawMap()
 		y++;
 	}
 	
+}
+
+void Graphic::display()
+{
+	win.display();
 }

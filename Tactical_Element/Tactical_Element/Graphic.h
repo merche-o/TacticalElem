@@ -10,13 +10,13 @@ class Graphic : public Display
 private:
 	Map & map;
 	Ressources & ress;
-
+		sf::RenderWindow & win;
 public:
 	//faire une fonction display
-	sf::RenderWindow & win;
+	void display();
 	Graphic(sf::RenderWindow & w, Map & m, Ressources & r);
 	~Graphic(void);
 
-	void drawMap();
+	void drawMap(sf::Color a);
 };
 
