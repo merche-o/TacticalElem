@@ -10,6 +10,7 @@
 #include "Map.h"
 #include "Event.h"
 #include "Team.h"
+#include "Utils.h"
 
 class GameEngine
 {
@@ -28,6 +29,7 @@ private:
 	Map map;
 	Event event;
 	std::vector<Team*> teams;
+	Unit* currentPlayerTurn;
 	bool restart;
 
 public:
@@ -38,5 +40,7 @@ public:
 	~GameEngine(void);
 
 	void run();
+	void selectFirstPlayer();
+	void changeCPT();
 };
 

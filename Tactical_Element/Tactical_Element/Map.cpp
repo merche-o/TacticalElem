@@ -70,4 +70,5 @@ bool Map::putEffectOnCase(Effect *e, int x, int y)
 {
 	if (this->map[std::make_pair(x,y)]->effect == NULL) 
 		this->map[std::make_pair(x,y)]->effect = e;
+	return (false);
 }

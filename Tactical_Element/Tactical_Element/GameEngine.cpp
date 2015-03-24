@@ -18,6 +18,19 @@ GameEngine::GameEngine(void)
 	window.setFramerateLimit(30);
 	
 	restart = false;
+
+	// For Testing Only
+	teams.push_back(new Team());
+	teams.push_back(new Team());
+	
+	for (int j = 0; j < 2; ++j)
+	{
+		for (int i = 0; i < 3; ++i)
+		{
+			teams[j]->units.push_back(new Unit(0, 0, i));
+		}
+	}
+	//
 }
 
 
@@ -63,3 +76,47 @@ void GameEngine::run()
 		}
 	}
 }
+
+// After Character Selection
+void GameEngine::selectFirstPlayer()
+{
+	// faire tri a bulle pour ordonner les units par initiative
+	BubbleSortUnitsInitiative(teams[0]->units);
+	BubbleSortUnitsInitiative(teams[1]->units);
+
+	// Calcul initiative team
+	for (unsigned int i = 0; i < teams.size(); ++i)
+	{
+		for (unsigned int j = 0; j < teams[i]->units.size(); ++j)
+		{
+			teams[i]->initiative += teams[i]->units[j]->initiative;
+		}
+	}
+
+	if (teams[1]->initiative > teams[0]->initiative)
+		teams[0]->units.swap(teams[1]->units);
+	currentPlayerTurn = teams[0]->units[0];
+}
+
+void GameEngine::changeCPT()
+{
+	int CPT_team = currentPlayerTurn->team_number;
+	int CPT_num = currentPlayerTurn->player_number;
+	
+	if (CPT_team == 0)
+		currentPlayerTurn = teams[1]->units[currentPlayerTurn->player_number];
+	else
+	{
+		if (CPT_num == 2) // Max team's players
+			CPT_num = -1;
+		currentPlayerTurn = teams[0]->units[CPT_num + 1];
+	}
+}
+
+/*** Player Turn ***/
+// Mettre currentPlayerTurn (CPT) sur le joueur
+// Envoyer CPT à l'interface
+// Si souris passe sur la map, highlight la case ciblée
+// Si Case selectionnée refresh interface; Si Spell selectionné refresh map avec nappe range
+// Si Case selectionnée sur nappe de Spell lancer l'effet
+// Si passer son tour selectionné, changer CPT
