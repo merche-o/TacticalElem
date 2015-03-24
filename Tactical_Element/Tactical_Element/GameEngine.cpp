@@ -53,7 +53,7 @@ void GameEngine::run()
 			// Action Functions
 
 			// Display Functions
-			map.showEffectArea(5,5,1, false);
+			map.showEffectArea(5,5,5, false);
 			graphic.drawMap(sf::Color(70,46,28,255));	
 
 			graphic.display();
