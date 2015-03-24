@@ -7,6 +7,7 @@ class Event
 public:
 	sf::Window & win;
 	sf::Event event;
+	sf::Mouse mouse;
 
 public:
 	Event(sf::Window & w);
