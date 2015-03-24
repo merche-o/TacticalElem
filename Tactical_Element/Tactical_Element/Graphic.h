@@ -17,6 +17,6 @@ public:
 	Graphic(sf::RenderWindow & w, Map & m, Ressources & r);
 	~Graphic(void);
 
-	void drawMap(sf::Color a);
+	void drawMap(sf::Color a, Pos *mouse);
 };
 

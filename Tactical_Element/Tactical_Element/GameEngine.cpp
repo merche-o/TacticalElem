@@ -27,7 +27,7 @@ GameEngine::GameEngine(void)
 	{
 		for (int i = 0; i < 3; ++i)
 		{
-			teams[j]->units.push_back(new Unit(0, 0, i));
+			teams[j]->units.push_back(new Unit(0, 0));
 		}
 	}
 	//
@@ -66,11 +66,13 @@ void GameEngine::run()
 			// Action Functions
 
 			// Display Functions
-			map.showEffectArea(5,5,5, false);
-			graphic.drawMap(sf::Color(70,46,28,255));	
+			Pos *tmp = getMouseCoordinateOnMap();
+			
+				map.showEffectArea(5,5,5, false);
+			graphic.drawMap(sf::Color(70,46,28,255), tmp);	
 
 			graphic.display();
-
+			
 		
 			event.checkEvent();
 		}
@@ -113,6 +115,15 @@ void GameEngine::changeCPT()
 	}
 }
 
+Pos *GameEngine::getMouseCoordinateOnMap()
+{
+	if (this->map.map[std::make_pair(event.mouse.getPosition(window).x / Settings::CASE_SIZE, 
+									event.mouse.getPosition(window).y / Settings::CASE_SIZE)])
+		return (new Pos(event.mouse.getPosition(window).x / Settings::CASE_SIZE, 
+			event.mouse.getPosition(window).y / Settings::CASE_SIZE));
+	return (NULL);
+}
+
 /*** Player Turn ***/
 // Mettre currentPlayerTurn (CPT) sur le joueur
 // Envoyer CPT à l'interface
@@ -120,3 +131,4 @@ void GameEngine::changeCPT()
 // Si Case selectionnée refresh interface; Si Spell selectionné refresh map avec nappe range
 // Si Case selectionnée sur nappe de Spell lancer l'effet
 // Si passer son tour selectionné, changer CPT
+// =D

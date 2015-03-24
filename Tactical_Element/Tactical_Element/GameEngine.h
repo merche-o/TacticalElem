@@ -32,6 +32,7 @@ private:
 	Unit* currentPlayerTurn;
 	bool restart;
 
+Pos *getMouseCoordinateOnMap();
 public:
 	sf::RenderWindow window;
 
