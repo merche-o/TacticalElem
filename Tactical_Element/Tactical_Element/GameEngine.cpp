@@ -3,31 +3,31 @@
 
 GameEngine::GameEngine(void)
 	: ressources(),
-		menu(window, event, restart),
-		sound(),
-		map(),
-		graphic(window, map, ressources),
-		event(window)
+	menu(window, event, restart),
+	sound(),
+	map(),
+	graphic(window, map, ressources),
+	event(window)
 {
-	state = GAME;
+	state = MENU;
 
 	sound.musicOFF();
 	sound.playMusic(sound.music);
 
 	window.create(sf::VideoMode(Settings::WIDTH, Settings::HEIGHT, Settings::CASE_SIZE), Settings::GAME_NAME);
 	window.setFramerateLimit(30);
-	
+
 	restart = false;
 
 	// For Testing Only
 	teams.push_back(new Team());
 	teams.push_back(new Team());
-	
+
 	for (int j = 0; j < 2; ++j)
 	{
 		for (int i = 0; i < 3; ++i)
 		{
-			teams[j]->units.push_back(new Unit(0, 0, 0));
+			teams[j]->units.push_back(new Unit(0, 0, i));
 		}
 	}
 	//

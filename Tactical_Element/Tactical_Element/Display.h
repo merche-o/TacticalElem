@@ -17,6 +17,7 @@ public:
 	void loadSprite(sf::Sprite Sprite);
 	void loadUnit(Unit* unit);
 	void loadText(float, float, sf::Font, std::string, int size, int r, int g, int b);
+	void loadText(sf::Text & text);
 	void RefreshWindow();
 };
 

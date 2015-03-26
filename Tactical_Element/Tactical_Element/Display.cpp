@@ -47,6 +47,13 @@ void Display::loadText(float x, float y, sf::Font font, std::string str, int siz
 	win.draw(text);
 }
 
+void Display::loadText(sf::Text & text)
+{
+	win.draw(text);
+}
+
+//faire une fonction display::loadText avec un sf::Text en parametre seulement, que j'aurais init avant
+
 void Display::RefreshWindow()
 {
   win.display();
