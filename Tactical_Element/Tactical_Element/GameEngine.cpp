@@ -6,8 +6,9 @@ GameEngine::GameEngine(void)
 		menu(window, event, restart),
 		sound(),
 		map(),
-		graphic(window, map, ressources),
-		event(window)
+		intface(map),
+		graphic(window, map, ressources, intface),
+		event(window, intface)
 {
 	state = GAME;
 
@@ -47,18 +48,15 @@ void GameEngine::run()
 
 			
 			window.clear();
-
+			event.checkEvent();
 			// Au tout debut du tour d'un pion, retirer 1 tour d'effet (case/zone/buff/debuff) a son nom sur la map
 
 			// Action Functions
-
+			intface.run();
 			// Display Functions
-			graphic.drawMap();	
-
-			graphic.win.display();
-
-		
-			event.checkEvent();
+			graphic.drawMap();
+			graphic.drawInterface();
+			graphic.RefreshWindow();
 		}
 	}
 }

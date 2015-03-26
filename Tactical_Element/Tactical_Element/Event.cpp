@@ -1,8 +1,10 @@
 #include "Event.h"
 
+#include <iostream>
 
-Event::Event(sf::Window & w)
-	: win(w)
+
+Event::Event(sf::Window & w, Interface & i)
+	: win(w), intface(i)
 {
 }
 
@@ -26,6 +28,10 @@ void Event::checkEvent()
 		else if (event.type == sf::Event::KeyReleased)
 		{
 
+		}
+		else if (event.type == sf::Event::MouseMoved)
+		{
+			intface.changeMousePosition(event.mouseMove.x, event.mouseMove.y);
 		}
     }
 }

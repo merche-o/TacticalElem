@@ -1,15 +1,18 @@
 #pragma once
 
 #include "SFML\Graphics.hpp"
+#include "Pos.h"
+#include "Interface.h"
 
 class Event
 {
 public:
 	sf::Window & win;
 	sf::Event event;
+	Interface & intface;
 
 public:
-	Event(sf::Window & w);
+	Event(sf::Window & w, Interface & i);
 	~Event(void);
 	
 	void checkEvent();
