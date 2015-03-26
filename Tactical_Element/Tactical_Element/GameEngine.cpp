@@ -27,7 +27,7 @@ GameEngine::GameEngine(void)
 	{
 		for (int i = 0; i < 3; ++i)
 		{
-			teams[j]->units.push_back(new Unit(0, 0));
+			teams[j]->units.push_back(new Unit(0, 0, 0));
 		}
 	}
 	//
@@ -59,22 +59,22 @@ void GameEngine::run()
 			}
 
 			
-			window.clear();
-
 			// Au tout debut du tour d'un pion, retirer 1 tour d'effet (case/zone/buff/debuff) a son nom sur la map
 
-			// Action Functions
 
-			// Display Functions
+			// Action Functions
+			event.checkEvent();
 			Pos *tmp = getMouseCoordinateOnMap();
+			//////////
 			
-				map.showEffectArea(5,5,5, false);
-			graphic.drawMap(sf::Color(70,46,28,255), tmp);	
+			// Display Functions
+			window.clear();
+
+			map.showEffectArea(5, 5, 5, false);
+			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
 
 			graphic.display();
-			
-		
-			event.checkEvent();
+			//////////
 		}
 	}
 }
@@ -82,7 +82,7 @@ void GameEngine::run()
 // After Character Selection
 void GameEngine::selectFirstPlayer()
 {
-	// faire tri a bulle pour ordonner les units par initiative
+	// Faire tri a bulle pour ordonner les units par initiative
 	BubbleSortUnitsInitiative(teams[0]->units);
 	BubbleSortUnitsInitiative(teams[1]->units);
 
@@ -120,7 +120,7 @@ Pos *GameEngine::getMouseCoordinateOnMap()
 	if (this->map.map[std::make_pair(event.mouse.getPosition(window).x / Settings::CASE_SIZE, 
 									event.mouse.getPosition(window).y / Settings::CASE_SIZE)])
 		return (new Pos(event.mouse.getPosition(window).x / Settings::CASE_SIZE, 
-			event.mouse.getPosition(window).y / Settings::CASE_SIZE));
+						event.mouse.getPosition(window).y / Settings::CASE_SIZE));
 	return (NULL);
 }
 

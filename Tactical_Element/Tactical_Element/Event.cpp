@@ -29,7 +29,7 @@ void Event::checkEvent()
 		}
 		else if (event.type == sf::Event::MouseMoved)
 		{
-			//std::cout << mouse.getPosition().x << " / " << mouse.getPosition().y << std::endl;
+			//std::cout << mouse.getPosition(win).x << " / " << mouse.getPosition(win).y << std::endl;
 		}
     }
 }
