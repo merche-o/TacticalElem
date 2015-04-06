@@ -9,11 +9,10 @@ class Event
 public:
 	sf::Window & win;
 	sf::Event event;
-	Interface & intface;
 	sf::Mouse mouse;
 
 public:
-	Event(sf::Window & w, Interface & i);
+	Event(sf::Window & w);
 	~Event(void);
 	
 	void checkEvent();

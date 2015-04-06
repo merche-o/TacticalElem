@@ -11,6 +11,7 @@
 #include "Map.h"
 #include "Event.h"
 #include "Team.h"
+#include "Utils.h"
 
 class GameEngine
 {
@@ -30,8 +31,10 @@ private:
 	Interface intface;
 	Event event;
 	std::vector<Team*> teams;
+	Unit* currentPlayerTurn;
 	bool restart;
 
+Pos *getMouseCoordinateOnMap();
 public:
 	sf::RenderWindow window;
 
@@ -40,5 +43,7 @@ public:
 	~GameEngine(void);
 
 	void run();
+	void selectFirstPlayer();
+	void changeCPT();
 };
 

@@ -9,7 +9,7 @@
 #include <string>
 
 class GameMenu : public Display
-{	
+{
 private:
 	enum e_state
 	{
@@ -47,5 +47,6 @@ public:
 	void menuReturn();
 	void addTextMenu(e_state state, TextMenu * text);
 	void addKeyTextMenu(e_state state, TextMenu * text, void(GameMenu:: *p)());
+	int checkTextBounds();
 };
 

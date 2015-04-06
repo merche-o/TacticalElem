@@ -13,6 +13,36 @@ Map::~Map(void)
 {
 }
 
+void Map::showEffectArea(int x, int y, int range, bool center)
+{
+	int x1 = x - range;
+	int y1 = y - range;
+	int save_x;
+
+	if (x1 < 0)
+		x1 = 0;
+	if (y1 < 0)
+		y1 = 0;
+
+	save_x = x1;
+	while (y1 <= y + range) {
+		while (x1 <= x + range) {
+			if ((y1 - y) + (x1 - x) <= range 
+				&& (y1 - y) + (x1 - x) >= -range
+				&& (y1+y) - (x1 +x) <= range
+				&& (y1+y) - (x1 + x) >= - range ) {	
+					if (x1 == x && y1 == y && center == false)
+						this->effectArea[std::make_pair(x1, y1)] = false;
+					else
+						this->effectArea[std::make_pair(x1, y1)] = true;
+			}
+			x1++;
+		}
+		x1 = save_x;
+		y1++;
+	}
+}
+
 void Map::createMap()
 {
 	int x = 0;
@@ -22,8 +52,7 @@ void Map::createMap()
 	{
 		while (x < w)
 		{
-			this->map[std::make_pair(x,y)] = new Case();
-		
+			this->map[std::make_pair(x,y)] = new Case();		
 			x++;
 		}
 		x = 0;
@@ -42,5 +71,5 @@ bool Map::putEffectOnCase(Effect *e, int x, int y)
 {
 	if (this->map[std::make_pair(x,y)]->effect == NULL) 
 		this->map[std::make_pair(x,y)]->effect = e;
-	return true;
+	return (false);
 }
