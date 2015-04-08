@@ -5,6 +5,7 @@ Display::Display(sf::RenderWindow & w)
 	: win(w)
 {
 	font.loadFromFile("../Ressources/Text/DragonForcE.ttf");
+	interfaceFont.loadFromFile("../Ressources/Text/Roboto-Bold.ttf");
 }
 
 

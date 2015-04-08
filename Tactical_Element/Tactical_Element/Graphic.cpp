@@ -1,8 +1,8 @@
 #include "Graphic.h"
 
 
-Graphic::Graphic(sf::RenderWindow & w, Map & m, Ressources & r, Interface & i)
-	: Display(w), win(w), map(m), ress(r), intface(i)
+Graphic::Graphic(sf::RenderWindow & w, Map & m, Ressources & r)
+	: Display(w), win(w), map(m), ress(r)
 {
 }
 
@@ -40,7 +40,7 @@ void Graphic::drawMap(sf::Color c, Pos *mouse)
 	}
 }
 
-void Graphic::drawInterface(void)
+/*void Graphic::drawInterface(void)
 {
 	sf::RectangleShape r;
 	r.setFillColor(sf::Color(255, 0, 0, 255));
@@ -52,7 +52,7 @@ void Graphic::drawInterface(void)
 	r.setSize(sf::Vector2f(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH, Settings::INTERFACE_BOTTOM_HEIGHT));
 	win.draw(r);
 	loadText(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 10, 20, font, std::to_string(static_cast<long long>(intface.mousePos.x)) + " " +  std::to_string(static_cast<long long>(intface.mousePos.y)), 20, 0, 0, 0);
-}
+}*/
 
 
 void Graphic::display()

@@ -6,8 +6,8 @@ GameEngine::GameEngine(void)
 		menu(window, event, restart),
 		sound(),
 		map(),
-		intface(map),
-		graphic(window, map, ressources, intface),
+		intface(window, map, event, teams, currentPlayerTurn),
+		graphic(window, map, ressources),
 		event(window)
 {
 	state = GAME;
@@ -64,15 +64,15 @@ void GameEngine::run()
 			// Action Functions
 			event.checkEvent();
 			Pos *tmp = getMouseCoordinateOnMap();
+			intface.run();
 			//////////
 			
 			// Display Functions
 			window.clear();
 
 			map.showEffectArea(5, 5, 5, false);
-			graphic.drawInterface();
 			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
-
+			intface.draw();
 			graphic.display();
 			//////////
 		}

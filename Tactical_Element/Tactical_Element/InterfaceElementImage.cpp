@@ -5,8 +5,19 @@ InterfaceElementImage::InterfaceElementImage(void(*_mousePressed)(void), Pos _po
 	texture(_texture),
 	transparency(_transparency)
 {
+	sf::Vector2u imageSize;
+
+	imageSize = texture.getSize();
+	height = imageSize.y;
+	width = imageSize.x;
 }
 
 InterfaceElementImage::~InterfaceElementImage(void)
 {
+}
+
+void InterfaceElementImage::draw(Display * display)
+{
+	display->loadImage(position.x, position.y, texture, transparency);
+	isUpdated = false;
 }
