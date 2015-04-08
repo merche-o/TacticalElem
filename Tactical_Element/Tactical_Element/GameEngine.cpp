@@ -3,13 +3,15 @@
 
 GameEngine::GameEngine(void)
 	: ressources(),
-	menu(window, event, restart),
+	menu(window, event, ressources, teams, restart),
 	sound(),
 	map(),
 	graphic(window, map, ressources),
 	event(window)
 {
 	state = MENU;
+
+	ressources.loadTexturesFromFile();
 
 	sound.musicOFF();
 	sound.playMusic(sound.music);
@@ -19,7 +21,7 @@ GameEngine::GameEngine(void)
 
 	restart = false;
 
-	// For Testing Only
+	// For Testing Only ////////////////
 	teams.push_back(new Team());
 	teams.push_back(new Team());
 
@@ -30,7 +32,7 @@ GameEngine::GameEngine(void)
 			teams[j]->units.push_back(new Unit(0, 0, i));
 		}
 	}
-	//
+	/////////////////////////////////////
 }
 
 
