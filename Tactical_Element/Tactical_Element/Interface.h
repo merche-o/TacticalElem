@@ -4,21 +4,29 @@
 #include "Ressources.h"
 #include "Map.h"
 #include "Pos.h"
+#include "Team.h"
+#include "Event.h"
+#include "InterfaceElement.h"
+#include "InterfaceElementText.h"
+#include "Display.h"
+#include "Event.h"
 
 
-class Interface
-{	
+class Interface : public Display
+{	 
 public:
 	Map & map;
-	Pos mousePos;
+	std::vector<Team*> & teams;
+	Unit * currentPlayerTurn; // CPT
+	std::vector<InterfaceElement*> interfaceElements;
+	Event & event;
+
 private:
-	bool mousePositionChanged;
+	sf::Vector2i mousePosition;
 	
 public:
-	Interface(Map & m);
+	Interface(sf::RenderWindow &, Map &, Event &, std::vector<Team*> &, Unit *);
 	~Interface(void);
 	void run(void);
-	void changeMousePosition(int x, int y);
-private:
-	const Case * getCaseByMouse(void);
+	void draw(void);
 };

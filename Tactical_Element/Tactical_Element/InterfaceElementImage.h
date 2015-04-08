@@ -13,4 +13,5 @@ public:
 public:
 	InterfaceElementImage(void (*)(void), Pos, sf::Texture &, int = 255);
 	~InterfaceElementImage(void);
+	virtual void draw(Display *);
 };

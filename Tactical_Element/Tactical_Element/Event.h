@@ -2,7 +2,6 @@
 
 #include "SFML\Graphics.hpp"
 #include "Pos.h"
-#include "Interface.h"
 
 class Event
 {
