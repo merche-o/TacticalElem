@@ -7,6 +7,7 @@
 #include "Graphic.h"
 #include "GameMenu.h"
 #include "SoundEngine.h"
+#include "Interface.h"
 #include "Map.h"
 #include "Event.h"
 #include "Team.h"
@@ -27,6 +28,7 @@ private:
 	GameMenu menu;
 	SoundEngine sound;
 	Map map;
+	Interface intface;
 	Event event;
 	std::vector<Team*> teams;
 	Unit* currentPlayerTurn;

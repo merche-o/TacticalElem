@@ -1,5 +1,7 @@
 #include "Event.h"
+
 #include <iostream>
+
 
 Event::Event(sf::Window & w)
 	: win(w)
@@ -31,6 +33,10 @@ void Event::checkEvent()
 		{
 			//std::cout << mouse.getPosition(win).x << " / " << mouse.getPosition(win).y << std::endl;
 		}
+		/*else if (event.type == sf::Event::MouseMoved)
+		{
+			intface.changeMousePosition(event.mouseMove.x, event.mouseMove.y);
+		}*/
     }
 }
 

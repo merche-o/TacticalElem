@@ -6,10 +6,11 @@ GameEngine::GameEngine(void)
 	menu(window, event, ressources, teams, restart),
 	sound(),
 	map(),
-	graphic(window, map, ressources),
+	intface(map),
+	graphic(window, map, ressources, intface),
 	event(window)
 {
-	state = MENU;
+	state = GAME;
 
 	ressources.loadTexturesFromFile();
 
@@ -59,8 +60,6 @@ void GameEngine::run()
 				// Initialize
 				restart = false;
 			}
-
-			
 			// Au tout debut du tour d'un pion, retirer 1 tour d'effet (case/zone/buff/debuff) a son nom sur la map
 
 
@@ -73,6 +72,7 @@ void GameEngine::run()
 			window.clear();
 
 			map.showEffectArea(5, 5, 5, false);
+			graphic.drawInterface();
 			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
 
 			graphic.display();
