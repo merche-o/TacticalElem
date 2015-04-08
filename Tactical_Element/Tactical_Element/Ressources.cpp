@@ -11,8 +11,8 @@ Ressources::~Ressources(void)
 }
 
 
-void Ressources::loadTexturesFromFile(std::string fileName)
+void Ressources::loadTexturesFromFile()
 {
 	// Textures
-	//texture["****"].loadFromFile("../Ressources/Images/*****.png");
+	texture["test"].loadFromFile("../Ressources/Images/rouge.png");
 }
