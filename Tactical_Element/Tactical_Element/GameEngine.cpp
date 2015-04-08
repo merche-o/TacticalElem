@@ -3,21 +3,12 @@
 
 GameEngine::GameEngine(void)
 	: ressources(),
-<<<<<<< HEAD
 	menu(window, event, ressources, teams, restart),
-	sound(),
-	map(),
-	intface(map),
-	graphic(window, map, ressources, intface),
-	event(window)
-=======
-		menu(window, event, restart),
 		sound(),
 		map(),
 		intface(window, map, event, teams, currentPlayerTurn),
 		graphic(window, map, ressources),
 		event(window)
->>>>>>> 3077a241ac36dd6b6f908484c7b68e14a89b8e86
 {
 	state = GAME;
 
