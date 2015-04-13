@@ -9,11 +9,12 @@
 class Unit
 {
 public:
-		enum UnitType{
-	BASIC,
-	FIRE,
-	WATER,
-	ROCK,
+	enum UnitType
+	{
+		BASIC,
+		FIRE,
+		WATER,
+		ROCK,
 	};
 
 	Pos pos;
@@ -38,7 +39,7 @@ public:
 	int player_number;
 
 public:
-	Unit(int X, int Y, int ini);
+	Unit(int X, int Y);
 	~Unit(void);
 };
 

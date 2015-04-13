@@ -11,8 +11,16 @@ Ressources::~Ressources(void)
 }
 
 
-void Ressources::loadTexturesFromFile(std::string fileName)
+void Ressources::loadTexturesFromFile()
 {
-	// Textures
-	//texture["****"].loadFromFile("../Ressources/Images/*****.png");
+	
+}
+
+
+Unit *createBasicUnit()
+{
+	return new Unit(10, 10);
+
+//	texture["test"].loadFromFile("../Ressources/Images/rouge.png");
+
 }

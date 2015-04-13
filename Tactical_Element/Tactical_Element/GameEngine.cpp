@@ -3,13 +3,17 @@
 
 GameEngine::GameEngine(void)
 	: ressources(),
-	menu(window, event, restart),
+	factoryUnit(),
+	menu(window, event, ressources, teams, restart),
 	sound(),
 	map(),
+	intface(window, map, event, teams, currentPlayerTurn),
 	graphic(window, map, ressources),
 	event(window)
 {
-	state = MENU;
+	state = GAME;
+
+	ressources.loadTexturesFromFile();
 
 	sound.musicOFF();
 	sound.playMusic(sound.music);
@@ -19,18 +23,19 @@ GameEngine::GameEngine(void)
 
 	restart = false;
 
-	// For Testing Only
+	// For Testing Only ////////////////
 	teams.push_back(new Team());
 	teams.push_back(new Team());
+
 
 	for (int j = 0; j < 2; ++j)
 	{
 		for (int i = 0; i < 3; ++i)
 		{
-			teams[j]->units.push_back(new Unit(0, 0, i));
+			teams[j]->units.push_back(factoryUnit.createUnit(Unit::WATER, 0,0,j,i));
 		}
 	}
-	//
+	/////////////////////////////////////
 }
 
 
@@ -57,14 +62,13 @@ void GameEngine::run()
 				// Initialize
 				restart = false;
 			}
-
-			
 			// Au tout debut du tour d'un pion, retirer 1 tour d'effet (case/zone/buff/debuff) a son nom sur la map
 
 
 			// Action Functions
 			event.checkEvent();
 			Pos *tmp = getMouseCoordinateOnMap();
+			intface.run();
 			//////////
 			
 			// Display Functions
@@ -72,7 +76,7 @@ void GameEngine::run()
 
 			map.showEffectArea(5, 5, 5, false);
 			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
-
+			intface.draw();
 			graphic.display();
 			//////////
 		}
@@ -119,9 +123,91 @@ Pos *GameEngine::getMouseCoordinateOnMap()
 {
 	if (this->map.map[std::make_pair(event.mouse.getPosition(window).x / Settings::CASE_SIZE, 
 									event.mouse.getPosition(window).y / Settings::CASE_SIZE)])
-		return (new Pos(event.mouse.getPosition(window).x / Settings::CASE_SIZE, 
-						event.mouse.getPosition(window).y / Settings::CASE_SIZE));
+		return (new Pos(event.mouse.getPosition(window).x /( Settings::CASE_SIZE +  2), 
+						event.mouse.getPosition(window).y / (Settings::CASE_SIZE )));
 	return (NULL);
+}
+
+//spell pas besoin de confirmation
+//move click gauche dans la range de PM sur map
+//click droit description sur map
+// cancel
+//bouton endTurn
+// state currentState
+/// while (stateMachine(click,&currentState) != endturn)
+//  {
+//    ????
+//  }
+
+//have to recheck and  complete that algo see with Axel what he will returns to me
+
+/*
+void GameEngine::playerTurn()
+{
+	while (!endOfTurn)
+	{
+	
+	tmp = getMousePosition();
+	if (state == neutral) {
+		 if (whereDidIClick(tmp) == Map)
+		{
+			if (click == right)
+				showDescription(tmp.x,tmp.y);
+		}
+		else if (whereDidIClick(tmp) == Spell) // doit aussi verifier que le spell est lançable (PP) --> Referee
+		{ 
+		s = getSpell(tmp);
+		state = spell;
+		}
+		else if (whereDidIClick(tmp) == endturn)
+		{
+		endturn = true;
+		}
+		else if (whereDidIclidk(tmp) == move) // doit aussi verifier que le mouvement est possible ---> Referee
+		{
+			state == move
+		}
+	}
+	else if ( state == spell) 
+	{
+		showMapSpell(tmp);
+		if (whereDidIclick == cancel) // Bouton cancel ??
+		{
+			state = neutral;
+		}
+		else if (whereDidIClick == map) // doit checker si la position du spell est bonne --> Referee
+		{
+			affFixeNapeSpell(tmp,s);
+			validateS = tmp;
+			state = validateSpell;
+		}
+	}
+	else if (state == validateSpell)
+	{
+		affFixeNapeSpell(tmp,s);
+		if (whereDidIclick == valid) //Bouton valide ??
+		{
+			castSpell(validate,s);
+			state = neutral;
+		}
+		else if (wheredidIClick == cancel) // Bouton cancel ??
+		{
+			state = neutral;
+		}
+	}
+	else if (state == move) 
+	{
+		if (whereDidIclick = p_move) // doit checker si la position du mouvement est bonne --> Referee
+		{
+			move
+			state = neutral;
+		}
+		else if (wheredidIClick == cancel) // bouton cancel. ??
+		{
+			state = neutral;
+		}
+
+	}
 }
 
 /*** Player Turn ***/
