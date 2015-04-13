@@ -11,6 +11,7 @@
 #include "Event.h"
 #include "Team.h"
 #include "Utils.h"
+#include "CharacterFactory.h"
 
 class GameEngine
 {
@@ -20,19 +21,31 @@ class GameEngine
 		GAME
 	};
 
+	//gère les etats possible de jeux du joueur
+	enum p_state
+	{
+		NEUTRAL,
+		SPELL,
+		V_SPELL
+		//MOVE ?
+	};
+
 private:
 	e_state state;
+	p_state playerState;
 	Ressources ressources;
 	Graphic graphic;
 	GameMenu menu;
 	SoundEngine sound;
 	Map map;
+	CharacterFactory factoryUnit;
 	Event event;
 	std::vector<Team*> teams;
 	Unit* currentPlayerTurn;
 	bool restart;
 
-Pos *getMouseCoordinateOnMap();
+	Pos *getMouseCoordinateOnMap();
+	void playerTurn();
 public:
 	sf::RenderWindow window;
 

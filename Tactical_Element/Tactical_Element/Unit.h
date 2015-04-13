@@ -38,7 +38,7 @@ public:
 	int player_number;
 
 public:
-	Unit(int X, int Y, int ini);
+	Unit(int X, int Y);
 	~Unit(void);
 };
 
