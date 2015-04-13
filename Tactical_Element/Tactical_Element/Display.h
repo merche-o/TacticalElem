@@ -7,6 +7,7 @@ class Display
 {
 public:
 	sf::Font font;
+	sf::Font interfaceFont;
 	sf::RenderWindow & win;
 
 public:

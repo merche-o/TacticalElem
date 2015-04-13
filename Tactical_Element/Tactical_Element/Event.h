@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SFML\Graphics.hpp"
+#include "Pos.h"
 
 class Event
 {

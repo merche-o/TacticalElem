@@ -40,6 +40,21 @@ void Graphic::drawMap(sf::Color c, Pos *mouse)
 	}
 }
 
+/*void Graphic::drawInterface(void)
+{
+	sf::RectangleShape r;
+	r.setFillColor(sf::Color(255, 0, 0, 255));
+	r.setPosition(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH, 0);
+	r.setSize(sf::Vector2f(Settings::INTERFACE_RIGHT_WIDTH, Settings::HEIGHT));
+	win.draw(r);
+	r.setFillColor(sf::Color(0, 255, 0, 255));
+	r.setPosition(0, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT);
+	r.setSize(sf::Vector2f(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH, Settings::INTERFACE_BOTTOM_HEIGHT));
+	win.draw(r);
+	loadText(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 10, 20, font, std::to_string(static_cast<long long>(intface.mousePos.x)) + " " +  std::to_string(static_cast<long long>(intface.mousePos.y)), 20, 0, 0, 0);
+}*/
+
+
 void Graphic::display()
 {
 	win.display();

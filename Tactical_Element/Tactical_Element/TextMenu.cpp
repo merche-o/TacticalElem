@@ -12,7 +12,6 @@ TextMenu::TextMenu(float X, float Y, std::string t, int s, sf::Font & Font, int 
 	menuText.setString(t);
 }
 
-
 TextMenu::~TextMenu(void)
 {
 }

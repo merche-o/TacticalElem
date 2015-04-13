@@ -7,6 +7,7 @@
 #include "Graphic.h"
 #include "GameMenu.h"
 #include "SoundEngine.h"
+#include "Interface.h"
 #include "Map.h"
 #include "Event.h"
 #include "Team.h"
@@ -39,6 +40,7 @@ private:
 	SoundEngine sound;
 	Map map;
 	CharacterFactory factoryUnit;
+	Interface intface;
 	Event event;
 	std::vector<Team*> teams;
 	Unit* currentPlayerTurn;

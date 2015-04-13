@@ -11,10 +11,11 @@ class Ressources
 {
 public:
 	std::map<std::string, sf::Texture> texture;
+
 public:
 	Ressources(void);
 	~Ressources(void);
 
-	void loadTexturesFromFile(std::string fileName);
+	void loadTexturesFromFile();
 };
 

@@ -2,8 +2,8 @@
 #include <string>
 #include <iostream>
 
-GameMenu::GameMenu(sf::RenderWindow & w, Event & e, bool & s)
-	: Display(w), win(w), event(e), start(s)
+GameMenu::GameMenu(sf::RenderWindow & w, Event & e, Ressources & r, std::vector<Team*> & t, bool & s)
+	: Display(w), win(w), event(e), ress(r), teams(t), start(s)
 {
 	refresh = true;
 	isPushed = false;
@@ -17,15 +17,25 @@ GameMenu::GameMenu(sf::RenderWindow & w, Event & e, bool & s)
 	addKeyTextMenu(MAIN, new TextMenu(200, 500, "Quit", 48, font), &GameMenu::menuReturn);
 
 	addTextMenu(TEAM_SELECTION, new TextMenu(100, 0, "Character\n\tSelection", 96, font, 250, 60, 60));
-	addKeyTextMenu(TEAM_SELECTION, new TextMenu(200, 400, "Play", 48, font), &GameMenu::menuPlay);
-	addKeyTextMenu(TEAM_SELECTION, new TextMenu(200, 500, "Back", 48, font), &GameMenu::menuReturn);
+	addKeyTextMenu(TEAM_SELECTION, new TextMenu(600, 600, "Play", 48, font), &GameMenu::menuPlay);
+	addKeyTextMenu(TEAM_SELECTION, new TextMenu(600, 650, "Back", 48, font), &GameMenu::menuReturn);
+	addKeyImgMenu(TEAM_SELECTION, new ImageMenu(100, 400, ress.texture["test"]), &GameMenu::menuReturn);
+	addKeyImgMenu(TEAM_SELECTION, new ImageMenu(150, 400, ress.texture["test"]), &GameMenu::menuReturn);
+	addKeyImgMenu(TEAM_SELECTION, new ImageMenu(200, 400, ress.texture["test"]), &GameMenu::menuReturn);
+	addKeyImgMenu(TEAM_SELECTION, new ImageMenu(250, 400, ress.texture["test"]), &GameMenu::menuReturn);
+	addKeyImgMenu(TEAM_SELECTION, new ImageMenu(300, 400, ress.texture["test"]), &GameMenu::menuReturn);
+	addKeyImgMenu(TEAM_SELECTION, new ImageMenu(100, 450, ress.texture["test"]), &GameMenu::menuReturn);
+	addKeyImgMenu(TEAM_SELECTION, new ImageMenu(150, 450, ress.texture["test"]), &GameMenu::menuReturn);
+	addKeyImgMenu(TEAM_SELECTION, new ImageMenu(200, 450, ress.texture["test"]), &GameMenu::menuReturn);
+	addKeyImgMenu(TEAM_SELECTION, new ImageMenu(250, 450, ress.texture["test"]), &GameMenu::menuReturn);
+	addKeyImgMenu(TEAM_SELECTION, new ImageMenu(250, 450, ress.texture["test"]), &GameMenu::menuReturn);
 
 	addTextMenu(CREDITS, new TextMenu(350, 0, "Credits", 96, font, 250, 60, 60));
 	addTextMenu(CREDITS, new TextMenu(200, 200, "Nothing :\tOlivier", 48, font, 60, 200, 150));
 	addTextMenu(CREDITS, new TextMenu(200, 300, "Nothing :\tMarc", 48, font, 60, 200, 150));
 	addTextMenu(CREDITS, new TextMenu(200, 400, "Nothing :\tJoris", 48, font, 60, 200, 150));
 	addTextMenu(CREDITS, new TextMenu(200, 500, "Nothing :\tAxel", 48, font, 60, 200, 150));
-	addKeyTextMenu(CREDITS, new TextMenu(200,600, "Back", 48, font), &GameMenu::menuReturn);
+	addKeyTextMenu(CREDITS, new TextMenu(200, 600, "Back", 48, font), &GameMenu::menuReturn);
 }
 
 
@@ -104,6 +114,15 @@ void GameMenu::displayCurrentMenu()
 					250, 150, 60);
 		}
 	}
+
+	std::cout << "- " << sizeKeyImgMenu[currentState] << " : " << std::endl;
+	for (int i = 0; i < sizeKeyImgMenu[currentState]; ++i)
+	{
+		std::cout << i << std::endl;
+		loadImage(keyImgMenu[std::make_pair(currentState, i)]->x,
+					keyImgMenu[std::make_pair(currentState, i)]->y,
+					keyImgMenu[std::make_pair(currentState, i)]->texture);
+	}
 }
 
 void GameMenu::menuPlay()
@@ -145,9 +164,17 @@ void GameMenu::addKeyTextMenu(e_state state, TextMenu * text, void(GameMenu:: *p
 	sizeKeyTextMenu[state]++;
 }
 
+void GameMenu::addKeyImgMenu(e_state state, ImageMenu * img, void(GameMenu:: *p)())
+{
+	keyImgMenu[std::make_pair(state, sizeKeyImgMenu[state])] = img;
+	actionImg[std::make_pair(state, sizeKeyImgMenu[state])] = p;
+	sizeKeyImgMenu[state]++;
+}
+
 int GameMenu::checkTextBounds()
 {
 	sf::FloatRect rect;
+
 	for (unsigned int i = 0; i < sizeKeyTextMenu[currentState]; ++i)
 	{
 		rect = keyTextMenu[std::make_pair(currentState, i)]->menuText.getGlobalBounds();

@@ -1,5 +1,7 @@
 #include "Event.h"
+
 #include <iostream>
+
 
 Event::Event(sf::Window & w)
 	: win(w)
@@ -26,10 +28,6 @@ void Event::checkEvent()
 		else if (event.type == sf::Event::KeyReleased)
 		{
 			
-		}
-		else if (event.type == sf::Event::MouseMoved)
-		{
-			//std::cout << mouse.getPosition(win).x << " / " << mouse.getPosition(win).y << std::endl;
 		}
     }
 }

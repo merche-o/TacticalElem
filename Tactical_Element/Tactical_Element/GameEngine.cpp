@@ -3,14 +3,17 @@
 
 GameEngine::GameEngine(void)
 	: ressources(),
-	menu(window, event, restart),
+	factoryUnit(),
+	menu(window, event, ressources, teams, restart),
 	sound(),
 	map(),
+	intface(window, map, event, teams, currentPlayerTurn),
 	graphic(window, map, ressources),
-	factoryUnit(),
 	event(window)
 {
-	state = MENU;
+	state = GAME;
+
+	ressources.loadTexturesFromFile();
 
 	sound.musicOFF();
 	sound.playMusic(sound.music);
@@ -20,7 +23,7 @@ GameEngine::GameEngine(void)
 
 	restart = false;
 
-	// For Testing Only
+	// For Testing Only ////////////////
 	teams.push_back(new Team());
 	teams.push_back(new Team());
 
@@ -32,7 +35,7 @@ GameEngine::GameEngine(void)
 			teams[j]->units.push_back(factoryUnit.createUnit(Unit::WATER, 0,0,j,i));
 		}
 	}
-	//
+	/////////////////////////////////////
 }
 
 
@@ -59,14 +62,13 @@ void GameEngine::run()
 				// Initialize
 				restart = false;
 			}
-
-			
 			// Au tout debut du tour d'un pion, retirer 1 tour d'effet (case/zone/buff/debuff) a son nom sur la map
 
 
 			// Action Functions
 			event.checkEvent();
 			Pos *tmp = getMouseCoordinateOnMap();
+			intface.run();
 			//////////
 			
 			// Display Functions
@@ -74,7 +76,7 @@ void GameEngine::run()
 
 			map.showEffectArea(5, 5, 5, false);
 			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
-
+			intface.draw();
 			graphic.display();
 			//////////
 		}
