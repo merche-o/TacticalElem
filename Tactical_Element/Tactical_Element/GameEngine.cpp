@@ -10,7 +10,7 @@ GameEngine::GameEngine(void)
 		graphic(window, map, ressources),
 		event(window)
 {
-	state = GAME;
+	state = MENU;
 
 	ressources.loadTexturesFromFile();
 
