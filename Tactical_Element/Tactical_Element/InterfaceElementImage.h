@@ -11,7 +11,7 @@ public:
 	int transparency;
 
 public:
-	InterfaceElementImage(void (*)(void), Pos, sf::Texture &, int = 255);
+	InterfaceElementImage(MouseClickAction, Pos, sf::Texture &, int = 255);
 	~InterfaceElementImage(void);
 	virtual void draw(Display *);
 };

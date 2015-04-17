@@ -13,14 +13,16 @@
 
 
 class Interface : public Display
-{	 
+{
 public:
 	Map & map;
 	std::vector<Team*> & teams;
 	Unit * currentPlayerTurn; // CPT
 	std::vector<InterfaceElement*> interfaceElements;
+	InterfaceElement * hoverElement;
+	InterfaceElement * clickedElement;
 	Event & event;
-
+	bool mouseReleased;
 private:
 	sf::Vector2i mousePosition;
 	
@@ -30,3 +32,5 @@ public:
 	void run(void);
 	void draw(void);
 };
+
+void endTurn(void *);

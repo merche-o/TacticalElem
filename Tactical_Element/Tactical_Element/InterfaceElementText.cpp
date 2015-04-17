@@ -4,8 +4,8 @@
 #include <iostream>
 
 
-InterfaceElementText::InterfaceElementText(void(*_mousePressed)(void), Pos _position, int _size, std::string _text, sf::Color _color, sf::Font & _font)
-	:	InterfaceElement(_mousePressed, _position),
+InterfaceElementText::InterfaceElementText(MouseClickAction _mouseClickAction, Pos _position, int _size, std::string _text, sf::Color _color, sf::Font & _font)
+	:	InterfaceElement(_mouseClickAction, _position),
 		size(_size),
 		text(_text),
 		color(_color),
@@ -43,11 +43,37 @@ void InterfaceElementText::updateText(int size, std::string text, sf::Color colo
 	floatRect = this->sfText.getGlobalBounds();
 	width = floatRect.width;
 	height = floatRect.height;
-	isUpdated = true;
+	//isUpdated = true;
+}
+
+void InterfaceElementText::updateText()
+{
+	sf::FloatRect floatRect;
+
+	
+	sfText.setFont(font);
+	sfText.setCharacterSize(size);
+	sfText.setColor(color);
+	sfText.setPosition(position.x, position.y);
+	sfText.setString(text);
+	floatRect = sfText.getGlobalBounds();
+	width = floatRect.width;
+	height = floatRect.height;
+	//isUpdated = true;
 }
 
 void InterfaceElementText::draw(Display * display)
 {
+	if (isClicked)
+	{
+		sfText.setColor(color);
+	}
+	else if (isHover)
+	{
+		sfText.setColor(sf::Color(0, 0, 0));
+	}
+	else
+		sfText.setColor(color);
 	display->loadText(sfText);
-	isUpdated = false;
+	//isUpdated = false;
 }
