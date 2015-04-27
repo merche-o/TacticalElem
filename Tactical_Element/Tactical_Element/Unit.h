@@ -13,8 +13,9 @@ public:
 	{
 		BASIC,
 		FIRE,
+		LIGHTENING,
+		HEART,
 		WATER,
-		ROCK,
 	};
 
 	Pos pos;
