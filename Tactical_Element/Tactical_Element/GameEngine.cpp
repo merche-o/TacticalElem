@@ -3,7 +3,7 @@
 
 GameEngine::GameEngine(void)
 	: ressources(),
-	factoryUnit(),
+	factoryUnit(ressources),
 	menu(window, event, ressources, teams, restart),
 	sound(),
 	map(),
