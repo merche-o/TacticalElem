@@ -7,7 +7,7 @@ GameEngine::GameEngine(void)
 	menu(window, event, ressources, teams, restart),
 	sound(),
 	map(),
-	intface(window, map, event, teams, currentPlayerTurn),
+	intface(window, map, event, teams, currentPlayerTurn, ressources),
 	graphic(window, map, ressources),
 	event(window)
 {
