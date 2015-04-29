@@ -34,11 +34,11 @@ class GameEngine
 private:
 	e_state state;
 	p_state playerState;
-	Ressources ressources;
 	Graphic graphic;
 	GameMenu menu;
 	SoundEngine sound;
 	Map map;
+	Ressources ressources;
 	CharacterFactory factoryUnit;
 	Interface intface;
 	Event event;

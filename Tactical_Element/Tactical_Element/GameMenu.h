@@ -5,6 +5,7 @@
 #include "TextMenu.h"
 #include "ImageMenu.h"
 #include "Team.h"
+#include "Ressources.h"
 #include <utility>
 #include <vector>
 #include <map>
