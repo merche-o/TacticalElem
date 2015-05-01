@@ -13,8 +13,6 @@ GameEngine::GameEngine(void)
 {
 	state = MENU;
 
-	ressources.loadTexturesFromFile();
-
 	sound.musicOFF();
 	sound.playMusic(sound.music);
 

@@ -1,8 +1,8 @@
 #include "ImageMenu.h"
 
 
-ImageMenu::ImageMenu(float X, float Y, sf::Texture & Texture)
-	: x(X), y(Y), texture(Texture)
+ImageMenu::ImageMenu(float X, float Y, Unit * u)
+	: x(X), y(Y), unit(u)
 {
 }
 
