@@ -11,9 +11,11 @@ Unit::~Unit(void)
 {
 }
 
-Unit *Unit::createWaterUnit(Unit *character)
+Unit *Unit::createWaterUnit(Unit *character, int nTeam, int nPlayer)
 {
 	character->type = Unit::WATER;
+	team_number = nTeam;
+	player_number = nPlayer;
 
 	//il faut attribuer au character ces caracteristiques suivant le type
 	character->life  = 5;
@@ -30,15 +32,16 @@ Unit *Unit::createWaterUnit(Unit *character)
 
 
 //have to edit this one
-Unit *Unit::createLighteningUnit(Unit *character)
+Unit *Unit::createLightningUnit(Unit *character, int nTeam, int nPlayer)
 {
-	character->type = Unit::WATER;
+	character->type = Unit::LIGHTNING;
+	team_number = nTeam;
+	player_number = nPlayer;
 
 	//il faut attribuer au character ces caracteristiques suivant le type
 	character->life  = 5;
 	character->initiative = 5;
 	character->move_points = 5;
-	character->texture = res.unitTexture[character->type];
 	
 	//push les spells suivant le type dans la spell list du character
 	character->spells.push_back(new SpellDirect(4));
@@ -48,9 +51,11 @@ Unit *Unit::createLighteningUnit(Unit *character)
 	return character;
 }
 
-Unit *Unit::createHeartUnit(Unit *character)
+Unit *Unit::createHeartUnit(Unit *character, int nTeam, int nPlayer)
 {
 	character->type = Unit::HEART;
+	team_number = nTeam;
+	player_number = nPlayer;
 
 	//il faut attribuer au character ces caracteristiques suivant le type
 	character->life  = 5;

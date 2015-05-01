@@ -12,14 +12,12 @@ public:
 	{
 		BASIC,
 		FIRE,
-		LIGHTENING,
+		LIGHTNING,
 		HEART,
 		WATER,
 	};
 
 	Pos pos;
-	int team;
-	int player;
 	int life;
 	int initiative;
 	int move_points;
@@ -41,8 +39,9 @@ public:
 public:
 	Unit(int X, int Y);
 	~Unit(void);
-	Unit *createWaterUnit(Unit *character);
-	Unit *createLighteningUnit(Unit *character);
-	Unit *createHeartUnit(Unit *character);
+
+	Unit *createWaterUnit(Unit *character, int nTeam, int nPlayer);
+	Unit *createLightningUnit(Unit *character, int nTeam, int nPlayer);
+	Unit *createHeartUnit(Unit *character, int nTeam, int nPlayer);
 };
 

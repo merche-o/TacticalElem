@@ -20,7 +20,7 @@ GameMenu::GameMenu(sf::RenderWindow & w, Event & e, Ressources & r, std::vector<
 	// Faire images et texts en heritage sur interface
 	// Remplacer la texture par une Unit cree via la factory
 	addTextMenu(TEAM_SELECTION, new TextMenu(100, 0, "Character\n\tSelection", 96, font, 250, 60, 60));
-	addKeyCharacterMenu(TEAM_SELECTION, factoryUnit.createWaterUnit(0,0,0,0), &GameMenu::addUnitInTeam);
+	addKeyCharacterMenu(TEAM_SELECTION, factoryUnit.createUnit(Unit::WATER), &GameMenu::addUnitInTeam);
 	//addKeyCharacterMenu(TEAM_SELECTION, new ImageMenu(850, 100, ress.texture["test"]), &GameMenu::addUnitInTeam);
 	//addKeyCharacterMenu(TEAM_SELECTION, new ImageMenu(900, 100, ress.texture["test"]), &GameMenu::addUnitInTeam);
 	//addKeyCharacterMenu(TEAM_SELECTION, new ImageMenu(950, 100, ress.texture["test"]), &GameMenu::addUnitInTeam);
@@ -187,7 +187,7 @@ void GameMenu::addKeyTextMenu(e_state state, TextMenu * text, void(GameMenu:: *p
 	sizeKeyTextMenu[state]++;
 }
 
-void GameMenu::addKeyCharacterMenu(e_state state, Unit * u, void(GameMenu:: *p)())
+void GameMenu::addKeyCharacterMenu(e_state state, Unit * u, void(GameMenu:: *p)(Unit *))
 {
 	//keyImgMenu[std::make_pair(state, sizeKeyImgMenu[state])] = img;
 	//actionImg[std::make_pair(state, sizeKeyImgMenu[state])] = p;
@@ -215,11 +215,13 @@ int GameMenu::checkTextBounds()
 	return (-1);
 }
 
-void GameMenu::addUnitInTeam()
+void GameMenu::addUnitInTeam(Unit * u)
 {
 	if (teams[0]->units.size() <= teams[1]->units.size())
-		teams[0]->units.push_back(factoryUnit.createUnit(Unit::WATER, 0, 0, 0, teams[0]->units.size() - 1));
+	{
+		
+	}
 	else if (teams[0]->units.size() > teams[1]->units.size())
-		teams[1]->units.push_back(factoryUnit.createUnit(Unit::WATER, 0, 0, 1, teams[1]->units.size() - 1));
+		teams[1]->units.push_back(factoryUnit.createUnit(Unit::WATER));
 	std::cout << "OK" << std::endl;
 }
