@@ -57,7 +57,7 @@ public:
 	void menuReturn();
 	void addTextMenu(e_state state, TextMenu * text);
 	void addKeyTextMenu(e_state state, TextMenu * text, void(GameMenu:: *p)());
-	void addKeyCharMenu(e_state state, ImageMenu * img, void(GameMenu:: *p)());
+	void addKeyCharacterMenu(e_state state, ImageMenu * img, void(GameMenu:: *p)());
 	int checkTextBounds();
 	void addUnitInTeam();
 };
