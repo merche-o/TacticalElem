@@ -8,11 +8,11 @@ class ImageMenu
 public:
 	float x;
 	float y;
-	sf::Texture & texture;
+	//sf::Texture & texture;
 	Unit * unit;
 
 public:
-	ImageMenu(float X, float Y, sf::Texture & Texture);
+	ImageMenu(float X, float Y, Unit * u);
 	~ImageMenu(void);
 };
 

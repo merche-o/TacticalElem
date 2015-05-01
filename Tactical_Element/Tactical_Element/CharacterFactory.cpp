@@ -15,7 +15,7 @@ CharacterFactory::~CharacterFactory(void)
 {
 }
 
-Unit *CharacterFactory::createBasicUnit(int x,int y, int team, int player)
+Unit *CharacterFactory::createBasicUnit(int x, int y, int team, int player)
 {
 	Unit *character = new Unit(x, y);
 	character->team = team;
