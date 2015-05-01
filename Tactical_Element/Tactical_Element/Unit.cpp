@@ -4,11 +4,19 @@
 Unit::Unit(int X, int Y)
 	: pos(X, Y)
 {
+	this->factory[Unit::WATER] = &Unit::createWaterUnit;
+	this->factory[Unit::LIGHTNING] = &Unit::createLightningUnit;
+	this->factory[Unit::HEART] = &Unit::createHeartUnit;
 }
 
 
 Unit::~Unit(void)
 {
+}
+
+Unit *Unit::createUnitWithType(Unit *u, int team, int player)
+{
+	return (this->*(factory[u->type]))(u, team, player);	
 }
 
 Unit *Unit::createWaterUnit(Unit *character, int nTeam, int nPlayer)
