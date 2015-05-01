@@ -4,7 +4,6 @@
 #include <vector>
 #include "Pos.h"
 #include "Spell.h"
-#include "Ressources.h"
 
 class Unit
 {
@@ -13,8 +12,9 @@ public:
 	{
 		BASIC,
 		FIRE,
+		LIGHTENING,
+		HEART,
 		WATER,
-		ROCK,
 	};
 
 	Pos pos;

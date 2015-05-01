@@ -3,11 +3,11 @@
 
 GameEngine::GameEngine(void)
 	: ressources(),
-	factoryUnit(),
+	factoryUnit(ressources),
 	menu(window, event, ressources, teams, factoryUnit, restart),
 	sound(),
 	map(),
-	intface(window, map, event, teams, currentPlayerTurn),
+	intface(window, map, event, teams, currentPlayerTurn, ressources),
 	graphic(window, map, ressources),
 	event(window)
 {

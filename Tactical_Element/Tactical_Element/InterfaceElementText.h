@@ -14,9 +14,10 @@ public:
 	sf::Font & font;
 
 public:
-	InterfaceElementText(void (*)(void), Pos, int, std::string, sf::Color, sf::Font &);
+	InterfaceElementText(MouseClickAction, Pos, int, std::string, sf::Color, sf::Font &);
 	~InterfaceElementText(void);
 	void updateText(int, std::string, sf::Color, sf::Font &);
+	void updateText();
 
 	virtual void draw(Display *);
 };

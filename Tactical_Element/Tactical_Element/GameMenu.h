@@ -6,6 +6,7 @@
 #include "ImageMenu.h"
 #include "Team.h"
 #include "CharacterFactory.h"
+#include "Ressources.h"
 #include <utility>
 #include <vector>
 #include <map>

@@ -8,8 +8,11 @@
 
 class CharacterFactory
 {
+private:
+Ressources &res; 
+
 public:
-	CharacterFactory(void);
+	CharacterFactory(Ressources &_res);
 	~CharacterFactory(void);
 	//void(IA:: *)(Enemy *src, float x, float y);
 	//pointeur sur func
@@ -17,7 +20,8 @@ public:
 	Unit *createUnit(Unit::UnitType, int x, int y, int team, int player);
 	Unit *createBasicUnit(int x, int y, int team, int player);
 	Unit *createWaterUnit(int x, int y, int team, int player);
-	Unit *createRockUnit(int x, int y, int team, int player);
+	Unit *createLighteningUnit(int x, int y, int team, int player);
+	Unit *createHeartUnit(int x, int y, int team, int player);
 	std::map<Unit::UnitType, Unit *(CharacterFactory:: *)(int x, int y, int team ,int player)> factory;
 };
 

@@ -11,7 +11,7 @@ class Ressources
 {
 public:
 	std::map<std::string, sf::Texture> texture;
-
+	std::map<Unit::UnitType, sf::Texture> unitTexture;
 public:
 	Ressources(void);
 	~Ressources(void);
