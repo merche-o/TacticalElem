@@ -17,11 +17,6 @@ public:
 	//void(IA:: *)(Enemy *src, float x, float y);
 	//pointeur sur func
 
-	Unit *createUnit(Unit::UnitType, int x, int y, int team, int player);
-	Unit *createBasicUnit(int x, int y, int team, int player);
-	Unit *createWaterUnit(int x, int y, int team, int player);
-	Unit *createLighteningUnit(int x, int y, int team, int player);
-	Unit *createHeartUnit(int x, int y, int team, int player);
-	std::map<Unit::UnitType, Unit *(CharacterFactory:: *)(int x, int y, int team ,int player)> factory;
+	Unit *createUnit(Unit::UnitType);
 };
 

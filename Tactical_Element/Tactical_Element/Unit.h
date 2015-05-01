@@ -41,5 +41,8 @@ public:
 public:
 	Unit(int X, int Y);
 	~Unit(void);
+	Unit *createWaterUnit(Unit *character);
+	Unit *createLighteningUnit(Unit *character);
+	Unit *createHeartUnit(Unit *character);
 };
 
