@@ -8,7 +8,7 @@ GameMenu::GameMenu(sf::RenderWindow & w, Event & e, Ressources & r, std::vector<
 	refresh = true;
 	isPushed = false;
 	posMenu = -1;
-	currentState = TEAM_SELECTION;
+	currentState = MAIN;
 	beforeState.push_back(NONE);
 	
 
@@ -23,7 +23,7 @@ GameMenu::GameMenu(sf::RenderWindow & w, Event & e, Ressources & r, std::vector<
 	// Faire images et texts en heritage sur interface
 	// Remplacer la texture par une Unit cree via la factory
 	addKeyCharMenu(TEAM_SELECTION, new ImageMenu(800, 100, ress.texture["test"]), &GameMenu::addUnitInTeam);
-	addKeyCharMenu(TEAM_SELECTION, new ImageMenu(850, 100, ress.texture["test"]), &GameMenu::addUnitInTeam);
+	/*addKeyCharMenu(TEAM_SELECTION, new ImageMenu(850, 100, ress.texture["test"]), &GameMenu::addUnitInTeam);
 	addKeyCharMenu(TEAM_SELECTION, new ImageMenu(900, 100, ress.texture["test"]), &GameMenu::addUnitInTeam);
 	addKeyCharMenu(TEAM_SELECTION, new ImageMenu(950, 100, ress.texture["test"]), &GameMenu::addUnitInTeam);
 	addKeyCharMenu(TEAM_SELECTION, new ImageMenu(1000, 100, ress.texture["test"]), &GameMenu::addUnitInTeam);
@@ -31,7 +31,7 @@ GameMenu::GameMenu(sf::RenderWindow & w, Event & e, Ressources & r, std::vector<
 	addKeyCharMenu(TEAM_SELECTION, new ImageMenu(850, 150, ress.texture["test"]), &GameMenu::addUnitInTeam);
 	addKeyCharMenu(TEAM_SELECTION, new ImageMenu(900, 150, ress.texture["test"]), &GameMenu::addUnitInTeam);
 	addKeyCharMenu(TEAM_SELECTION, new ImageMenu(950, 150, ress.texture["test"]), &GameMenu::addUnitInTeam);
-	addKeyCharMenu(TEAM_SELECTION, new ImageMenu(1000, 150, ress.texture["test"]), &GameMenu::addUnitInTeam);
+	addKeyCharMenu(TEAM_SELECTION, new ImageMenu(1000, 150, ress.texture["test"]), &GameMenu::addUnitInTeam);*/
 	addTextMenu(TEAM_SELECTION, new TextMenu(100, 300, "Team 1", 48, font, 250, 150, 60));
 	addTextMenu(TEAM_SELECTION, new TextMenu(100, 350, "Team 2", 48, font, 250, 150, 60));
 	//addKeyTextMenu(TEAM_SELECTION, new TextMenu(600, 600, "Play", 48, font), &GameMenu::menuPlay);
