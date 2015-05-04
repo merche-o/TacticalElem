@@ -2,17 +2,15 @@
 
 #include <vector>
 #include "SFML\Graphics.hpp"
-#include "Settings.h"
 #include "Ressources.h"
 #include "Graphic.h"
 #include "GameMenu.h"
 #include "SoundEngine.h"
 #include "Interface.h"
-#include "Map.h"
 #include "Event.h"
-#include "Team.h"
 #include "Utils.h"
 #include "CharacterFactory.h"
+#include "Referee.h"
 
 class GameEngine
 {
@@ -38,6 +36,7 @@ private:
 	GameMenu menu;
 	SoundEngine sound;
 	Map map;
+	Referee *ref;
 	Ressources ressources;
 	CharacterFactory factoryUnit;
 	Interface intface;

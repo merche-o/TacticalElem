@@ -18,10 +18,10 @@ int			StringToInt(std::string str)
   return (number);
 }
 
-int			Case(int n)
+/*int			Case(int n)
 {
   return (n * Settings::CASE_SIZE);
-}
+}*/
 
 void		BubbleSortUnitsInitiative(std::vector<Unit*> & units)
 {

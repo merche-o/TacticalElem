@@ -12,7 +12,7 @@ GameEngine::GameEngine(void)
 	event(window)
 {
 	state = MENU;
-
+	
 	sound.musicOFF();
 	sound.playMusic(sound.music);
 
@@ -24,15 +24,18 @@ GameEngine::GameEngine(void)
 	// For Testing Only ////////////////
 	teams.push_back(new Team());
 	teams.push_back(new Team());
+	
 
 
-	//for (int j = 0; j < 2; ++j)
-	//{
-	//	for (int i = 0; i < 3; ++i)
-	//	{
-	//		teams[j]->units.push_back(factoryUnit.createUnit(Unit::WATER, 0, 0, j, i));
-	//	}
-	//}
+	for (int j = 0; j < 2; ++j)
+	{
+		for (int i = 0; i < 3; ++i)
+		{
+			teams[j]->units.push_back(factoryUnit.createUnit(Unit::WATER));
+			teams[j]->units.back()->createWaterUnit(teams[j]->units.back(),j,i);
+		}
+	}
+	ref = new Referee(teams, map);
 	/////////////////////////////////////
 }
 

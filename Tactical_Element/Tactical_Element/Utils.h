@@ -10,7 +10,7 @@
 
 std::string		IntToString(int);
 int			StringToInt(std::string);
-int			Case(int);
+//int			Case(int);
 void		BubbleSortUnitsInitiative(std::vector<Unit*> & units);
 
 #endif
