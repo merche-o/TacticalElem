@@ -5,8 +5,9 @@
 class Case
 {
 public:
-	Effect* effect; // Glyphe d'effet
-	Unit   *unit;
+	Effect	*effect; // Glyphe d'effet
+	Unit	*unit;
+	bool	immune;	
 public:
 	Case(void);
 	~Case(void);

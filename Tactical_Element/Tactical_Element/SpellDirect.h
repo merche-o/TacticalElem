@@ -5,7 +5,7 @@
 class SpellDirect : public Spell
 {
 public:
-	SpellDirect(int Range);
+	SpellDirect(int Range, std::string description);
 	~SpellDirect(void);
 
 	void active();

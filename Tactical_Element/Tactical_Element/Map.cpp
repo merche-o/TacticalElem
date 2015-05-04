@@ -13,7 +13,7 @@ Map::~Map(void)
 {
 }
 
-void Map::showEffectArea(int x, int y, int range, bool center)
+void	Map::showEffectArea(int x, int y, int range, bool center)
 {
 	int x1 = x - range;
 	int y1 = y - range;
@@ -43,7 +43,7 @@ void Map::showEffectArea(int x, int y, int range, bool center)
 	}
 }
 
-void Map::createMap()
+void	Map::createMap()
 {
 	int x = 0;
 	int y = 0;
@@ -60,14 +60,14 @@ void Map::createMap()
 	}
 }
 
-Case const *Map::getCase(int x, int y)
+Case	*Map::getCase(int x, int y)
 {
 	return this->map[std::make_pair(x,y)];
 }
 
 //peu changer
 
-bool Map::putEffectOnCase(Effect *e, int x, int y)
+bool	Map::putEffectOnCase(Effect *e, int x, int y)
 {
 	if (this->map[std::make_pair(x,y)]->effect == NULL) 
 		this->map[std::make_pair(x,y)]->effect = e;

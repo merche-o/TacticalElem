@@ -1,8 +1,8 @@
 #include "Spell.h"
 
 
-Spell::Spell(int Range)
-	: range(Range)
+Spell::Spell(int Range, std::string Desc)
+	: range(Range), description(Desc)
 {
 }
 

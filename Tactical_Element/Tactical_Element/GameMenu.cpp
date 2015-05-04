@@ -20,7 +20,7 @@ GameMenu::GameMenu(sf::RenderWindow & w, Event & e, Ressources & r, std::vector<
 	// Faire images et texts en heritage sur interface
 	// Remplacer la texture par une Unit cree via la factory
 	addTextMenu(TEAM_SELECTION, new TextMenu(100, 0, "Character\n\tSelection", 96, font, 250, 60, 60));
-	addKeyCharacterMenu(TEAM_SELECTION, factoryUnit.createUnit(Unit::WATER), &GameMenu::addUnitInTeam);
+	//addKeyCharacterMenu(TEAM_SELECTION, factoryUnit.createUnit(Unit::WATER), &GameMenu::addUnitInTeam);
 	//addKeyCharacterMenu(TEAM_SELECTION, new ImageMenu(850, 100, ress.texture["test"]), &GameMenu::addUnitInTeam);
 	//addKeyCharacterMenu(TEAM_SELECTION, new ImageMenu(900, 100, ress.texture["test"]), &GameMenu::addUnitInTeam);
 	//addKeyCharacterMenu(TEAM_SELECTION, new ImageMenu(950, 100, ress.texture["test"]), &GameMenu::addUnitInTeam);

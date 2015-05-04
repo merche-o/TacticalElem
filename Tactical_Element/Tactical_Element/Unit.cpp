@@ -31,9 +31,9 @@ Unit *Unit::createWaterUnit(Unit *character, int nTeam, int nPlayer)
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
-	character->spells.push_back(new SpellDirect(4));
-	character->spells.push_back(new SpellDirect(4));
-	character->spells.push_back(new SpellDirect(4));
+	character->spells.push_back(new Spell(4, "toto1"));
+	character->spells.push_back(new Spell(4, "toto2"));
+	character->spells.push_back(new Spell(4, "toto3"));
 	
 	return character;
 }
@@ -52,9 +52,9 @@ Unit *Unit::createLightningUnit(Unit *character, int nTeam, int nPlayer)
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
-	character->spells.push_back(new SpellDirect(4));
-	character->spells.push_back(new SpellDirect(4));
-	character->spells.push_back(new SpellDirect(4));
+	character->spells.push_back(new Spell(4, "toto1"));
+	character->spells.push_back(new Spell(4, "toto2"));
+	character->spells.push_back(new Spell(4, "toto3"));
 	
 	return character;
 }
@@ -71,9 +71,9 @@ Unit *Unit::createHeartUnit(Unit *character, int nTeam, int nPlayer)
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
-	character->spells.push_back(new SpellDirect(4));
-	character->spells.push_back(new SpellDirect(4));
-	character->spells.push_back(new SpellDirect(4));
+	character->spells.push_back(new Spell(4, "toto1"));
+	character->spells.push_back(new Spell(4, "toto2"));
+	character->spells.push_back(new Spell(4, "toto3"));
 	
 	return character;
 }

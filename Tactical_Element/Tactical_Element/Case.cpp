@@ -3,6 +3,9 @@
 
 Case::Case(void)
 {
+	effect = NULL;
+	unit = NULL;
+	immune = false;
 }
 
 
