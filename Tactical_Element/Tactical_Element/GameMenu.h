@@ -5,6 +5,7 @@
 #include "TextMenu.h"
 #include "ImageMenu.h"
 #include "Team.h"
+#include "CharacterFactory.h"
 #include "Ressources.h"
 #include <utility>
 #include <vector>
@@ -39,11 +40,12 @@ public:
 	Event & event;
 	Ressources & ress;
 	std::vector<Team*> & teams;
+	CharacterFactory & factoryUnit;
 	bool & start;
 	bool refresh;
 
 public:
-	GameMenu(sf::RenderWindow & w, Event & e, Ressources & r, std::vector<Team*> & t, bool & s);
+	GameMenu(sf::RenderWindow & w, Event & e, Ressources & r, std::vector<Team*> & t, CharacterFactory & FactoryUnit, bool & s);
 	~GameMenu(void);
 	
 	void posInsideTheMenu();
@@ -55,7 +57,8 @@ public:
 	void menuReturn();
 	void addTextMenu(e_state state, TextMenu * text);
 	void addKeyTextMenu(e_state state, TextMenu * text, void(GameMenu:: *p)());
-	void addKeyImgMenu(e_state state, ImageMenu * img, void(GameMenu:: *p)());
+	void addKeyCharacterMenu(e_state state, Unit * u, void(GameMenu:: *p)(Unit *));
 	int checkTextBounds();
+	void addUnitInTeam(Unit * u);
 };
 

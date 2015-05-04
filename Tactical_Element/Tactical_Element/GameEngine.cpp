@@ -4,16 +4,14 @@
 GameEngine::GameEngine(void)
 	: ressources(),
 	factoryUnit(ressources),
-	menu(window, event, ressources, teams, restart),
+	menu(window, event, ressources, teams, factoryUnit, restart),
 	sound(),
 	map(),
 	intface(window, map, event, teams, currentPlayerTurn, ressources),
 	graphic(window, map, ressources),
 	event(window)
 {
-	state = GAME;
-
-	ressources.loadTexturesFromFile();
+	state = MENU;
 
 	sound.musicOFF();
 	sound.playMusic(sound.music);
@@ -28,13 +26,13 @@ GameEngine::GameEngine(void)
 	teams.push_back(new Team());
 
 
-	for (int j = 0; j < 2; ++j)
-	{
-		for (int i = 0; i < 3; ++i)
-		{
-			teams[j]->units.push_back(factoryUnit.createUnit(Unit::WATER, 0,0,j,i));
-		}
-	}
+	//for (int j = 0; j < 2; ++j)
+	//{
+	//	for (int i = 0; i < 3; ++i)
+	//	{
+	//		teams[j]->units.push_back(factoryUnit.createUnit(Unit::WATER, 0, 0, j, i));
+	//	}
+	//}
 	/////////////////////////////////////
 }
 

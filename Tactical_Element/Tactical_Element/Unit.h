@@ -12,14 +12,12 @@ public:
 	{
 		BASIC,
 		FIRE,
-		LIGHTENING,
+		LIGHTNING,
 		HEART,
 		WATER,
 	};
 
 	Pos pos;
-	int team;
-	int player;
 	int life;
 	int initiative;
 	int move_points;
@@ -41,5 +39,10 @@ public:
 public:
 	Unit(int X, int Y);
 	~Unit(void);
+	Unit *Unit::createUnitWithType(Unit *u, int t, int p);
+	std::map<Unit::UnitType, Unit *(Unit:: *)(Unit *u, int team ,int player)> factory;
+	Unit *createWaterUnit(Unit *character, int nTeam, int nPlayer);
+	Unit *createLightningUnit(Unit *character, int nTeam, int nPlayer);
+	Unit *createHeartUnit(Unit *character, int nTeam, int nPlayer);
 };
 
