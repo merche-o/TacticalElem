@@ -7,7 +7,7 @@ GameEngine::GameEngine(void)
 	menu(window, event, ressources, teams, factoryUnit, restart),
 	sound(),
 	map(),
-	intface(window, map, event, teams, currentPlayerTurn, ressources),
+	intface(window, map, event, teams, & currentPlayerTurn, ressources, & ref),
 	graphic(window, map, ressources),
 	event(window)
 {
@@ -35,8 +35,10 @@ GameEngine::GameEngine(void)
 			teams[j]->units.back()->createWaterUnit(teams[j]->units.back(),j,i);
 		}
 	}
-	ref = new Referee(teams, map);
+	ref = new Referee(teams, map, & currentPlayerTurn);
 	/////////////////////////////////////
+	this->selectFirstPlayer();
+	//this->intface.currentPlayerTurn = currentPlayerTurn;
 }
 
 
@@ -103,9 +105,12 @@ void GameEngine::selectFirstPlayer()
 	if (teams[1]->initiative > teams[0]->initiative)
 		teams[0]->units.swap(teams[1]->units);
 	currentPlayerTurn = teams[0]->units[0];
+	std::cout << currentPlayerTurn->life << std::endl;
 }
-
-void GameEngine::changeCPT()
+///
+/// ChangeCPT est maintenant dans le refere, ce qui permet a l'interface d'y acceder
+///
+/*void GameEngine::changeCPT()
 {
 	int CPT_team = currentPlayerTurn->team_number;
 	int CPT_num = currentPlayerTurn->player_number;
@@ -118,7 +123,7 @@ void GameEngine::changeCPT()
 			CPT_num = -1;
 		currentPlayerTurn = teams[0]->units[CPT_num + 1];
 	}
-}
+}*/
 
 Pos *GameEngine::getMouseCoordinateOnMap()
 {

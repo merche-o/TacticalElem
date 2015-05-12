@@ -1,10 +1,10 @@
 #pragma once
 
 #include <utility>
-#include "Ressources.h"
 #include "Display.h"
 
-typedef void (*MouseClickAction)(void *);
+class Interface;
+typedef void (Interface:: * MouseClickAction)(void *);
 
 class InterfaceElement
 {	

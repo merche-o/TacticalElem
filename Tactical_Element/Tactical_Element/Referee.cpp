@@ -1,8 +1,8 @@
 #include "Referee.h"
 
 
-Referee::Referee(std::vector<Team*> Teams, Map & Map)
-	: teams(Teams), map (Map)
+Referee::Referee(std::vector<Team*> Teams, Map & Map, Unit ** Unit)
+	: teams(Teams), map(Map), currentPlayerTurn(Unit)
 {
 
 }
@@ -57,4 +57,19 @@ void Referee::decreaseDuration(Case *_case)
 {
 	_case->effect->duration -=1;
 
+}
+
+void Referee::changeCPT()
+{
+	int CPT_team = (*currentPlayerTurn)->team_number;
+	int CPT_num = (*currentPlayerTurn)->player_number;
+	
+	if (CPT_team == 0)
+		(*currentPlayerTurn) = teams[1]->units[(*currentPlayerTurn)->player_number];
+	else
+	{
+		if (CPT_num == 2) // Max team's players
+			CPT_num = -1;
+		(*currentPlayerTurn) = teams[0]->units[CPT_num + 1];
+	}
 }
