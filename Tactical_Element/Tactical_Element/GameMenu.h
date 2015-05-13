@@ -27,7 +27,7 @@ private:
 public:
 	sf::RenderWindow & win;
 	Ressources & ress;
-
+	
 	std::vector<ElementMenu*> elemMenu;
 	//std::map<std::pair<e_state, int>, TextMenu*> textMenu;
 	//std::map<std::pair<e_state, int>, void(GameMenu:: *)()> actionMenu;
@@ -60,6 +60,7 @@ public:
 	void menuCredits();
 	void menuMain();
 	void menuQuit();
+	void createMenu();
 	//void menuReturn();
 	void addTextMenu(e_state state, TextMenu * text);
 	void addKeyTextMenu(e_state state, TextMenu * text, void(GameMenu:: *p)());

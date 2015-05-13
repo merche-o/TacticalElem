@@ -5,6 +5,16 @@
 GameMenu::GameMenu(sf::RenderWindow & w, Event & e, Ressources & r, std::vector<Team*> & t, CharacterFactory & FactoryUnit, bool & s)
 	: Display(w), win(w), event(e), ress(r), teams(t), factoryUnit(FactoryUnit), start(s)
 {
+}
+
+
+GameMenu::~GameMenu(void)
+{
+}
+
+void GameMenu::createMenu(void)
+{
+
 	refresh = true;
 	isPushed = false;
 	posMenu = -1;
@@ -25,6 +35,7 @@ GameMenu::GameMenu(sf::RenderWindow & w, Event & e, Ressources & r, std::vector<
 	elemMenu.push_back(new TextMenu(win, 100, 300, ElementMenu::TEAM_SELECTION, NULL, "Team 1", 48, font, 60, 60, 250));
 	elemMenu.push_back(new TextMenu(win, 100, 350, ElementMenu::TEAM_SELECTION, NULL, "Team 2", 48, font, 60, 60, 250));
 	elemMenu.push_back(new TextMenu(win, 800, 40, ElementMenu::TEAM_SELECTION, NULL, "Characters", 48, font, 222, 222, 222));
+	ress.unitTexture[Unit::WATER];
 	elemMenu.push_back(new ImageMenu(win, 850, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::WATER)));
 	elemMenu.push_back(new ImageMenu(win, 900, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::FIRE)));
 	elemMenu.push_back(new ImageMenu(win, 950, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::LIGHTNING)));
@@ -62,13 +73,9 @@ GameMenu::GameMenu(sf::RenderWindow & w, Event & e, Ressources & r, std::vector<
 	//addTextMenu(CREDITS, new TextMenu(200, 400, "Nothing :\tJoris", 48, font, 60, 200, 150));
 	//addTextMenu(CREDITS, new TextMenu(200, 500, "Nothing :\tAxel", 48, font, 60, 200, 150));
 	//addKeyTextMenu(CREDITS, new TextMenu(200, 600, "Back", 48, font), &GameMenu::menuReturn);
+
+
 }
-
-
-GameMenu::~GameMenu(void)
-{
-}
-
 //void GameMenu::posInsideTheMenu()
 //{
 //	if (posMenu < 0)
@@ -275,12 +282,12 @@ void GameMenu::addUnitInTeam()
 {
 	if (teams[0]->units.size() <= teams[1]->units.size() && teams[0]->units.size() < 3)
 	{
-		teams[0]->units.push_back(factoryUnit.createUnit(ress, cursorPtr->getUnitSelected()->type));
+		teams[0]->units.push_back(cursorPtr->getUnitSelected()->createUnitWithType(cursorPtr->getUnitSelected(), 0, teams[0]->units.size() -1 ));
 		elemMenu.push_back(new ImageMenu(win, 200 + (teams[0]->units.size() * 64), 310, ElementMenu::TEAM_SELECTION, NULL, teams[0]->units[teams[0]->units.size() - 1]));
 	}
 	else if (teams[0]->units.size() > teams[1]->units.size())
 	{
-		teams[1]->units.push_back(factoryUnit.createUnit(ress, cursorPtr->getUnitSelected()->type));
+		teams[1]->units.push_back(cursorPtr->getUnitSelected()->createUnitWithType(cursorPtr->getUnitSelected(), 1, teams[1]->units.size() - 1));
 		elemMenu.push_back(new ImageMenu(win, 200 + (teams[1]->units.size() * 64), 360, ElementMenu::TEAM_SELECTION, NULL, teams[1]->units[teams[1]->units.size() - 1]));
 		
 		// Bouton Play en key
@@ -301,6 +308,7 @@ void GameMenu::addUnitInTeam()
 				{
 					teams[i]->units[j]->pos.x = 2 + (j * 3);
 					teams[i]->units[j]->pos.y = 1 + (i * 9);
+						std::cout << "lol team = " << i  << " player " << j <<  "pos x" << teams[i]->units[j]->pos.x  << " pos y "  << teams[i]->units[j]->pos.y << std::endl;
 				}
 			}
 		}
