@@ -29,6 +29,7 @@ GameEngine::GameEngine(void)
 	/////////////////////////////////////
 	this->selectFirstPlayer();
 	intface.spell = currentPlayerTurn->spells[0];
+	intface.update_CurrentPlayer();
 }
 
 
