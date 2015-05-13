@@ -24,7 +24,7 @@ public:
 	int action_points;
 	int surcharge_action_points;
 	std::vector<Spell*> spells;
-	sf::Texture texture;
+	sf::Texture & texture;
 
 	UnitType type;
 	// std::vector<Effect*> affliction; // Effets qui affecte le pion
@@ -37,8 +37,9 @@ public:
 	int player_number;
 
 public:
-	Unit(int X, int Y);
+	Unit(int X, int Y, sf::Texture & t);
 	~Unit(void);
+
 	Unit *Unit::createUnitWithType(Unit *u, int t, int p);
 	std::map<Unit::UnitType, Unit *(Unit:: *)(Unit *u, int team ,int player)> factory;
 	Unit *createWaterUnit(Unit *character, int nTeam, int nPlayer);

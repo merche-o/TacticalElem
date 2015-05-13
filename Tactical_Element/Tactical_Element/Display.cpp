@@ -1,4 +1,5 @@
 #include "Display.h"
+#include "Settings.h"
 
 
 Display::Display(sf::RenderWindow & w)
@@ -11,6 +12,16 @@ Display::Display(sf::RenderWindow & w)
 
 Display::~Display(void)
 {
+}
+
+void Display::loadCircle(float x, float y, float radius, sf::Color color)
+{
+	sf::CircleShape circle;
+
+	circle.setPosition(x, y);
+	circle.setFillColor(color);
+	circle.setRadius(radius);
+	win.draw(circle);
 }
 
 void Display::loadImage(float x, float y, sf::Texture & Texture, int transparency)
@@ -32,6 +43,7 @@ void Display::loadUnit(Unit* unit)
 {
 	sf::Sprite	Sprite;
 
+	Sprite.setPosition(unit->pos.x * Settings::CASE_SIZE + 14, unit->pos.y * Settings::CASE_SIZE + 14);
 	Sprite.setTexture(unit->texture);
 	win.draw(Sprite);
 }

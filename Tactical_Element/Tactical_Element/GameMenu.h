@@ -11,6 +11,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include "ElementMenu.h"
 
 class GameMenu : public Display
 {
@@ -25,20 +26,23 @@ private:
 
 public:
 	sf::RenderWindow & win;
-	std::map<std::pair<e_state, int>, TextMenu*> textMenu;
-	std::map<std::pair<e_state, int>, void(GameMenu:: *)()> actionMenu;
-	std::map<std::pair<e_state, int>, TextMenu*> keyTextMenu;
-	std::map<std::pair<e_state, int>, void(GameMenu:: *)()> actionImg;
-	std::map<std::pair<e_state, int>, ImageMenu*> keyImgMenu;
-	std::map<e_state, int> sizeKeyTextMenu;
-	std::map<e_state, int> sizeTextMenu;
-	std::map<e_state, int> sizeKeyImgMenu;
+	Ressources & ress;
+
+	std::vector<ElementMenu*> elemMenu;
+	//std::map<std::pair<e_state, int>, TextMenu*> textMenu;
+	//std::map<std::pair<e_state, int>, void(GameMenu:: *)()> actionMenu;
+	//std::map<std::pair<e_state, int>, TextMenu*> keyTextMenu;
+	//std::map<std::pair<e_state, int>, void(GameMenu:: *)()> actionImg;
+	//std::map<std::pair<e_state, int>, ImageMenu*> keyImgMenu;
+	//std::map<e_state, int> sizeKeyTextMenu;
+	//std::map<e_state, int> sizeTextMenu;
+	//std::map<e_state, int> sizeKeyImgMenu;
 	e_state currentState;
-	std::vector<e_state> beforeState;
+	//std::vector<e_state> beforeState;
 	int posMenu;
+	ElementMenu* cursorPtr;
 	bool isPushed;
 	Event & event;
-	Ressources & ress;
 	std::vector<Team*> & teams;
 	CharacterFactory & factoryUnit;
 	bool & start;
@@ -54,11 +58,13 @@ public:
 	void menuPlay();
 	void menuSelection();
 	void menuCredits();
-	void menuReturn();
+	void menuMain();
+	void menuQuit();
+	//void menuReturn();
 	void addTextMenu(e_state state, TextMenu * text);
 	void addKeyTextMenu(e_state state, TextMenu * text, void(GameMenu:: *p)());
-	void addKeyCharacterMenu(e_state state, Unit * u, void(GameMenu:: *p)(Unit *));
-	int checkTextBounds();
-	void addUnitInTeam(Unit * u);
+	void addKeyCharacterMenu(e_state state, Unit * u, void(GameMenu:: *p)(Unit *u));
+	//int checkTextBounds();
+	void addUnitInTeam();
 };
 
