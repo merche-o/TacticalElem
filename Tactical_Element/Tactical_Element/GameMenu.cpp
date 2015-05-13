@@ -180,7 +180,6 @@ void GameMenu::displayCurrentMenu()
 	//				250, 150, 60);
 	//	}
 	//}
-
 	//for (int i = 0; i < sizeKeyImgMenu[currentState]; ++i)
 	//{
 	//	loadImage(keyImgMenu[std::make_pair(currentState, i)]->x,
