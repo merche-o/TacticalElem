@@ -56,5 +56,4 @@ bool Referee::checkMove(Pos pos)
 void Referee::decreaseDuration(Case *_case)
 {
 	_case->effect->duration -=1;
-
 }
