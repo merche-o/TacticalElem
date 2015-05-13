@@ -42,8 +42,6 @@ void Graphic::drawMap(sf::Color c, Pos *mouse)
 	}
 }
 
-<<<<<<< HEAD
-=======
 void Graphic::drawUnits()
 {
 	for (int i = 0; i < teams.size(); ++i)
@@ -54,7 +52,6 @@ void Graphic::drawUnits()
 		}
 	}
 }
->>>>>>> 550e829266a4308179dbd86e19d507fe43a4d728
 
 /*void Graphic::drawInterface(void)
 {
