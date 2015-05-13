@@ -8,8 +8,8 @@
 
 class CharacterFactory
 {
-private:
-Ressources &res; 
+public:
+	Ressources & res; 
 
 public:
 	CharacterFactory(Ressources &_res);
@@ -17,6 +17,6 @@ public:
 	//void(IA:: *)(Enemy *src, float x, float y);
 	//pointeur sur func
 
-	Unit *createUnit(Unit::UnitType);
+	Unit *createUnit(Ressources & res, Unit::UnitType);
 };
 

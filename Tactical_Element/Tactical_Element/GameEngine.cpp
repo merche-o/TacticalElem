@@ -8,9 +8,10 @@ GameEngine::GameEngine(void)
 	sound(),
 	map(),
 	intface(window, map, event, teams, & currentPlayerTurn, ressources, & ref),
-	graphic(window, map, ressources),
+	graphic(window, map, ressources, teams),
 	event(window)
 {
+	menu.createMenu();
 	state = MENU;
 	
 	sound.musicOFF();
@@ -24,21 +25,9 @@ GameEngine::GameEngine(void)
 	// For Testing Only ////////////////
 	teams.push_back(new Team());
 	teams.push_back(new Team());
-	
 
-
-	for (int j = 0; j < 2; ++j)
-	{
-		for (int i = 0; i < 3; ++i)
-		{
-			teams[j]->units.push_back(factoryUnit.createUnit(Unit::WATER));
-			teams[j]->units.back()->createWaterUnit(teams[j]->units.back(),j,i);
-		}
-	}
 	ref = new Referee(teams, map, & currentPlayerTurn);
 	/////////////////////////////////////
-	this->selectFirstPlayer();
-	intface.spell = currentPlayerTurn->spells[0];
 }
 
 
@@ -61,13 +50,13 @@ void GameEngine::run()
 		{
 			if (restart == true)
 			{
-				
-				// Initialize
+				this->selectFirstPlayer();
+				intface.spell = currentPlayerTurn->spells[0]; 
 				restart = false;
 			}
 			// Au tout debut du tour d'un pion, retirer 1 tour d'effet (case/zone/buff/debuff) a son nom sur la map
-
-
+		
+	
 			// Action Functions
 			event.checkEvent();
 			Pos *tmp = getMouseCoordinateOnMap();
@@ -76,6 +65,7 @@ void GameEngine::run()
 			
 			// Display Functions
 			window.clear();
+		//		graphic.drawUnits();
 			if (tmp != NULL)
 				map.showEffectArea(tmp->x, tmp->y, intface.spell->range, false);
 			else
@@ -86,6 +76,15 @@ void GameEngine::run()
 			}
 			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
 			intface.draw();
+				for (int i = 0; i < teams.size(); ++i)
+			{
+				for (int j = 0; j < teams[i]->units.size(); ++j)
+				{
+					teams[i]->units[j]->pos.x = 2 + (j * 3);
+					teams[i]->units[j]->pos.y = 1 + (i * 9);
+					graphic.loadUnit(teams[i]->units[j]);
+				}
+			}
 			graphic.display();
 			//////////
 		}

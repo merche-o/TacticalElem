@@ -31,4 +31,5 @@ void Ressources::loadTexturesFromFile()
 	unitTexture[Unit::WATER].loadFromFile("../Ressources/Images/Token_Water.png");
 	unitTexture[Unit::LIGHTNING].loadFromFile("../Ressources/Images/Token_Lightning.png");
 	unitTexture[Unit::HEART].loadFromFile("../Ressources/Images/Token_Heart.png");
+	std::cout << unitTexture[Unit::WATER].getSize().x << std::endl;
 }

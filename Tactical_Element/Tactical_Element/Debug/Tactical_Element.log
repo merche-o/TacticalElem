@@ -1,9 +1,63 @@
-﻿Build started 09/03/2015 10:48:41.
-     1>Project "C:\Users\Marc\Documents\GitHub\TacticalElem\Tactical_Element\Tactical_Element\Tactical_Element.vcxproj" on node 2 (clean target(s)).
-     1>_PrepareForClean:
-         Deleting file "Debug\Tactical_Element.lastbuildstate".
-     1>Done Building Project "C:\Users\Marc\Documents\GitHub\TacticalElem\Tactical_Element\Tactical_Element\Tactical_Element.vcxproj" (clean target(s)).
+﻿Build started 13/05/2015 15:02:17.
+     1>Project "C:\Users\ainur\Desktop\TacticalElem\Tactical_Element\Tactical_Element\Tactical_Element.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\Tactical_Element.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Marc\Desktop\Tactical_Element\SFML-2.1\include" /ZI /nologo /W3 /WX- /Od /Oy- /D SFML_STATIC /D _MBCS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt CharacterFactory.cpp ElementMenu.cpp ImageMenu.cpp Interface.cpp InterfaceElement.cpp InterfaceElementImage.cpp InterfaceElementText.cpp Referee.cpp Spell.cpp SpellDirect.cpp Unit.cpp Case.cpp Effect.cpp Event.cpp Display.cpp GameEngine.cpp GameMenu.cpp Graphic.cpp main.cpp Map.cpp Pos.cpp Ressources.cpp Settings.cpp SoundEngine.cpp Team.cpp TextMenu.cpp Utils.cpp
+         Utils.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\unit.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         TextMenu.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\textmenu.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         Team.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\unit.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         SoundEngine.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\soundengine.h(4): fatal error C1083: Cannot open include file: 'SFML\Audio.hpp': No such file or directory
+         Settings.cpp
+         Ressources.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\ressources.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         Pos.cpp
+         Map.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\unit.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         main.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\main.cpp(1): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+         Graphic.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\display.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         GameMenu.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\display.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         GameEngine.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\gameengine.h(5): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         Display.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\display.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         Event.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\event.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         Effect.cpp
+         Case.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\unit.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         Unit.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\unit.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         SpellDirect.cpp
+         Spell.cpp
+         Referee.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\unit.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         Generating Code...
+         Compiling...
+         InterfaceElementText.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\display.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         InterfaceElementImage.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\ressources.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         InterfaceElement.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\display.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         Interface.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\ressources.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         ImageMenu.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\imagemenu.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         ElementMenu.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\display.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         CharacterFactory.cpp
+     1>c:\users\ainur\desktop\tacticalelem\tactical_element\tactical_element\unit.h(3): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+         Generating Code...
+     1>Done Building Project "C:\Users\ainur\Desktop\TacticalElem\Tactical_Element\Tactical_Element\Tactical_Element.vcxproj" (build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:00.03
+Time Elapsed 00:00:06.24

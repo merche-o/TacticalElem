@@ -14,6 +14,7 @@ public:
 	Display(sf::RenderWindow & w);
 	~Display(void);
 
+	void loadCircle(float x, float y, float radius, sf::Color color);
 	void loadImage(float x, float y, sf::Texture & texture, int transparency = 255);
 	void loadSprite(sf::Sprite Sprite);
 	void loadUnit(Unit* unit);
