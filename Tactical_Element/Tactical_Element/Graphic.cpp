@@ -54,7 +54,6 @@ void Graphic::drawUnits()
 	{
 		for (int j = 0; j < teams[i]->units.size(); ++j)
 		{
-			std::cout << "lol team = " << i  << " player " << j <<  "pos x" << teams[i]->units[j]->pos.x  << " pos y "  << teams[i]->units[j]->pos.y << std::endl;
 			loadUnit(teams[i]->units[j]);
 		}
 	}
