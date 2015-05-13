@@ -129,9 +129,5 @@ void Interface::secondSpellClick(void *)
 void Interface::thirdSpellClick(void *)
 {
 	((InterfaceElementText *) ressources.stringInterface["skill_description"])->updateString((*currentPlayerTurn)->spells[2]->description);
-<<<<<<< HEAD
-spell = (*currentPlayerTurn)->spells[2];
-=======
 	spell = (*currentPlayerTurn)->spells[2];
->>>>>>> 95dd401d29f3aa5a332f869861925127c2c0d39e
 }
