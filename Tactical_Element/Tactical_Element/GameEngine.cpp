@@ -52,7 +52,7 @@ void GameEngine::run()
 			{
 				this->selectFirstPlayer();
 				intface.spell = currentPlayerTurn->spells[0];
-				intface.update_CurrentPlayer();
+				//intface.update_CurrentPlayer();
 				restart = false;
 			}
 			// Au tout debut du tour d'un pion, retirer 1 tour d'effet (case/zone/buff/debuff) a son nom sur la map
