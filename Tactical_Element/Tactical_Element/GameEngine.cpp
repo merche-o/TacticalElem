@@ -56,8 +56,8 @@ void GameEngine::run()
 				restart = false;
 			}
 			// Au tout debut du tour d'un pion, retirer 1 tour d'effet (case/zone/buff/debuff) a son nom sur la map
-
-
+		
+	
 			// Action Functions
 			event.checkEvent();
 			Pos *tmp = getMouseCoordinateOnMap();
@@ -66,6 +66,7 @@ void GameEngine::run()
 			
 			// Display Functions
 			window.clear();
+		//		graphic.drawUnits();
 			if (tmp != NULL)
 				map.showEffectArea(tmp->x, tmp->y, intface.spell->range, false);
 			else
@@ -75,8 +76,16 @@ void GameEngine::run()
 				ref->castSpell(intface.spell, map.effectArea);
 			}
 			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
-			graphic.drawUnits();
 			intface.draw();
+				for (int i = 0; i < teams.size(); ++i)
+			{
+				for (int j = 0; j < teams[i]->units.size(); ++j)
+				{
+					teams[i]->units[j]->pos.x = 2 + (j * 3);
+					teams[i]->units[j]->pos.y = 1 + (i * 9);
+					graphic.loadUnit(teams[i]->units[j]);
+				}
+			}
 			graphic.display();
 			//////////
 		}

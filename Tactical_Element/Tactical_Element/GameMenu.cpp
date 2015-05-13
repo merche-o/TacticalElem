@@ -113,6 +113,7 @@ void GameMenu::run()
 				isPushed = false;
 				if (start == true)
 				{
+
 					refresh = true;
 					return;
 				}
@@ -307,7 +308,6 @@ void GameMenu::addUnitInTeam()
 				{
 					teams[i]->units[j]->pos.x = 2 + (j * 3);
 					teams[i]->units[j]->pos.y = 1 + (i * 9);
-						std::cout << "lol team = " << i  << " player " << j <<  "pos x" << teams[i]->units[j]->pos.x  << " pos y "  << teams[i]->units[j]->pos.y << std::endl;
 				}
 			}
 		}
