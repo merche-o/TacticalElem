@@ -2,12 +2,11 @@
 
 #include <SFML\Graphics.hpp>
 #include <string>
+#include "ElementMenu.h"
 
-class TextMenu
+class TextMenu : public ElementMenu
 {
 public:
-	float x;
-	float y;
 	int size;
 	std::string text;
 	sf::Color color;
@@ -16,7 +15,13 @@ public:
 
 
 public:
-	TextMenu(float X, float Y, std::string s, int size, sf::Font & Font, int r = 0, int g = 0, int b = 0);
+	TextMenu(sf::RenderWindow & w, float X, float Y, e_state s, void(GameMenu:: *ptr)(), std::string str, int size, sf::Font & Font, int r = 0, int g = 0, int b = 0);
 	~TextMenu(void);
+
+	virtual void draw();
+	virtual void lightDraw();
+	virtual sf::FloatRect getBounds();
+	virtual Unit * getUnitSelected() {return (NULL);};
+	virtual std::string getStringText();
 };
 
