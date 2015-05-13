@@ -46,5 +46,7 @@ public:
 	Unit *createWaterUnit(Unit *character, int nTeam, int nPlayer);
 	Unit *createLightningUnit(Unit *character, int nTeam, int nPlayer);
 	Unit *createHeartUnit(Unit *character, int nTeam, int nPlayer);
+	Unit *createFireUnit(Unit *character, int nTeam, int nPlayer);
+
 };
 

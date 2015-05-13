@@ -84,6 +84,7 @@ void GameEngine::run()
 				{
 					teams[i]->units[j]->pos.x = 2 + (j * 3);
 					teams[i]->units[j]->pos.y = 1 + (i * 9);
+					std::cout <<"team unit vie :" << teams[i]->units[j]->life << std::endl;
 					setPlayerOnMap(teams[i]->units[j]);
 					graphic.loadUnit(teams[i]->units[j]);
 				}

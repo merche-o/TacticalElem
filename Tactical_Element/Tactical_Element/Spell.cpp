@@ -1,9 +1,10 @@
 #include "Spell.h"
 
 
-Spell::Spell(int Range, std::string Desc)
-	: range(Range), description(Desc)
+Spell::Spell(int Range, int Cost, std::string Desc)
+	: range(Range), cost(Cost), description(Desc)
 {
+	effect = new Effect();
 }
 
 
@@ -14,4 +15,9 @@ Spell::~Spell(void)
 void Spell::active()
 {
 
+}
+
+void Spell::setDesc(std::string newDesc)
+{
+	description = newDesc;
 }

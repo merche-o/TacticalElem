@@ -16,7 +16,7 @@ void Referee::applyEffectToPlayer(Case *_case)
 {
 	if (_case->immune == false && _case->effect != NULL)
 	{
-		_case->unit->life -= _case->effect->life;
+		_case->unit->life += _case->effect->life;
 		if (_case->effect->teleport.x != -1 && _case->effect->teleport.y != -1)
 			_case->unit->pos = _case->effect->teleport;
 		_case->unit->pos.x += _case->effect->displace.x;
@@ -28,9 +28,11 @@ void Referee::applyEffectToPlayer(Case *_case)
 
 void Referee::applyEffectOnCase(Case *_case, Effect *effect)
 {
-	if (_case->effect != NULL)
-		_case->effect = new Effect();
-	_case->effect = effect;
+	if (_case->effect == NULL)
+		{
+			_case->effect = new Effect();
+			_case->effect = effect;
+		}
 }
 
 
@@ -64,7 +66,7 @@ void Referee::castSpell(Spell *spell, std::map<std::pair<int, int>, bool> affect
 	{
 		for (int x = 0; x < Settings::MAP_WIDTH; ++x)
 		{
-			// Dois changer coleur/sprite suivent les proprieter de la case;
+			// Dois changer couleur/sprite suivant les proprietes de la case;
 			
 			if (this->map.map[std::make_pair(x, y)] && affectArea[std::make_pair(x,y)] == true)
 			{
@@ -76,6 +78,9 @@ void Referee::castSpell(Spell *spell, std::map<std::pair<int, int>, bool> affect
 
 void Referee::changeCPT()
 {
+	applyEffectToPlayer(map.getCase((*currentPlayerTurn)->pos.x, (*currentPlayerTurn)->pos.y));
+		std::cout << "Life du Player :" << (*currentPlayerTurn)->life << std::endl;
+	killPlayer();
 	int CPT_team = (*currentPlayerTurn)->team_number;
 	int CPT_num = (*currentPlayerTurn)->player_number;
 
@@ -92,10 +97,18 @@ void Referee::changeCPT()
 			CPT_num = -1;
 		(*currentPlayerTurn) = teams[0]->units[CPT_num + 1];
 	}
+
 	(*currentPlayerTurn)->isPlaying = true;
 
 	//log
 	//(*currentPlayerTurn) = teams[0]->units[1];
 	//std::cout << "-----" << std::endl << "player nb " << teams[0]->units[1]->player_number << std::endl;
 	 //std::cout << "team nb " << teams[0]->units[1]->team_number << std::endl;
+}
+
+void Referee::killPlayer()
+{
+	std::cout << "Vie du Joueur :" << (*currentPlayerTurn)->life << std::endl;
+	if ((*currentPlayerTurn)->life <= 0)
+		teams[(*currentPlayerTurn)->team_number]->units.erase(teams[(*currentPlayerTurn)->team_number]->units.begin() + (*currentPlayerTurn)->team_number);
 }

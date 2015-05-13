@@ -57,5 +57,6 @@ public:
 
 	void run();
 	void selectFirstPlayer();
+	void setPlayerOnMap(Unit *u);
 };
 

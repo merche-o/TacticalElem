@@ -31,5 +31,7 @@ public:
 	bool gameOver(std::vector<Team*>teams);
 
 	void changeCPT(void);
+
+	void killPlayer();
 };
 

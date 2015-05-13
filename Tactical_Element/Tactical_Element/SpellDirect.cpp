@@ -1,8 +1,8 @@
 #include "SpellDirect.h"
 
 
-SpellDirect::SpellDirect(int Range, std::string description)
-	: Spell(Range, description)
+SpellDirect::SpellDirect(int Range, int Cost, std::string description)
+	: Spell(Range, Cost, description)
 {
 }
 
