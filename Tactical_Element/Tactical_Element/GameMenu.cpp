@@ -282,12 +282,12 @@ void GameMenu::addUnitInTeam()
 {
 	if (teams[0]->units.size() <= teams[1]->units.size() && teams[0]->units.size() < 3)
 	{
-		teams[0]->units.push_back(cursorPtr->getUnitSelected()->createUnitWithType(cursorPtr->getUnitSelected(), 0, teams[0]->units.size() -1 ));
+		teams[0]->units.push_back(cursorPtr->getUnitSelected()->createUnitWithType(cursorPtr->getUnitSelected(), 0, teams[0]->units.size()));
 		elemMenu.push_back(new ImageMenu(win, 200 + (teams[0]->units.size() * 64), 310, ElementMenu::TEAM_SELECTION, NULL, teams[0]->units[teams[0]->units.size() - 1]));
 	}
 	else if (teams[0]->units.size() > teams[1]->units.size())
 	{
-		teams[1]->units.push_back(cursorPtr->getUnitSelected()->createUnitWithType(cursorPtr->getUnitSelected(), 1, teams[1]->units.size() - 1));
+		teams[1]->units.push_back(cursorPtr->getUnitSelected()->createUnitWithType(cursorPtr->getUnitSelected(), 1, teams[1]->units.size()));
 		elemMenu.push_back(new ImageMenu(win, 200 + (teams[1]->units.size() * 64), 360, ElementMenu::TEAM_SELECTION, NULL, teams[1]->units[teams[1]->units.size() - 1]));
 		
 		// Bouton Play en key

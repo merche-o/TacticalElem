@@ -7,6 +7,8 @@ Unit::Unit(int X, int Y, sf::Texture & t)
 	this->factory[Unit::WATER] = &Unit::createWaterUnit;
 	this->factory[Unit::LIGHTNING] = &Unit::createLightningUnit;
 	this->factory[Unit::HEART] = &Unit::createHeartUnit;
+
+	isPlaying = false;
 }
 
 

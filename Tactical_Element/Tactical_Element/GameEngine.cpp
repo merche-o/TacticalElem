@@ -96,8 +96,8 @@ void GameEngine::run()
 void GameEngine::selectFirstPlayer()
 {
 	// Faire tri a bulle pour ordonner les units par initiative
-	BubbleSortUnitsInitiative(teams[0]->units);
-	BubbleSortUnitsInitiative(teams[1]->units);
+	//BubbleSortUnitsInitiative(teams[0]->units);
+	//BubbleSortUnitsInitiative(teams[1]->units);
 
 	// Calcul initiative team
 	for (unsigned int i = 0; i < teams.size(); ++i)
@@ -111,6 +111,7 @@ void GameEngine::selectFirstPlayer()
 	if (teams[1]->initiative > teams[0]->initiative)
 		teams[0]->units.swap(teams[1]->units);
 	currentPlayerTurn = teams[0]->units[0];
+	teams[0]->units[0]->isPlaying = true;
 }
 ///
 /// ChangeCPT est maintenant dans le refere, ce qui permet a l'interface d'y acceder

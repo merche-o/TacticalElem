@@ -1,7 +1,7 @@
 #include "Referee.h"
 
 
-Referee::Referee(std::vector<Team*> Teams, Map & Map, Unit ** Unit)
+Referee::Referee(std::vector<Team*> & Teams, Map & Map, Unit ** Unit)
 	: teams(Teams), map(Map), currentPlayerTurn(Unit)
 {
 
@@ -78,13 +78,24 @@ void Referee::changeCPT()
 {
 	int CPT_team = (*currentPlayerTurn)->team_number;
 	int CPT_num = (*currentPlayerTurn)->player_number;
+
+	//log
+	//std::cout << "-----" << std::endl << "player nb " << CPT_num << std::endl;
+	//std::cout << "team nb " << CPT_team << std::endl;
 	
+	(*currentPlayerTurn)->isPlaying = false;
 	if (CPT_team == 0)
 		(*currentPlayerTurn) = teams[1]->units[(*currentPlayerTurn)->player_number];
-	else
+	else if (CPT_team == 1)
 	{
 		if (CPT_num == 2) // Max team's players
 			CPT_num = -1;
 		(*currentPlayerTurn) = teams[0]->units[CPT_num + 1];
 	}
+	(*currentPlayerTurn)->isPlaying = true;
+
+	//log
+	//(*currentPlayerTurn) = teams[0]->units[1];
+	//std::cout << "-----" << std::endl << "player nb " << teams[0]->units[1]->player_number << std::endl;
+	 //std::cout << "team nb " << teams[0]->units[1]->team_number << std::endl;
 }

@@ -35,6 +35,7 @@ public:
 
 	int team_number;
 	int player_number;
+	bool isPlaying;
 
 public:
 	Unit(int X, int Y, sf::Texture & t);

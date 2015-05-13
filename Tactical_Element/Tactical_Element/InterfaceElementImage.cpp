@@ -29,9 +29,20 @@ void InterfaceElementImage::draw(Display * display)
 {
 	if (height == 0)
 		init();
-	if (isClicked)
-		display->loadImage(position.x, position.y, clickedTexture, transparency);
+	if (isClickable)
+	{
+		if (isClicked)
+			display->loadImage(position.x, position.y, clickedTexture, transparency);
+		else
+			display->loadImage(position.x, position.y, texture, transparency);
+	}
 	else
 		display->loadImage(position.x, position.y, texture, transparency);
 	//isUpdated = false;
+}
+
+void InterfaceElementImage::updateTexture(sf::Texture & texture)
+{
+	this->texture = texture;
+	init();
 }
