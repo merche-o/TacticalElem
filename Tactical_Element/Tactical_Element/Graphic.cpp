@@ -26,8 +26,14 @@ void Graphic::drawMap(sf::Color c, Pos *mouse)
 				if (this->map.effectArea[std::make_pair(x, y)] == true)
 					R.setFillColor(sf::Color(200, 0, 0, 255));
 				else	if (this->map.map[std::make_pair(x,y)]->effect)
-					R.setFillColor(sf::Color(0,0,200));
-				
+				{
+					if (this->map.map[std::make_pair(x,y)]->effect->isWall == true)
+						R.setFillColor(sf::Color(33,0,0));
+					else if (this->map.map[std::make_pair(x,y)]->effect->life > 0)
+						R.setFillColor(sf::Color(0,200,0));
+					else
+						R.setFillColor(sf::Color(255,102,0));
+				}
 				else
 					R.setFillColor(c);
 
@@ -48,7 +54,6 @@ void Graphic::drawUnits()
 	{
 		for (int j = 0; j < teams[i]->units.size(); ++j)
 		{
-			std::cout << "lol team = " << i  << " player " << j <<  "pos x" << teams[i]->units[j]->pos.x  << " pos y "  << teams[i]->units[j]->pos.y << std::endl;
 			loadUnit(teams[i]->units[j]);
 		}
 	}

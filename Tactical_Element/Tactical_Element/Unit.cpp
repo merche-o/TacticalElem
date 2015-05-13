@@ -7,8 +7,12 @@ Unit::Unit(int X, int Y, sf::Texture & t)
 	this->factory[Unit::WATER] = &Unit::createWaterUnit;
 	this->factory[Unit::LIGHTNING] = &Unit::createLightningUnit;
 	this->factory[Unit::HEART] = &Unit::createHeartUnit;
+<<<<<<< HEAD
 
 	isPlaying = false;
+=======
+	this->factory[Unit::FIRE] = &Unit::createFireUnit;
+>>>>>>> 0853cda8ffbc1accb09f2b157f9ebeb9d6356c1c
 }
 
 
@@ -28,14 +32,18 @@ Unit *Unit::createWaterUnit(Unit *character, int nTeam, int nPlayer)
 	player_number = nPlayer;
 	
 	//il faut attribuer au character ces caracteristiques suivant le type
-	character->life  = 5;
+	character->life  = 2;
 	character->initiative = 5;
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
-	character->spells.push_back(new Spell(4, "toto1"));
-	character->spells.push_back(new Spell(3, "toto2"));
-	character->spells.push_back(new Spell(2, "toto3"));
+	character->spells.push_back(new Spell(2, 0, "Water 1 : Damage"));
+	character->spells.push_back(new Spell(2, 0, "Water 2 : Heal"));
+	character->spells.push_back(new Spell(2, 0, "Water 3 : Create a wall"));
+	
+	character->spells[0]->effect->setLife(-3);
+	character->spells[1]->effect->setLife(1);
+	character->spells[2]->effect->setWall(true);
 	character->pos.x = 0;
 	character->pos.y = 0;
 	return character;
@@ -50,14 +58,19 @@ Unit *Unit::createLightningUnit(Unit *character, int nTeam, int nPlayer)
 	player_number = nPlayer;
 
 	//il faut attribuer au character ces caracteristiques suivant le type
-	character->life  = 5;
+	character->life  = 2;
 	character->initiative = 5;
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
-	character->spells.push_back(new Spell(4, "toto1"));
-	character->spells.push_back(new Spell(4, "toto2"));
-	character->spells.push_back(new Spell(4, "toto3"));
+	character->spells.push_back(new Spell(2, 0, "L 1 : Damage"));
+	character->spells.push_back(new Spell(2, 0, "L 2 : Heal"));
+	character->spells.push_back(new Spell(2, 0, "L 3 : Create a wall"));
+	
+	character->spells[0]->effect->setLife(-3);
+	character->spells[1]->effect->setLife(1);
+	character->spells[2]->effect->setWall(true);
+
 	character->pos.x = 0;
 	character->pos.y = 0;
 	return character;
@@ -70,14 +83,44 @@ Unit *Unit::createHeartUnit(Unit *character, int nTeam, int nPlayer)
 	player_number = nPlayer;
 
 	//il faut attribuer au character ces caracteristiques suivant le type
-	character->life  = 5;
+	character->life  = 2;
 	character->initiative = 5;
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
-	character->spells.push_back(new Spell(4, "toto1"));
-	character->spells.push_back(new Spell(4, "toto2"));
-	character->spells.push_back(new Spell(4, "toto3"));
+	character->spells.push_back(new Spell(2, 0, "H 1 : Damage"));
+	character->spells.push_back(new Spell(2, 0, "H 2 : Heal"));
+	character->spells.push_back(new Spell(2, 0, "H 3 : Create a wall"));
+	
+	character->spells[0]->effect->setLife(-3);
+	character->spells[1]->effect->setLife(1);
+	character->spells[2]->effect->setWall(true);
+	
+	character->pos.x = 0;
+	character->pos.y = 0;
+	return character;
+}
+
+Unit *Unit::createFireUnit(Unit *character, int nTeam, int nPlayer)
+{
+	character->type = Unit::FIRE;
+	team_number = nTeam;
+	player_number = nPlayer;
+
+	//il faut attribuer au character ces caracteristiques suivant le type
+	character->life  = 2;
+	character->initiative = 5;
+	character->move_points = 5;
+	
+	//push les spells suivant le type dans la spell list du character
+	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));
+	character->spells.push_back(new Spell(2, 0, "F 2 : Heal"));
+	character->spells.push_back(new Spell(2, 0, "F 3 : Create a wall"));
+	
+	character->spells[0]->effect->setLife(-3);
+	character->spells[1]->effect->setLife(1);
+	character->spells[2]->effect->setWall(true);
+	
 	character->pos.x = 0;
 	character->pos.y = 0;
 	return character;
