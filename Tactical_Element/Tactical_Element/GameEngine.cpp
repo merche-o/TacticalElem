@@ -8,7 +8,7 @@ GameEngine::GameEngine(void)
 	sound(),
 	map(),
 	intface(window, map, event, teams, & currentPlayerTurn, ressources, & ref),
-	graphic(window, map, ressources),
+	graphic(window, map, ressources, teams),
 	event(window)
 {
 	state = MENU;
@@ -24,17 +24,7 @@ GameEngine::GameEngine(void)
 	// For Testing Only ////////////////
 	teams.push_back(new Team());
 	teams.push_back(new Team());
-	
 
-
-	for (int j = 0; j < 2; ++j)
-	{
-		for (int i = 0; i < 3; ++i)
-		{
-			teams[j]->units.push_back(factoryUnit.createUnit(Unit::WATER));
-			teams[j]->units.back()->createWaterUnit(teams[j]->units.back(),j,i);
-		}
-	}
 	ref = new Referee(teams, map, & currentPlayerTurn);
 	/////////////////////////////////////
 	this->selectFirstPlayer();
@@ -78,7 +68,8 @@ void GameEngine::run()
 			window.clear();
 
 			map.showEffectArea(5, 5, 5, false);
-			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
+			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);
+			graphic.drawUnits();
 			intface.draw();
 			graphic.display();
 			//////////
