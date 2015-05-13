@@ -10,8 +10,8 @@ Interface::Interface(sf::RenderWindow & _window, Map & _map, Event & _event, std
 	pushBackElement("skill_1", new InterfaceElementImage(&Interface::firstSpellClick, Pos(50, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 20), ressources.texture["skill_1"], ressources.texture["skill_1_pressed"]));
 	pushBackElement("skill_2", new InterfaceElementImage(&Interface::secondSpellClick, Pos(150, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 20), ressources.texture["skill_2"], ressources.texture["skill_2_pressed"]));
 	pushBackElement("skill_3", new InterfaceElementImage(&Interface::thirdSpellClick, Pos(250, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 20), ressources.texture["skill_3"], ressources.texture["skill_3_pressed"]));
-	pushBackElement("skill_description", new InterfaceElementText(NULL, Pos(350, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 100), 20, std::string("Default Value"), sf::Color(255, 255, 255), interfaceFont));
-	pushBackElement("end_turn", new InterfaceElementText(&Interface::endTurn, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH - 100, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 50), 20, std::string("End Turn"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("skill_description", new InterfaceElementText(NULL, Pos(100, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 100), 20, std::string("Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("end_turn", new InterfaceElementText(&Interface::endTurn, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH - 90, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 20), 20, std::string("End Turn"), sf::Color(255, 255, 255), interfaceFont));
 
 }
 
@@ -112,20 +112,24 @@ void Interface::endTurn(void *)
 {
 	//std::cout << "endTurn" << std::endl;
 	(*referee)->changeCPT();
+	firstSpellClick(NULL);
 	
 }
 
 void Interface::firstSpellClick(void *)
 {
 	((InterfaceElementText *) ressources.stringInterface["skill_description"])->updateString((*currentPlayerTurn)->spells[0]->description);
+	spell = (*currentPlayerTurn)->spells[0];
 }
 
 void Interface::secondSpellClick(void *)
 {
 	((InterfaceElementText *) ressources.stringInterface["skill_description"])->updateString((*currentPlayerTurn)->spells[1]->description);
+	spell = (*currentPlayerTurn)->spells[1];
 }
 
 void Interface::thirdSpellClick(void *)
 {
 	((InterfaceElementText *) ressources.stringInterface["skill_description"])->updateString((*currentPlayerTurn)->spells[2]->description);
+	spell = (*currentPlayerTurn)->spells[2];
 }

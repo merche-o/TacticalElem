@@ -38,7 +38,7 @@ GameEngine::GameEngine(void)
 	ref = new Referee(teams, map, & currentPlayerTurn);
 	/////////////////////////////////////
 	this->selectFirstPlayer();
-	//this->intface.currentPlayerTurn = currentPlayerTurn;
+	intface.spell = currentPlayerTurn->spells[0];
 }
 
 
