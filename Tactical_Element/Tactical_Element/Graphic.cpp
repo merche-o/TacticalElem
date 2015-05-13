@@ -51,6 +51,7 @@ void Graphic::drawUnits()
 			loadUnit(teams[i]->units[j]);
 		}
 	}
+
 }
 
 /*void Graphic::drawInterface(void)

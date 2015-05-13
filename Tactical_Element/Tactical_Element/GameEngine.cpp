@@ -11,6 +11,7 @@ GameEngine::GameEngine(void)
 	graphic(window, map, ressources, teams),
 	event(window)
 {
+	menu.createMenu();
 	state = MENU;
 	
 	sound.musicOFF();
@@ -27,9 +28,6 @@ GameEngine::GameEngine(void)
 
 	ref = new Referee(teams, map, & currentPlayerTurn);
 	/////////////////////////////////////
-	this->selectFirstPlayer();
-	intface.spell = currentPlayerTurn->spells[0];
-	intface.update_CurrentPlayer();
 }
 
 
@@ -52,8 +50,9 @@ void GameEngine::run()
 		{
 			if (restart == true)
 			{
-				
-				// Initialize
+				this->selectFirstPlayer();
+				intface.spell = currentPlayerTurn->spells[0];
+				intface.update_CurrentPlayer();
 				restart = false;
 			}
 			// Au tout debut du tour d'un pion, retirer 1 tour d'effet (case/zone/buff/debuff) a son nom sur la map
@@ -67,7 +66,6 @@ void GameEngine::run()
 			
 			// Display Functions
 			window.clear();
-			graphic.drawUnits();
 			if (tmp != NULL)
 				map.showEffectArea(tmp->x, tmp->y, intface.spell->range, false);
 			else
@@ -77,6 +75,7 @@ void GameEngine::run()
 				ref->castSpell(intface.spell, map.effectArea);
 			}
 			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
+			graphic.drawUnits();
 			intface.draw();
 			graphic.display();
 			//////////

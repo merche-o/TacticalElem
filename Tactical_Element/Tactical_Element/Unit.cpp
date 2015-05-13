@@ -24,7 +24,7 @@ Unit *Unit::createWaterUnit(Unit *character, int nTeam, int nPlayer)
 	character->type = Unit::WATER;
 	team_number = nTeam;
 	player_number = nPlayer;
-
+	
 	//il faut attribuer au character ces caracteristiques suivant le type
 	character->life  = 5;
 	character->initiative = 5;
@@ -34,7 +34,8 @@ Unit *Unit::createWaterUnit(Unit *character, int nTeam, int nPlayer)
 	character->spells.push_back(new Spell(4, "toto1"));
 	character->spells.push_back(new Spell(3, "toto2"));
 	character->spells.push_back(new Spell(2, "toto3"));
-	
+	character->pos.x = 0;
+	character->pos.y = 0;
 	return character;
 }
 
@@ -55,7 +56,8 @@ Unit *Unit::createLightningUnit(Unit *character, int nTeam, int nPlayer)
 	character->spells.push_back(new Spell(4, "toto1"));
 	character->spells.push_back(new Spell(4, "toto2"));
 	character->spells.push_back(new Spell(4, "toto3"));
-	
+	character->pos.x = 0;
+	character->pos.y = 0;
 	return character;
 }
 
@@ -74,6 +76,7 @@ Unit *Unit::createHeartUnit(Unit *character, int nTeam, int nPlayer)
 	character->spells.push_back(new Spell(4, "toto1"));
 	character->spells.push_back(new Spell(4, "toto2"));
 	character->spells.push_back(new Spell(4, "toto3"));
-	
+	character->pos.x = 0;
+	character->pos.y = 0;
 	return character;
 }
