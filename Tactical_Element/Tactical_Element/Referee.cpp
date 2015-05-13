@@ -59,6 +59,22 @@ void Referee::decreaseDuration(Case *_case)
 
 }
 
+void Referee::castSpell(Spell *spell, std::map<std::pair<int, int>, bool> affectArea)
+{
+	for (int y = 0; y < Settings::MAP_HEIGHT; ++y)
+	{
+		for (int x = 0; x < Settings::MAP_WIDTH; ++x)
+		{
+			// Dois changer coleur/sprite suivent les proprieter de la case;
+			
+			if (this->map.map[std::make_pair(x, y)] && affectArea[std::make_pair(x,y)] == true)
+			{
+				applyEffectOnCase(this->map.map[std::make_pair(x, y)], spell->effect);
+			}
+		}
+	}
+}
+
 void Referee::changeCPT()
 {
 	int CPT_team = (*currentPlayerTurn)->team_number;

@@ -32,8 +32,8 @@ Unit *Unit::createWaterUnit(Unit *character, int nTeam, int nPlayer)
 	
 	//push les spells suivant le type dans la spell list du character
 	character->spells.push_back(new Spell(4, "toto1"));
-	character->spells.push_back(new Spell(4, "toto2"));
-	character->spells.push_back(new Spell(4, "toto3"));
+	character->spells.push_back(new Spell(3, "toto2"));
+	character->spells.push_back(new Spell(2, "toto3"));
 	
 	return character;
 }

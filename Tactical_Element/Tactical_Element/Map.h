@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <iostream>
 #include <vector>
 #include <utility>
 #include "Case.h"

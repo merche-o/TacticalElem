@@ -38,6 +38,7 @@ GameEngine::GameEngine(void)
 	ref = new Referee(teams, map, & currentPlayerTurn);
 	/////////////////////////////////////
 	this->selectFirstPlayer();
+	this->intface.spell = currentPlayerTurn->spells[0];
 	//this->intface.currentPlayerTurn = currentPlayerTurn;
 }
 
@@ -76,8 +77,14 @@ void GameEngine::run()
 			
 			// Display Functions
 			window.clear();
-
-			map.showEffectArea(5, 5, 5, false);
+			if (tmp != NULL)
+				map.showEffectArea(tmp->x, tmp->y, intface.spell->range, false);
+			else
+				map.effectArea.clear();
+			if (event.mouse.isButtonPressed(sf::Mouse::Button::Left) && tmp != NULL && map.effectArea.size() > 0)
+			{
+				ref->castSpell(intface.spell, map.effectArea);
+			}
 			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
 			intface.draw();
 			graphic.display();
@@ -105,7 +112,6 @@ void GameEngine::selectFirstPlayer()
 	if (teams[1]->initiative > teams[0]->initiative)
 		teams[0]->units.swap(teams[1]->units);
 	currentPlayerTurn = teams[0]->units[0];
-	std::cout << currentPlayerTurn->life << std::endl;
 }
 ///
 /// ChangeCPT est maintenant dans le refere, ce qui permet a l'interface d'y acceder
