@@ -76,12 +76,14 @@ void GameEngine::run()
 			}
 			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
 			intface.draw();
+		// doit etre dans graphic (team dans graphic est pas bien set)
 				for (int i = 0; i < teams.size(); ++i)
 			{
 				for (int j = 0; j < teams[i]->units.size(); ++j)
 				{
 					teams[i]->units[j]->pos.x = 2 + (j * 3);
 					teams[i]->units[j]->pos.y = 1 + (i * 9);
+					setPlayerOnMap(teams[i]->units[j]);
 					graphic.loadUnit(teams[i]->units[j]);
 				}
 			}
@@ -91,6 +93,10 @@ void GameEngine::run()
 	}
 }
 
+void GameEngine::setPlayerOnMap(Unit *u)
+{
+	this->map.map[std::make_pair(u->pos.x, u->pos.y)]->unit = u;
+}
 // After Character Selection
 void GameEngine::selectFirstPlayer()
 {
