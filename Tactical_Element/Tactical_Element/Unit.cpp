@@ -1,8 +1,8 @@
 #include "Unit.h"
 #include "SpellDirect.h"
 
-Unit::Unit(int X, int Y)
-	: pos(X, Y)
+Unit::Unit(int X, int Y, sf::Texture & t)
+	: pos(X, Y), texture(t)
 {
 	this->factory[Unit::WATER] = &Unit::createWaterUnit;
 	this->factory[Unit::LIGHTNING] = &Unit::createLightningUnit;

@@ -56,7 +56,6 @@ bool Referee::checkMove(Pos pos)
 void Referee::decreaseDuration(Case *_case)
 {
 	_case->effect->duration -=1;
-
 }
 
 void Referee::castSpell(Spell *spell, std::map<std::pair<int, int>, bool> affectArea)

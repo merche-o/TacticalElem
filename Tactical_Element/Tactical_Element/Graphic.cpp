@@ -1,8 +1,8 @@
 #include "Graphic.h"
 
 
-Graphic::Graphic(sf::RenderWindow & w, Map & m, Ressources & r, std::vector<Team*> &team)
-	: Display(w), win(w), map(m), ress(r), teams(team)
+Graphic::Graphic(sf::RenderWindow & w, Map & m, Ressources & r, std::vector<Team*> & t)
+	: Display(w), win(w), map(m), ress(r), teams(t)
 {
 }
 
@@ -42,6 +42,19 @@ void Graphic::drawMap(sf::Color c, Pos *mouse)
 	}
 }
 
+<<<<<<< HEAD
+=======
+void Graphic::drawUnits()
+{
+	for (int i = 0; i < teams.size(); ++i)
+	{
+		for (int j = 0; j < teams[i]->units.size(); ++j)
+		{
+			loadUnit(teams[i]->units[j]);
+		}
+	}
+}
+>>>>>>> 550e829266a4308179dbd86e19d507fe43a4d728
 
 /*void Graphic::drawInterface(void)
 {
