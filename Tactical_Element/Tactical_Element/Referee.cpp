@@ -1,8 +1,8 @@
 #include "Referee.h"
 
 
-Referee::Referee(std::vector<Team*> Teams, Map & Map)
-	: teams(Teams), map (Map)
+Referee::Referee(std::vector<Team*> Teams, Map & Map, Unit ** Unit)
+	: teams(Teams), map(Map), currentPlayerTurn(Unit)
 {
 
 }
@@ -56,4 +56,35 @@ bool Referee::checkMove(Pos pos)
 void Referee::decreaseDuration(Case *_case)
 {
 	_case->effect->duration -=1;
+}
+
+void Referee::castSpell(Spell *spell, std::map<std::pair<int, int>, bool> affectArea)
+{
+	for (int y = 0; y < Settings::MAP_HEIGHT; ++y)
+	{
+		for (int x = 0; x < Settings::MAP_WIDTH; ++x)
+		{
+			// Dois changer coleur/sprite suivent les proprieter de la case;
+			
+			if (this->map.map[std::make_pair(x, y)] && affectArea[std::make_pair(x,y)] == true)
+			{
+				applyEffectOnCase(this->map.map[std::make_pair(x, y)], spell->effect);
+			}
+		}
+	}
+}
+
+void Referee::changeCPT()
+{
+	int CPT_team = (*currentPlayerTurn)->team_number;
+	int CPT_num = (*currentPlayerTurn)->player_number;
+	
+	if (CPT_team == 0)
+		(*currentPlayerTurn) = teams[1]->units[(*currentPlayerTurn)->player_number];
+	else
+	{
+		if (CPT_num == 2) // Max team's players
+			CPT_num = -1;
+		(*currentPlayerTurn) = teams[0]->units[CPT_num + 1];
+	}
 }

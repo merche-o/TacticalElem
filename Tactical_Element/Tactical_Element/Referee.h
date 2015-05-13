@@ -1,6 +1,7 @@
 #pragma once
 #include "Team.h"
 #include "Map.h"
+#include "Unit.h"
 
 
 
@@ -9,13 +10,15 @@ class Referee
 public:
 	std::vector<Team*> teams;
 	Map & map;
+	Unit ** currentPlayerTurn;
+
 public:
-	Referee(std::vector<Team*> Teams, Map & Map);
+	Referee(std::vector<Team*> Teams, Map & Map, Unit **);
 	~Referee(void);
 
 	bool canPlay(Unit unit);
 
-	void castSpell(Spell spell, Pos pos);
+	void castSpell(Spell *spell, std::map<std::pair<int, int>, bool> effectArea);
 
 	void applyEffectOnCase(Case *_case, Effect *effect);
 
@@ -26,5 +29,7 @@ public:
 	void decreaseDuration(Case *_case);
 
 	bool gameOver(std::vector<Team*>teams);
+
+	void changeCPT(void);
 };
 

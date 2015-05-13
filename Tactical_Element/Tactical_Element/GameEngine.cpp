@@ -7,7 +7,7 @@ GameEngine::GameEngine(void)
 	menu(window, event, ressources, teams, factoryUnit, restart),
 	sound(),
 	map(),
-	intface(window, map, event, teams, currentPlayerTurn, ressources),
+	intface(window, map, event, teams, & currentPlayerTurn, ressources, & ref),
 	graphic(window, map, ressources),
 	event(window)
 {
@@ -35,8 +35,10 @@ GameEngine::GameEngine(void)
 			teams[j]->units.back()->createWaterUnit(teams[j]->units.back(),j,i);
 		}
 	}
-	ref = new Referee(teams, map);
+	ref = new Referee(teams, map, & currentPlayerTurn);
 	/////////////////////////////////////
+	this->selectFirstPlayer();
+	intface.spell = currentPlayerTurn->spells[0];
 }
 
 
@@ -74,8 +76,14 @@ void GameEngine::run()
 			
 			// Display Functions
 			window.clear();
-
-			map.showEffectArea(5, 5, 5, false);
+			if (tmp != NULL)
+				map.showEffectArea(tmp->x, tmp->y, intface.spell->range, false);
+			else
+				map.effectArea.clear();
+			if (event.mouse.isButtonPressed(sf::Mouse::Button::Left) && tmp != NULL && map.effectArea.size() > 0)
+			{
+				ref->castSpell(intface.spell, map.effectArea);
+			}
 			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
 			intface.draw();
 			graphic.display();
@@ -104,8 +112,10 @@ void GameEngine::selectFirstPlayer()
 		teams[0]->units.swap(teams[1]->units);
 	currentPlayerTurn = teams[0]->units[0];
 }
-
-void GameEngine::changeCPT()
+///
+/// ChangeCPT est maintenant dans le refere, ce qui permet a l'interface d'y acceder
+///
+/*void GameEngine::changeCPT()
 {
 	int CPT_team = currentPlayerTurn->team_number;
 	int CPT_num = currentPlayerTurn->player_number;
@@ -118,7 +128,7 @@ void GameEngine::changeCPT()
 			CPT_num = -1;
 		currentPlayerTurn = teams[0]->units[CPT_num + 1];
 	}
-}
+}*/
 
 Pos *GameEngine::getMouseCoordinateOnMap()
 {

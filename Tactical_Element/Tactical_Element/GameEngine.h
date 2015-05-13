@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <iostream>
 #include "SFML\Graphics.hpp"
 #include "Ressources.h"
 #include "Graphic.h"
@@ -56,6 +57,5 @@ public:
 
 	void run();
 	void selectFirstPlayer();
-	void changeCPT();
 };
 

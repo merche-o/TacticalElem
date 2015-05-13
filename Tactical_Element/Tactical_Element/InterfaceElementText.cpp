@@ -27,6 +27,17 @@ InterfaceElementText::~InterfaceElementText(void)
 {
 }
 
+void InterfaceElementText::updateString(std::string str)
+{
+	sf::FloatRect floatRect;
+
+	text = str;
+	sfText.setString(text);
+	floatRect = sfText.getGlobalBounds();
+	width = floatRect.width;
+	height = floatRect.height;
+}
+
 void InterfaceElementText::updateText(int size, std::string text, sf::Color color, sf::Font &font)
 {
 	sf::FloatRect floatRect;
@@ -64,13 +75,18 @@ void InterfaceElementText::updateText()
 
 void InterfaceElementText::draw(Display * display)
 {
-	if (isClicked)
+	if (isClickable)
 	{
-		sfText.setColor(color);
-	}
-	else if (isHover)
-	{
-		sfText.setColor(sf::Color(0, 0, 0));
+		if (isClicked)
+		{
+			sfText.setColor(color);
+		}
+		else if (isHover)
+		{
+			sfText.setColor(sf::Color(0, 0, 0));
+		}
+		else
+			sfText.setColor(color);
 	}
 	else
 		sfText.setColor(color);
