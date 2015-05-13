@@ -142,7 +142,7 @@ void GameMenu::displayCurrentMenu()
 			for (int j = 0; j < teams[i]->units.size(); ++j)
 			{
 				loadImage(0, 0, ress.texture["test"]); // CHANGER
-				std::cout << "rouge" << std::endl;
+				//std::cout << "rouge" << std::endl;
 				//loadImage(0, 0, teams[i]->units[j]->texture); // CHANGER
 			}
 		}
