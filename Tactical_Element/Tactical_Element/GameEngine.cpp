@@ -8,7 +8,7 @@ GameEngine::GameEngine(void)
 	sound(),
 	map(),
 	intface(window, map, event, teams, & currentPlayerTurn, ressources, & ref),
-	graphic(window, map, ressources),
+	graphic(window, map, ressources, teams),
 	event(window)
 {
 	state = MENU;

@@ -1,8 +1,8 @@
 #include "Graphic.h"
 
 
-Graphic::Graphic(sf::RenderWindow & w, Map & m, Ressources & r)
-	: Display(w), win(w), map(m), ress(r)
+Graphic::Graphic(sf::RenderWindow & w, Map & m, Ressources & r, std::vector<Team*> &team)
+	: Display(w), win(w), map(m), ress(r), teams(team)
 {
 }
 
@@ -27,6 +27,7 @@ void Graphic::drawMap(sf::Color c, Pos *mouse)
 					R.setFillColor(sf::Color(200, 0, 0, 255));
 				else	if (this->map.map[std::make_pair(x,y)]->effect)
 					R.setFillColor(sf::Color(0,0,200));
+				
 				else
 					R.setFillColor(c);
 
@@ -40,6 +41,7 @@ void Graphic::drawMap(sf::Color c, Pos *mouse)
 		}
 	}
 }
+
 
 /*void Graphic::drawInterface(void)
 {
