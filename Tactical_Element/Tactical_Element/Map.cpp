@@ -25,16 +25,21 @@ void	Map::showEffectArea(int x, int y, int range, bool center)
 		y1 = 0;
 
 	save_x = x1;
+	this->effectArea.clear();
 	while (y1 <= y + range) {
 		while (x1 <= x + range) {
 			if ((y1 - y) + (x1 - x) <= range 
 				&& (y1 - y) + (x1 - x) >= -range
-				&& (y1+y) - (x1 +x) <= range
-				&& (y1+y) - (x1 + x) >= - range ) {	
+				&& (y1 + x) - (x1 + y) <= range
+				&& (y1 + x) - (x1 + y) >= -range) 
+			{	
 					if (x1 == x && y1 == y && center == false)
 						this->effectArea[std::make_pair(x1, y1)] = false;
 					else
+					{
 						this->effectArea[std::make_pair(x1, y1)] = true;
+						//std::cout << "color x " << y1 << " y " << x1 << std::endl;
+					}
 			}
 			x1++;
 		}

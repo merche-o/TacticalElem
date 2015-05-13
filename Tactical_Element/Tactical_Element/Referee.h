@@ -18,7 +18,7 @@ public:
 
 	bool canPlay(Unit unit);
 
-	void castSpell(Spell spell, Pos pos);
+	void castSpell(Spell *spell, std::map<std::pair<int, int>, bool> effectArea);
 
 	void applyEffectOnCase(Case *_case, Effect *effect);
 
