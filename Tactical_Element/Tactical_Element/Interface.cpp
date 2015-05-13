@@ -111,12 +111,7 @@ void Interface::endTurn(void *)
 {
 	//std::cout << "endTurn" << std::endl;
 	(*referee)->changeCPT();
-<<<<<<< HEAD
-	spell = (*currentPlayerTurn)->spells[0];
-=======
 	firstSpellClick(NULL);
->>>>>>> 95dd401d29f3aa5a332f869861925127c2c0d39e
-	
 }
 
 void Interface::firstSpellClick(void *)
