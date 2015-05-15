@@ -40,6 +40,8 @@ void GameMenu::createMenu(void)
 	elemMenu.push_back(new ImageMenu(win, 900, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::FIRE)));
 	elemMenu.push_back(new ImageMenu(win, 950, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::LIGHTNING)));
 	elemMenu.push_back(new ImageMenu(win, 1000, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::HEART)));
+	elemMenu.push_back(new ImageMenu(win, 1050, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::BARBARIAN)));
+	elemMenu.push_back(new ImageMenu(win, 1100, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::MAGIC)));
 	//elemMenu.push_back(new TextMenu(win, 600, 600, ElementMenu::TEAM_SELECTION, &GameMenu::menuPlay, "Play", 48, font, 250, 150, 60));
 	elemMenu.push_back(new TextMenu(win, 600, 600, ElementMenu::TEAM_SELECTION, NULL, "Play", 48, font, 150, 100, 50));
 	elemMenu.push_back(new TextMenu(win, 600, 650, ElementMenu::TEAM_SELECTION, &GameMenu::menuMain, "Back", 48, font, 250, 150, 60));
