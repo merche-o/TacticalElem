@@ -75,6 +75,17 @@ void GameEngine::run()
 			{
 				ref->castSpell(intface.spell, map.effectArea);
 			}
+
+			// To Move when Right Click
+			else if (event.mouse.isButtonPressed(sf::Mouse::Button::Right))
+			{
+				std::cout << " Right Click " << currentPlayerTurn->pos.x << "----" << currentPlayerTurn->pos.y << std::endl;
+				map.getCase(tmp->x, tmp->y)->unit = currentPlayerTurn;
+				currentPlayerTurn->pos.x = tmp->x;
+				currentPlayerTurn->pos.y = tmp->y;
+			}
+			//
+
 			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
 			intface.draw();
 		// doit etre dans graphic (team dans graphic est pas bien set)
@@ -84,7 +95,7 @@ void GameEngine::run()
 				{
 					teams[i]->units[j]->pos.x = 2 + (j * 3);
 					teams[i]->units[j]->pos.y = 1 + (i * 9);
-					std::cout <<"team unit vie :" << teams[i]->units[j]->life << std::endl;
+					//std::cout <<"team unit vie :" << teams[i]->units[j]->life << std::endl;
 					setPlayerOnMap(teams[i]->units[j]);
 					graphic.loadUnit(teams[i]->units[j]);
 				}

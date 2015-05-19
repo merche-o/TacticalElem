@@ -1,7 +1,7 @@
 #include "Referee.h"
 
 
-Referee::Referee(std::vector<Team*> Teams, Map & Map, Unit ** Unit)
+Referee::Referee(std::vector<Team*> &Teams, Map & Map, Unit ** Unit)
 	: teams(Teams), map(Map), currentPlayerTurn(Unit)
 {
 
@@ -96,7 +96,12 @@ void Referee::changeCPT()
 
 void Referee::killPlayer()
 {
-	std::cout << "Vie du Joueur :" << (*currentPlayerTurn)->life << std::endl;
 	if ((*currentPlayerTurn)->life <= 0)
 		teams[(*currentPlayerTurn)->team_number]->units.erase(teams[(*currentPlayerTurn)->team_number]->units.begin() + (*currentPlayerTurn)->team_number);
+	std::cout << "Taille team : " << teams[(*currentPlayerTurn)->team_number]->units.size() << std::endl;
+	if (teams[(*currentPlayerTurn)->team_number]->units.size() == 0)
+	{
+		std::cout << "WIN" << std::endl;
+		exit(0);
+	}
 }

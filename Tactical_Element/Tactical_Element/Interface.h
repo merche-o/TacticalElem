@@ -29,6 +29,7 @@ public:
 	Event				& event;
 	Referee				** referee;
 	bool				mouseReleased;
+	bool				mouseRight;
 
 private:
 	sf::Vector2i mousePosition;
