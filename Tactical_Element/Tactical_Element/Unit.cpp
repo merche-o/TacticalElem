@@ -4,13 +4,13 @@
 Unit::Unit(int X, int Y, sf::Texture & t)
 	: pos(X, Y), texture(t)
 {
-	this->factory[Unit::WATER] = &Unit::createWaterUnit;
+/*	this->factory[Unit::WATER] = &Unit::createWaterUnit;
 	this->factory[Unit::LIGHTNING] = &Unit::createLightningUnit;
 	this->factory[Unit::HEART] = &Unit::createHeartUnit;
 	this->factory[Unit::FIRE] = &Unit::createFireUnit;
 	this->factory[Unit::BARBARIAN] = &Unit::createBarbarianUnit;
 	this->factory[Unit::MAGIC] = &Unit::createMagicUnit;
-
+	*/
 	isPlaying = false;
 }
 
@@ -18,7 +18,7 @@ Unit::Unit(int X, int Y, sf::Texture & t)
 Unit::~Unit(void)
 {
 }
-
+/*
 Unit *Unit::createUnitWithType(Unit *u, int team, int player)
 {
 	return (this->*(factory[u->type]))(u, team, player);	
@@ -161,4 +161,4 @@ Unit *Unit::createMagicUnit(Unit *character, int nTeam, int nPlayer)
 	character->spells.push_back(new Spell(2, 0, "F 3 : Create a wall"));
 	
 	return character;
-}
+}*/
