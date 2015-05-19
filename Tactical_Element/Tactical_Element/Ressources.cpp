@@ -27,9 +27,10 @@ void Ressources::loadTexturesFromFile()
 
 
 	//load unitTexture file par file
-	unitTexture[Unit::FIRE].loadFromFile("../Ressources/Images/rouge.png");
+	unitTexture[Unit::FIRE].loadFromFile("../Ressources/Images/Token_Fire.png");
 	unitTexture[Unit::WATER].loadFromFile("../Ressources/Images/Token_Water.png");
 	unitTexture[Unit::LIGHTNING].loadFromFile("../Ressources/Images/Token_Lightning.png");
 	unitTexture[Unit::HEART].loadFromFile("../Ressources/Images/Token_Heart.png");
-	std::cout << unitTexture[Unit::WATER].getSize().x << std::endl;
+	unitTexture[Unit::BARBARIAN].loadFromFile("../Ressources/Images/Token_Barbarian.png");
+	unitTexture[Unit::MAGIC].loadFromFile("../Ressources/Images/Token_Magic.png");
 }

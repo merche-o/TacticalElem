@@ -15,6 +15,8 @@ public:
 		LIGHTNING,
 		HEART,
 		WATER,
+		BARBARIAN,
+		MAGIC
 	};
 
 	Pos pos;
@@ -35,6 +37,7 @@ public:
 
 	int team_number;
 	int player_number;
+	bool isPlaying;
 
 public:
 	Unit(int X, int Y, sf::Texture & t);
@@ -46,6 +49,7 @@ public:
 	Unit *createLightningUnit(Unit *character, int nTeam, int nPlayer);
 	Unit *createHeartUnit(Unit *character, int nTeam, int nPlayer);
 	Unit *createFireUnit(Unit *character, int nTeam, int nPlayer);
-
+	Unit *createBarbarianUnit(Unit *character, int nTeam, int nPlayer);
+	Unit *createMagicUnit(Unit *character, int nTeam, int nPlayer);
 };
 

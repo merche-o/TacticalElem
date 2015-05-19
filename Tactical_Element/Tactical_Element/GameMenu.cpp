@@ -40,6 +40,8 @@ void GameMenu::createMenu(void)
 	elemMenu.push_back(new ImageMenu(win, 900, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::FIRE)));
 	elemMenu.push_back(new ImageMenu(win, 950, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::LIGHTNING)));
 	elemMenu.push_back(new ImageMenu(win, 1000, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::HEART)));
+	elemMenu.push_back(new ImageMenu(win, 1050, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::BARBARIAN)));
+	elemMenu.push_back(new ImageMenu(win, 1100, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::MAGIC)));
 	//elemMenu.push_back(new TextMenu(win, 600, 600, ElementMenu::TEAM_SELECTION, &GameMenu::menuPlay, "Play", 48, font, 250, 150, 60));
 	elemMenu.push_back(new TextMenu(win, 600, 600, ElementMenu::TEAM_SELECTION, NULL, "Play", 48, font, 150, 100, 50));
 	elemMenu.push_back(new TextMenu(win, 600, 650, ElementMenu::TEAM_SELECTION, &GameMenu::menuMain, "Back", 48, font, 250, 150, 60));
@@ -282,12 +284,12 @@ void GameMenu::addUnitInTeam()
 {
 	if (teams[0]->units.size() <= teams[1]->units.size() && teams[0]->units.size() < 3)
 	{
-		teams[0]->units.push_back(cursorPtr->getUnitSelected()->createUnitWithType(cursorPtr->getUnitSelected(), 0, teams[0]->units.size() -1 ));
+		teams[0]->units.push_back(cursorPtr->getUnitSelected()->createUnitWithType(cursorPtr->getUnitSelected(), 0, teams[0]->units.size()));
 		elemMenu.push_back(new ImageMenu(win, 200 + (teams[0]->units.size() * 64), 310, ElementMenu::TEAM_SELECTION, NULL, teams[0]->units[teams[0]->units.size() - 1]));
 	}
 	else if (teams[0]->units.size() > teams[1]->units.size())
 	{
-		teams[1]->units.push_back(cursorPtr->getUnitSelected()->createUnitWithType(cursorPtr->getUnitSelected(), 1, teams[1]->units.size() - 1));
+		teams[1]->units.push_back(cursorPtr->getUnitSelected()->createUnitWithType(cursorPtr->getUnitSelected(), 1, teams[1]->units.size()));
 		elemMenu.push_back(new ImageMenu(win, 200 + (teams[1]->units.size() * 64), 360, ElementMenu::TEAM_SELECTION, NULL, teams[1]->units[teams[1]->units.size() - 1]));
 		
 		// Bouton Play en key

@@ -8,6 +8,10 @@ Unit::Unit(int X, int Y, sf::Texture & t)
 	this->factory[Unit::LIGHTNING] = &Unit::createLightningUnit;
 	this->factory[Unit::HEART] = &Unit::createHeartUnit;
 	this->factory[Unit::FIRE] = &Unit::createFireUnit;
+	this->factory[Unit::BARBARIAN] = &Unit::createBarbarianUnit;
+	this->factory[Unit::MAGIC] = &Unit::createMagicUnit;
+
+	isPlaying = false;
 }
 
 
@@ -118,5 +122,43 @@ Unit *Unit::createFireUnit(Unit *character, int nTeam, int nPlayer)
 	
 	character->pos.x = 0;
 	character->pos.y = 0;
+	return character;
+}
+
+Unit *Unit::createBarbarianUnit(Unit *character, int nTeam, int nPlayer)
+{
+	character->type = Unit::BARBARIAN;
+	team_number = nTeam;
+	player_number = nPlayer;
+
+	//il faut attribuer au character ces caracteristiques suivant le type
+	character->life  = 5;
+	character->initiative = 5;
+	character->move_points = 5;
+	
+	//push les spells suivant le type dans la spell list du character
+	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));
+	character->spells.push_back(new Spell(2, 0, "F 2 : Heal"));
+	character->spells.push_back(new Spell(2, 0, "F 3 : Create a wall"));
+	
+	return character;
+}
+
+Unit *Unit::createMagicUnit(Unit *character, int nTeam, int nPlayer)
+{
+	character->type = Unit::MAGIC;
+	team_number = nTeam;
+	player_number = nPlayer;
+
+	//il faut attribuer au character ces caracteristiques suivant le type
+	character->life  = 5;
+	character->initiative = 5;
+	character->move_points = 5;
+	
+	//push les spells suivant le type dans la spell list du character
+	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));
+	character->spells.push_back(new Spell(2, 0, "F 2 : Heal"));
+	character->spells.push_back(new Spell(2, 0, "F 3 : Create a wall"));
+	
 	return character;
 }

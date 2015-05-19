@@ -8,12 +8,12 @@
 class Referee
 {
 public:
-	std::vector<Team*>& teams;
+	std::vector<Team*> & teams;
 	Map & map;
 	Unit ** currentPlayerTurn;
 
 public:
-	Referee(std::vector<Team*> &Teams, Map & Map, Unit **);
+	Referee(std::vector<Team*> & Teams, Map & Map, Unit **);
 	~Referee(void);
 
 	bool canPlay(Unit unit);

@@ -15,5 +15,6 @@ public:
 	InterfaceElementImage(MouseClickAction, Pos, sf::Texture &, sf::Texture &, int = 255);
 	~InterfaceElementImage(void);
 	virtual void draw(Display *);
+	void updateTexture(sf::Texture &);
 	void init(void);
 };
