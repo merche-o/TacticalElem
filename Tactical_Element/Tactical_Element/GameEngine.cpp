@@ -80,9 +80,16 @@ void GameEngine::run()
 			else if (event.mouse.isButtonPressed(sf::Mouse::Button::Right))
 			{
 				std::cout << " Right Click " << currentPlayerTurn->pos.x << "----" << currentPlayerTurn->pos.y << std::endl;
-				map.getCase(tmp->x, tmp->y)->unit = currentPlayerTurn;
-				currentPlayerTurn->pos.x = tmp->x;
-				currentPlayerTurn->pos.y = tmp->y;
+				if (ref->checkMove(tmp) == true)
+				{
+					map.getCase(currentPlayerTurn->pos.x, currentPlayerTurn->pos.y)->unit = NULL;
+					//map.map[std::make_pair(currentPlayerTurn->pos.x, currentPlayerTurn->pos.y)]->unit = NULL;
+					map.getCase(tmp->x, tmp->y)->unit = currentPlayerTurn;
+					//map.map[std::make_pair(tmp->x, tmp->y)]->unit = currentPlayerTurn;
+
+					currentPlayerTurn->pos.x = tmp->x;
+					currentPlayerTurn->pos.y = tmp->y;
+				}
 			}
 			//
 
@@ -93,8 +100,8 @@ void GameEngine::run()
 			{
 				for (int j = 0; j < teams[i]->units.size(); ++j)
 				{
-					teams[i]->units[j]->pos.x = 2 + (j * 3);
-					teams[i]->units[j]->pos.y = 1 + (i * 9);
+					//teams[i]->units[j]->pos.x = 2 + (j * 3);
+					//teams[i]->units[j]->pos.y = 1 + (i * 9);
 					//std::cout <<"team unit vie :" << teams[i]->units[j]->life << std::endl;
 					setPlayerOnMap(teams[i]->units[j]);
 					graphic.loadUnit(teams[i]->units[j]);

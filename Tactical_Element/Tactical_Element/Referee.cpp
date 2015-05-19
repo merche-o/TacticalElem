@@ -44,15 +44,25 @@ bool Referee::canPlay(Unit unit)
 		return (false);
 }
 
-bool Referee::checkMove(Pos pos)
+bool Referee::checkMove(Pos *pos)
 {
 	Case *tmp;
+	std::cout << pos->x << std::endl;
+	tmp = map.getCase(pos->x, pos->y);
 
-	tmp = map.getCase(pos.x, pos.y);
-	if (tmp->effect->isWall == true || tmp->unit != NULL)
-		return (false);
-	else
+	if (tmp->effect == NULL)
+	{
+		if (tmp->unit != NULL)
+			return (false);
 		return (true);
+	}
+	else
+	{
+		if (tmp->effect->isWall == true || tmp->unit != NULL)
+			return (false);
+		return (true);
+	}
+		return (false);
 }
 
 void Referee::decreaseDuration(Case *_case)

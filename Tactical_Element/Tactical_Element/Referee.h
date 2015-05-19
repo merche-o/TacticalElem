@@ -24,7 +24,7 @@ public:
 
 	void applyEffectToPlayer(Case *_case);
 
-	bool checkMove(Pos pos);
+	bool checkMove(Pos *pos);
 
 	void decreaseDuration(Case *_case);
 

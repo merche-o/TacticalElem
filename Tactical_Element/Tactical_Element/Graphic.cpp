@@ -19,7 +19,7 @@ void Graphic::drawMap(sf::Color c, Pos *mouse)
 	{
 		for (int x = 0; x < Settings::MAP_WIDTH; ++x)
 		{
-			// Dois changer coleur/sprite suivent les proprieter de la case;
+			// Dois changer couleur/sprite suivent les proprieter de la case;
 			
 			if (this->map.map[std::make_pair(x, y)])
 			{
