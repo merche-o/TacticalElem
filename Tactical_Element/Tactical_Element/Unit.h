@@ -16,7 +16,11 @@ public:
 		HEART,
 		WATER,
 		BARBARIAN,
-		MAGIC
+		MAGIC,
+		GHOST,
+		KOREA,
+		PLANT,
+		YINYANG
 	};
 
 	Pos pos;

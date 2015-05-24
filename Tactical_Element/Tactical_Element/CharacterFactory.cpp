@@ -12,6 +12,10 @@ CharacterFactory::CharacterFactory(Ressources & _res)
 	this->factory[Unit::FIRE] = &CharacterFactory::createFireUnit;
 	this->factory[Unit::BARBARIAN] = &CharacterFactory::createBarbarianUnit;
 	this->factory[Unit::MAGIC] = &CharacterFactory::createMagicUnit;
+	this->factory[Unit::GHOST] = &CharacterFactory::createGhostUnit;
+	this->factory[Unit::KOREA] = &CharacterFactory::createKoreaUnit;
+	this->factory[Unit::PLANT] = &CharacterFactory::createPlantUnit;
+	this->factory[Unit::YINYANG] = &CharacterFactory::createYinYangUnit;
 }
 
 
@@ -156,6 +160,82 @@ Unit *CharacterFactory::createBarbarianUnit(int nTeam, int nPlayer, Ressources &
 Unit *CharacterFactory::createMagicUnit(int nTeam, int nPlayer, Ressources &_res)
 {
 	Unit *character = new Unit(0, 0, _res.unitTexture[Unit::MAGIC]);
+	character->team_number = nTeam;
+	character->player_number = nPlayer;
+
+	//il faut attribuer au character ces caracteristiques suivant le type
+	character->life  = 5;
+	character->initiative = 5;
+	character->move_points = 5;
+	
+	//push les spells suivant le type dans la spell list du character
+	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));
+	character->spells.push_back(new Spell(2, 0, "F 2 : Heal"));
+	character->spells.push_back(new Spell(2, 0, "F 3 : Create a wall"));
+	
+	return character;
+}
+
+Unit *CharacterFactory::createGhostUnit(int nTeam, int nPlayer, Ressources &_res)
+{
+	Unit *character = new Unit(0, 0, _res.unitTexture[Unit::GHOST]);
+	character->team_number = nTeam;
+	character->player_number = nPlayer;
+
+	//il faut attribuer au character ces caracteristiques suivant le type
+	character->life  = 5;
+	character->initiative = 5;
+	character->move_points = 5;
+	
+	//push les spells suivant le type dans la spell list du character
+	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));
+	character->spells.push_back(new Spell(2, 0, "F 2 : Heal"));
+	character->spells.push_back(new Spell(2, 0, "F 3 : Create a wall"));
+	
+	return character;
+}
+
+Unit *CharacterFactory::createKoreaUnit(int nTeam, int nPlayer, Ressources &_res)
+{
+	Unit *character = new Unit(0, 0, _res.unitTexture[Unit::KOREA]);
+	character->team_number = nTeam;
+	character->player_number = nPlayer;
+
+	//il faut attribuer au character ces caracteristiques suivant le type
+	character->life  = 5;
+	character->initiative = 5;
+	character->move_points = 5;
+	
+	//push les spells suivant le type dans la spell list du character
+	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));
+	character->spells.push_back(new Spell(2, 0, "F 2 : Heal"));
+	character->spells.push_back(new Spell(2, 0, "F 3 : Create a wall"));
+	
+	return character;
+}
+
+Unit *CharacterFactory::createPlantUnit(int nTeam, int nPlayer, Ressources &_res)
+{
+	Unit *character = new Unit(0, 0, _res.unitTexture[Unit::PLANT]);
+	character->team_number = nTeam;
+	character->player_number = nPlayer;
+
+	//il faut attribuer au character ces caracteristiques suivant le type
+	character->life  = 5;
+	character->initiative = 5;
+	character->move_points = 5;
+	
+	//push les spells suivant le type dans la spell list du character
+	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));
+	character->spells.push_back(new Spell(2, 0, "F 2 : Heal"));
+	character->spells.push_back(new Spell(2, 0, "F 3 : Create a wall"));
+	
+	return character;
+}
+
+Unit *CharacterFactory::createYinYangUnit(int nTeam, int nPlayer, Ressources &_res)
+{
+	Unit *character = new Unit(0, 0, _res.unitTexture[Unit::YINYANG]);
 	character->team_number = nTeam;
 	character->player_number = nPlayer;
 

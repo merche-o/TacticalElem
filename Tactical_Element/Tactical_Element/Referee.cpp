@@ -91,6 +91,7 @@ void Referee::changeCPT()
 	applyEffectToPlayer(map.getCase((*currentPlayerTurn)->pos.x, (*currentPlayerTurn)->pos.y));
 		std::cout << "Life du Player :" << (*currentPlayerTurn)->life << std::endl;
 	killPlayer();
+
 	int CPT_team = (*currentPlayerTurn)->team_number;
 	int CPT_num = (*currentPlayerTurn)->player_number;
 

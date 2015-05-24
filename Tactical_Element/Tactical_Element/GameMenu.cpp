@@ -42,6 +42,10 @@ void GameMenu::createMenu(void)
 	elemMenu.push_back(new ImageMenu(win, 1000, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::HEART)));
 	elemMenu.push_back(new ImageMenu(win, 1050, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::BARBARIAN)));
 	elemMenu.push_back(new ImageMenu(win, 1100, 100, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::MAGIC)));
+	elemMenu.push_back(new ImageMenu(win, 850, 150, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::GHOST)));
+	elemMenu.push_back(new ImageMenu(win, 900, 150, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::KOREA)));
+	elemMenu.push_back(new ImageMenu(win, 950, 150, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::PLANT)));
+	elemMenu.push_back(new ImageMenu(win, 1000, 150, ElementMenu::TEAM_SELECTION, &GameMenu::addUnitInTeam, factoryUnit.createUnit(ress, Unit::YINYANG)));
 	//elemMenu.push_back(new TextMenu(win, 600, 600, ElementMenu::TEAM_SELECTION, &GameMenu::menuPlay, "Play", 48, font, 250, 150, 60));
 	elemMenu.push_back(new TextMenu(win, 600, 600, ElementMenu::TEAM_SELECTION, NULL, "Play", 48, font, 150, 100, 50));
 	elemMenu.push_back(new TextMenu(win, 600, 650, ElementMenu::TEAM_SELECTION, &GameMenu::menuMain, "Back", 48, font, 250, 150, 60));
