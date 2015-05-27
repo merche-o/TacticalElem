@@ -11,7 +11,7 @@ Interface::Interface(sf::RenderWindow & _window, Map & _map, Event & _event, std
 	pushBackElement("skill_2", new InterfaceElementImage(&Interface::secondSpellClick, Pos(150, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 20), ressources.texture["skill_2"], ressources.texture["skill_2_pressed"]));
 	pushBackElement("skill_3", new InterfaceElementImage(&Interface::thirdSpellClick, Pos(250, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 20), ressources.texture["skill_3"], ressources.texture["skill_3_pressed"]));
 	pushBackElement("skill_description", new InterfaceElementText(NULL, Pos(100, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 100), 20, std::string("skill description Default Value"), sf::Color(255, 255, 255), interfaceFont));
-	pushBackElement("end_turn", new InterfaceElementText(&Interface::endTurnClick, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH - 90, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 20), 20, std::string("End Turn"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("end_turn", new InterfaceElementText(&Interface::endTurnClick, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH - 105, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 20), 20, std::string("End Turn"), sf::Color(255, 255, 255), interfaceFont));
 
 	pushBackElement("CurrentPlayer_Team", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, Settings::HEIGHT / 2 + 10), 20, std::string("Team number Default Value"), sf::Color(255, 255, 255), interfaceFont));
 	pushBackElement("CurrentPlayer_Image", new InterfaceElementImage(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, Settings::HEIGHT / 2 + 30), ressources.unitTexture[Unit::FIRE], ressources.unitTexture[Unit::FIRE]));
@@ -88,18 +88,8 @@ void Interface::run(void)
 
 void Interface::draw(void)
 {
-	sf::RectangleShape r;
-	int thickness;
-	thickness = 10;
-	r.setFillColor(sf::Color(28, 47, 90, 255));
-	r.setPosition(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + thickness, thickness);
-	r.setSize(sf::Vector2f(Settings::INTERFACE_RIGHT_WIDTH - thickness * 2, Settings::HEIGHT - thickness * 2));
-	r.setOutlineThickness(thickness);
-	win.draw(r);
-	//r.setFillColor(sf::Color(0, 255, 0, 255));
-	r.setPosition(thickness, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + thickness);
-	r.setSize(sf::Vector2f(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH - thickness * 1, Settings::INTERFACE_BOTTOM_HEIGHT - thickness * 2));
-	win.draw(r);
+	drawFrame(0, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT, Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH - 5, Settings::INTERFACE_BOTTOM_HEIGHT);
+	drawFrame(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH, 0, Settings::INTERFACE_RIGHT_WIDTH, Settings::HEIGHT);
 	
 	for (int i = 0; i < interfaceElements.size(); ++i)
 	{
@@ -125,6 +115,39 @@ void Interface::setHoverCase(void)
 	if (newHoverCase != hoverCase)
 	{
 		hoverCase = newHoverCase;
+	}
+}
+
+void Interface::drawFrame(int posX, int posY, int width, int height)
+{
+	int margin = 2;
+	sf::RectangleShape r;
+	r.setFillColor(sf::Color(85, 85, 85, 255));
+	r.setPosition(posX + margin, posY + margin);
+	r.setSize(sf::Vector2f(width - margin * 2, height - margin * 2));
+	win.draw(r);
+
+	if ((width < ressources.texture["corner_TL"].getSize().x * 2 + ressources.texture["border_TB"].getSize().x) || (height < ressources.texture["corner_TL"].getSize().x * 2 + ressources.texture["border_TB"].getSize().x))
+		return;
+	loadImage(posX, posY, ressources.texture["corner_TL"]);
+	for (int x = posX + ressources.texture["corner_TL"].getSize().x; x < posX + width - ressources.texture["corner_TR"].getSize().x; ++x)
+	{
+		loadImage(x, posY, ressources.texture["border_TB"]);
+	}
+	loadImage(posX + width - ressources.texture["corner_TR"].getSize().x, posY, ressources.texture["corner_TR"]);
+	for (int y = posY + ressources.texture["corner_TR"].getSize().y; y < posY + height - ressources.texture["corner_BR"].getSize().y; ++y)
+	{
+		loadImage(posX + width - ressources.texture["border_LR"].getSize().x, y, ressources.texture["border_LR"]);
+	}
+	loadImage(posX + width - ressources.texture["corner_BR"].getSize().x, posY + height - ressources.texture["corner_BR"].getSize().y, ressources.texture["corner_BR"]);
+	for (int x = posX + width - ressources.texture["corner_BR"].getSize().x - ressources.texture["border_TB"].getSize().x; x > posX + ressources.texture["corner_BL"].getSize().x - 1; --x)
+	{
+		loadImage(x, posY + height - ressources.texture["border_TB"].getSize().y, ressources.texture["border_TB"]);
+	}
+	loadImage(posX, posY + height - ressources.texture["corner_BL"].getSize().y, ressources.texture["corner_BL"]);
+	for (int y = posY + height - ressources.texture["corner_BL"].getSize().y - ressources.texture["border_LR"].getSize().y; y > posY + ressources.texture["corner_TL"].getSize().y - 1; --y)
+	{
+		loadImage(posX, y, ressources.texture["border_LR"]);
 	}
 }
 
