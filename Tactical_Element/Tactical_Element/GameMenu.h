@@ -52,7 +52,7 @@ public:
 	GameMenu(sf::RenderWindow & w, Event & e, Ressources & r, std::vector<Team*> & t, CharacterFactory & FactoryUnit, bool & s);
 	~GameMenu(void);
 	
-	void posInsideTheMenu();
+	void createMenu();
 	void run();
 	void displayCurrentMenu();
 	void menuPlay();
@@ -60,12 +60,8 @@ public:
 	void menuCredits();
 	void menuMain();
 	void menuQuit();
-	void createMenu();
-	//void menuReturn();
-	void addTextMenu(e_state state, TextMenu * text);
-	void addKeyTextMenu(e_state state, TextMenu * text, void(GameMenu:: *p)());
-	void addKeyCharacterMenu(e_state state, Unit * u, void(GameMenu:: *p)(Unit *u));
-	//int checkTextBounds();
+	void createElemOnlyOnce(ElementMenu* e);
+	void selectUnit();
 	void addUnitInTeam();
 };
 

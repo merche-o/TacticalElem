@@ -39,4 +39,8 @@ void Ressources::loadTexturesFromFile()
 	unitTexture[Unit::HEART].loadFromFile("../Ressources/Images/Token_Heart.png");
 	unitTexture[Unit::BARBARIAN].loadFromFile("../Ressources/Images/Token_Barbarian.png");
 	unitTexture[Unit::MAGIC].loadFromFile("../Ressources/Images/Token_Magic.png");
+	unitTexture[Unit::GHOST].loadFromFile("../Ressources/Images/Token_Ghost.png");
+	unitTexture[Unit::KOREA].loadFromFile("../Ressources/Images/Token_Korea.png");
+	unitTexture[Unit::PLANT].loadFromFile("../Ressources/Images/Token_Plant.png");
+	unitTexture[Unit::YINYANG].loadFromFile("../Ressources/Images/Token_YinYang.png");
 }
