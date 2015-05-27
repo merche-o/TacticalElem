@@ -23,6 +23,12 @@ void Ressources::loadTexturesFromFile()
 	texture["skill_2_pressed"].loadFromFile("../Ressources/Images/Skill_II_pressed.png");
 	texture["skill_3"].loadFromFile("../Ressources/Images/Skill_III.png");
 	texture["skill_3_pressed"].loadFromFile("../Ressources/Images/Skill_III_pressed.png");
+	texture["corner_TL"].loadFromFile("../Ressources/Images/corner_TL.png");
+	texture["corner_TR"].loadFromFile("../Ressources/Images/corner_TR.png");
+	texture["corner_BR"].loadFromFile("../Ressources/Images/corner_BR.png");
+	texture["corner_BL"].loadFromFile("../Ressources/Images/corner_BL.png");
+	texture["border_TB"].loadFromFile("../Ressources/Images/border_TB.png");
+	texture["border_LR"].loadFromFile("../Ressources/Images/border_LR.png");
 
 
 
