@@ -1,5 +1,6 @@
 #include "Referee.h"
-
+#include <stdlib.h>
+#include <cstdlib>
 
 Referee::Referee(std::vector<Team*> & Teams, Map & Map, Unit ** Unit)
 	: teams(Teams), map(Map), currentPlayerTurn(Unit)
@@ -68,6 +69,8 @@ bool Referee::checkMove(Pos *pos)
 void Referee::decreaseDuration(Case *_case)
 {
 	_case->effect->duration -=1;
+	if (_case->effect->duration <= 0)
+		_case->effect = NULL;
 }
 
 void Referee::castSpell(Spell *spell, std::map<std::pair<int, int>, bool> affectArea)
@@ -89,6 +92,7 @@ void Referee::castSpell(Spell *spell, std::map<std::pair<int, int>, bool> affect
 void Referee::changeCPT()
 {
 	applyEffectToPlayer(map.getCase((*currentPlayerTurn)->pos.x, (*currentPlayerTurn)->pos.y));
+	// Ajouter le dot damage
 		std::cout << "Life du Player :" << (*currentPlayerTurn)->life << std::endl;
 	killPlayer();
 	int CPT_team = (*currentPlayerTurn)->team_number;
@@ -120,10 +124,21 @@ void Referee::killPlayer()
 {
 	if ((*currentPlayerTurn)->life <= 0)
 		teams[(*currentPlayerTurn)->team_number]->units.erase(teams[(*currentPlayerTurn)->team_number]->units.begin() + (*currentPlayerTurn)->team_number);
-	std::cout << "Taille team : " << teams[(*currentPlayerTurn)->team_number]->units.size() << std::endl;
 	if (teams[(*currentPlayerTurn)->team_number]->units.size() == 0)
 	{
 		std::cout << "WIN" << std::endl;
 		exit(0);
 	}
+}
+
+bool Referee::canCast(Spell *spell)
+{
+	if ((*currentPlayerTurn)->action_points /*+ (*currentPlayerTurn)->surcharge_action_points*/ >= spell->cost)
+		return (true);
+	return (false);
+}
+
+int Referee::distance(Pos *pos1, Pos *pos2)
+{
+	return (abs(pos1->x - pos2->x) + abs(pos1->y - pos2->y));
 }

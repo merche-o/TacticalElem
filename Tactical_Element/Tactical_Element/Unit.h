@@ -29,11 +29,8 @@ public:
 	sf::Texture & texture;
 
 	UnitType type;
-	// std::vector<Effect*> affliction; // Effets qui affecte le pion
 	sf::Color color;
 	// std::vector<Effect*> afflictions; // Effets qui affecte le pion
-
-	// std::vector<Effect*> effects; // Liste de pointeur sur les effets que ce pion a lancer et qui sont encore actif (pour le retrait temps a son debut de tour)
 
 	int team_number;
 	int player_number;
