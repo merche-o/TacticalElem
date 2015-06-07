@@ -95,6 +95,7 @@ void Referee::changeCPT()
 	// Ajouter le dot damage
 		std::cout << "Life du Player :" << (*currentPlayerTurn)->life << std::endl;
 	killPlayer();
+
 	int CPT_team = (*currentPlayerTurn)->team_number;
 	int CPT_num = (*currentPlayerTurn)->player_number;
 

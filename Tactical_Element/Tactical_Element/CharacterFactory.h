@@ -26,5 +26,9 @@ public:
 	Unit *createFireUnit(int nTeam, int nPlayer, Ressources &_res);
 	Unit *createBarbarianUnit(int nTeam, int nPlayer, Ressources &_res);
 	Unit *createMagicUnit(int nTeam, int nPlayer, Ressources &_res);
+	Unit *createGhostUnit(int nTeam, int nPlayer, Ressources &_res);
+	Unit *createKoreaUnit(int nTeam, int nPlayer, Ressources &_res);
+	Unit *createPlantUnit(int nTeam, int nPlayer, Ressources &_res);
+	Unit *createYinYangUnit(int nTeam, int nPlayer, Ressources &_res);
 };
 

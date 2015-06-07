@@ -51,6 +51,7 @@ public:
 
 private:
 	void pushBackElement(std::string, InterfaceElement *);
+	void drawFrame(int x, int y, int width, int height);
 	void setHoverCase(void);
 
 	void endTurnClick(void *);
