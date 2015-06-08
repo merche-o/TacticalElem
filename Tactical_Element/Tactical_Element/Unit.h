@@ -35,12 +35,8 @@ public:
 	UnitType type;
 	sf::Color color;
 
-<<<<<<< HEAD
-=======
 	// std::vector<Effect*> afflictions; // Effets qui affecte le pion
 	// std::vector<Effect*> effects; // Liste de pointeur sur les effets que ce pion a lancer et qui sont encore actif (pour le retrait temps a son debut de tour)
-
->>>>>>> 9faa0e168f57eb3e1dedd38f2523dbaebdebe52d
 	int team_number;
 	int player_number;
 	bool isPlaying;

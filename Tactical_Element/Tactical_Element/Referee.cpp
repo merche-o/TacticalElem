@@ -48,7 +48,6 @@ bool Referee::canPlay(Unit unit)
 bool Referee::checkMove(Pos *pos)
 {
 	Case *tmp;
-	std::cout << pos->x << std::endl;
 	tmp = map.getCase(pos->x, pos->y);
 
 	if (tmp->effect == NULL)
@@ -124,13 +123,13 @@ void Referee::killPlayer()
 {
 	if ((*currentPlayerTurn)->life <= 0)
 	{
-		(*currentPlayerTurn)->isAlive = true;
+		(*currentPlayerTurn)->isAlive = false;
 		//teams[(*currentPlayerTurn)->team_number]->units.erase(teams[(*currentPlayerTurn)->team_number]->units.begin() + (*currentPlayerTurn)->team_number);
 		//changeCPT();
 	}
-	if (teams[(*currentPlayerTurn)->team_number]->units[0]->isAlive == true
-		&& teams[(*currentPlayerTurn)->team_number]->units[1]->isAlive == true
-		&& teams[(*currentPlayerTurn)->team_number]->units[2]->isAlive == true)
+	if (teams[(*currentPlayerTurn)->team_number]->units[0]->isAlive == false
+		&& teams[(*currentPlayerTurn)->team_number]->units[1]->isAlive == false
+		&& teams[(*currentPlayerTurn)->team_number]->units[2]->isAlive == false)
 	{
 		std::cout << "WIN" << std::endl;
 		exit(0);
