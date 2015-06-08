@@ -29,10 +29,10 @@ void Referee::applyEffectToPlayer(Case *_case)
 void Referee::applyEffectOnCase(Case *_case, Effect *effect)
 {
 	if (_case->effect == NULL)
-		{
-			_case->effect = new Effect();
-			_case->effect = effect;
-		}
+	{
+		_case->effect = new Effect();
+		_case->effect = effect;
+	}
 }
 
 
