@@ -43,6 +43,7 @@ private:
 	Interface intface;
 	Event event;
 	std::vector<Team*> teams;
+	std::vector<Unit*> timeLine;
 	Unit* currentPlayerTurn;
 	bool restart;
 
@@ -58,5 +59,6 @@ public:
 	void run();
 	void selectFirstPlayer();
 	void setPlayerOnMap(Unit *u);
+	void createTimeLine();
 };
 

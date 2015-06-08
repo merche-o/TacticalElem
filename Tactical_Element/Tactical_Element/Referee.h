@@ -9,11 +9,13 @@ class Referee
 {
 public:
 	std::vector<Team*> & teams;
+	std::vector<Unit*> & timeLine;
+	int indexTimeLine;
 	Map & map;
 	Unit ** currentPlayerTurn;
 
 public:
-	Referee(std::vector<Team*> & Teams, Map & Map, Unit **);
+	Referee(std::vector<Team*> & Teams, std::vector<Unit*> & TimeLine, Map & Map, Unit **);
 	~Referee(void);
 
 	bool canPlay(Unit unit);
