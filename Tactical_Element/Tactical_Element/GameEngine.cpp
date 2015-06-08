@@ -80,7 +80,7 @@ void GameEngine::run()
 			else if (event.mouse.isButtonPressed(sf::Mouse::Button::Right))
 			{
 				std::cout << " Right Click " << currentPlayerTurn->pos.x << "----" << currentPlayerTurn->pos.y << std::endl;
-				if (ref->checkMove(tmp) == true)
+				if (ref->checkMove(tmp) == true && ref->distance(&currentPlayerTurn->pos, tmp) == 1)
 				{
 					map.getCase(currentPlayerTurn->pos.x, currentPlayerTurn->pos.y)->unit = NULL;
 					//map.map[std::make_pair(currentPlayerTurn->pos.x, currentPlayerTurn->pos.y)]->unit = NULL;

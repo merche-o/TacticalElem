@@ -12,6 +12,7 @@ public:
 	Pos teleport; // Teleportation
 	Pos displace; // Bouger la cible 
 	bool isWall; // Pour creation de murs
+	// sf::Color Couleur;  -->Couleur du Spell sur la map
 
 public:
 	Effect(void);

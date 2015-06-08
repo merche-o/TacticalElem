@@ -33,5 +33,9 @@ public:
 	void changeCPT(void);
 
 	void killPlayer();
+
+	bool canCast(Spell *spell);
+
+	int distance(Pos *pos1, Pos *pos2);
 };
 

@@ -2,7 +2,7 @@
 
 
 Spell::Spell(int Range, int Cost, std::string Desc)
-	: range(Range), cost(Cost), description(Desc)
+	: range(Range), cost(Cost), description(Desc), overWrite(false)
 {
 	effect = new Effect();
 }

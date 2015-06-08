@@ -93,7 +93,6 @@ void Referee::changeCPT()
 {
 	applyEffectToPlayer(map.getCase((*currentPlayerTurn)->pos.x, (*currentPlayerTurn)->pos.y));
 	// Ajouter le dot damage
-		std::cout << "Life du Player :" << (*currentPlayerTurn)->life << std::endl;
 	killPlayer();
 
 	int CPT_team = (*currentPlayerTurn)->team_number;
@@ -124,8 +123,14 @@ void Referee::changeCPT()
 void Referee::killPlayer()
 {
 	if ((*currentPlayerTurn)->life <= 0)
-		teams[(*currentPlayerTurn)->team_number]->units.erase(teams[(*currentPlayerTurn)->team_number]->units.begin() + (*currentPlayerTurn)->team_number);
-	if (teams[(*currentPlayerTurn)->team_number]->units.size() == 0)
+	{
+		(*currentPlayerTurn)->isAlive = true;
+		//teams[(*currentPlayerTurn)->team_number]->units.erase(teams[(*currentPlayerTurn)->team_number]->units.begin() + (*currentPlayerTurn)->team_number);
+		//changeCPT();
+	}
+	if (teams[(*currentPlayerTurn)->team_number]->units[0]->isAlive == true
+		&& teams[(*currentPlayerTurn)->team_number]->units[1]->isAlive == true
+		&& teams[(*currentPlayerTurn)->team_number]->units[2]->isAlive == true)
 	{
 		std::cout << "WIN" << std::endl;
 		exit(0);

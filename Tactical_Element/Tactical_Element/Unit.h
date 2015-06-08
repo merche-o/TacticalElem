@@ -39,6 +39,7 @@ public:
 	int team_number;
 	int player_number;
 	bool isPlaying;
+	bool isAlive;
 
 public:
 	Unit(int X, int Y, sf::Texture & t);
