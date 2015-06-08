@@ -7,7 +7,7 @@ GameEngine::GameEngine(void)
 	menu(window, event, ressources, teams, factoryUnit, restart),
 	sound(),
 	map(),
-	intface(window, map, event, teams, & currentPlayerTurn, ressources, & ref),
+	intface(window, map, event, teams, & currentPlayerTurn, ressources, & ref, timeLine),
 	graphic(window, map, ressources, teams),
 	event(window)
 {
@@ -57,10 +57,10 @@ void GameEngine::run()
 				intface.update_HoverCase();
 				intface.update_HoverPlayer();
 				intface.firstSpellClick(NULL);
+				intface.setTimeLine();
 				restart = false;
 			}
 			// Au tout debut du tour d'un pion, retirer 1 tour d'effet (case/zone/buff/debuff) a son nom sur la map
-		
 	
 			// Action Functions
 			event.checkEvent();
@@ -114,7 +114,6 @@ void GameEngine::run()
 					graphic.loadUnit(teams[i]->units[j]);
 				}
 			}
-
 			graphic.display();
 			//////////
 		}

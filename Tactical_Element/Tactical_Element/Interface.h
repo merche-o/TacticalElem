@@ -32,13 +32,13 @@ public:
 	Referee				** referee;
 	bool				mouseReleased;
 	bool				mouseRight;
+	std::vector<Unit*>	& timeLine;
 
 private:
 	sf::Vector2i mousePosition;
 	
 public:
-	Interface(sf::RenderWindow &, Map &, Event &, std::vector<Team*> &, Unit **, Ressources &, Referee **
-		);
+	Interface(sf::RenderWindow &, Map &, Event &, std::vector<Team*> &, Unit **, Ressources &, Referee **, std::vector<Unit*> &);
 	~Interface(void);
 	void run(void);
 	void draw(void);
@@ -68,6 +68,7 @@ public:
 	void update_CurrentPlayer_ActionPoints(void);
 	void update_CurrentPlayer_SurchargeActionPoints(void);
 	void firstSpellClick(void *);
+	void setTimeLine(void);
 
 private:
 	void pushBackElement(std::string, InterfaceElement *);
