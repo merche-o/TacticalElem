@@ -48,6 +48,7 @@ Unit *CharacterFactory::createWaterUnit(int nTeam, int nPlayer, Ressources &_res
 	character->life  = 2;
 	character->initiative = 5;
 	character->action_points = 8;
+	character->surcharge_action_points = 0;
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
@@ -76,6 +77,7 @@ Unit *CharacterFactory::createLightningUnit(int nTeam, int nPlayer, Ressources &
 	character->life  = 2;
 	character->initiative = 5;
 	character->action_points = 8;
+	character->surcharge_action_points = 0;
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
@@ -103,6 +105,7 @@ Unit *CharacterFactory::createHeartUnit(int nTeam, int nPlayer, Ressources &_res
 	character->life  = 2;
 	character->initiative = 5;
 	character->action_points = 8;
+	character->surcharge_action_points = 0;
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
@@ -130,6 +133,7 @@ Unit *CharacterFactory::createFireUnit(int nTeam, int nPlayer, Ressources &_res)
 	character->life  = 2;
 	character->initiative = 5;
 	character->action_points = 8;
+	character->surcharge_action_points = 0;
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
@@ -157,6 +161,7 @@ Unit *CharacterFactory::createBarbarianUnit(int nTeam, int nPlayer, Ressources &
 	character->life  = 5;
 	character->initiative = 5;
 	character->action_points = 8;
+	character->surcharge_action_points = 0;
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
@@ -178,6 +183,7 @@ Unit *CharacterFactory::createMagicUnit(int nTeam, int nPlayer, Ressources &_res
 	character->life  = 5;
 	character->initiative = 5;
 	character->action_points = 8;
+	character->surcharge_action_points = 0;
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
@@ -199,6 +205,7 @@ Unit *CharacterFactory::createGhostUnit(int nTeam, int nPlayer, Ressources &_res
 	character->life  = 5;
 	character->initiative = 5;
 	character->action_points = 8;
+	character->surcharge_action_points = 0;
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
@@ -220,6 +227,7 @@ Unit *CharacterFactory::createKoreaUnit(int nTeam, int nPlayer, Ressources &_res
 	character->life  = 5;
 	character->initiative = 5;
 	character->action_points = 8;
+	character->surcharge_action_points = 0;
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
@@ -241,6 +249,7 @@ Unit *CharacterFactory::createPlantUnit(int nTeam, int nPlayer, Ressources &_res
 	character->life  = 5;
 	character->initiative = 5;
 	character->action_points = 8;
+	character->surcharge_action_points = 0;
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
@@ -262,6 +271,7 @@ Unit *CharacterFactory::createYinYangUnit(int nTeam, int nPlayer, Ressources &_r
 	character->life  = 5;
 	character->initiative = 5;
 	character->action_points = 8;
+	character->surcharge_action_points = 0;
 	character->move_points = 5;
 	
 	//push les spells suivant le type dans la spell list du character
