@@ -1,8 +1,9 @@
 #include "Referee.h"
+#include <stdlib.h>
+#include <cstdlib>
 
-
-Referee::Referee(std::vector<Team*> & Teams, Map & Map, Unit ** Unit)
-	: teams(Teams), map(Map), currentPlayerTurn(Unit)
+Referee::Referee(std::vector<Team*> & Teams, std::vector<Unit*> & TimeLine, Map & Map, Unit ** Unit)
+	: teams(Teams), timeLine(TimeLine), map(Map), currentPlayerTurn(Unit)
 {
 
 }
@@ -47,7 +48,6 @@ bool Referee::canPlay(Unit unit)
 bool Referee::checkMove(Pos *pos)
 {
 	Case *tmp;
-	std::cout << pos->x << std::endl;
 	tmp = map.getCase(pos->x, pos->y);
 
 	if (tmp->effect == NULL)
@@ -68,6 +68,8 @@ bool Referee::checkMove(Pos *pos)
 void Referee::decreaseDuration(Case *_case)
 {
 	_case->effect->duration -=1;
+	if (_case->effect->duration <= 0)
+		_case->effect = NULL;
 }
 
 void Referee::castSpell(Spell *spell, std::map<std::pair<int, int>, bool> affectArea)
@@ -89,25 +91,41 @@ void Referee::castSpell(Spell *spell, std::map<std::pair<int, int>, bool> affect
 void Referee::changeCPT()
 {
 	applyEffectToPlayer(map.getCase((*currentPlayerTurn)->pos.x, (*currentPlayerTurn)->pos.y));
-		std::cout << "Life du Player :" << (*currentPlayerTurn)->life << std::endl;
+	// Ajouter le dot damage
 	killPlayer();
 
-	int CPT_team = (*currentPlayerTurn)->team_number;
-	int CPT_num = (*currentPlayerTurn)->player_number;
-
-	//log
-	//std::cout << "-----" << std::endl << "player nb " << CPT_num << std::endl;
-	//std::cout << "team nb " << CPT_team << std::endl;
-	
+	// Change player turn
 	(*currentPlayerTurn)->isPlaying = false;
-	if (CPT_team == 0)
-		(*currentPlayerTurn) = teams[1]->units[(*currentPlayerTurn)->player_number];
-	else if (CPT_team == 1)
+	indexTimeLine++;
+	if (indexTimeLine >= timeLine.size())
+		indexTimeLine = 0;
+	(*currentPlayerTurn) = timeLine[indexTimeLine];
+	(*currentPlayerTurn)->isPlaying = true;
+	for (int i = indexTimeLine; timeLine[indexTimeLine]->isAlive == false; ++i)
 	{
-		if (CPT_num == 2) // Max team's players
-			CPT_num = -1;
-		(*currentPlayerTurn) = teams[0]->units[CPT_num + 1];
+		(*currentPlayerTurn)->isPlaying = false;
+		if (i >= timeLine.size())
+			indexTimeLine = 0;
+		(*currentPlayerTurn) = timeLine[i];
+		(*currentPlayerTurn)->isPlaying = true;
 	}
+
+	//int CPT_team = (*currentPlayerTurn)->team_number;
+	//int CPT_num = (*currentPlayerTurn)->player_number;
+
+	////log
+	////std::cout << "-----" << std::endl << "player nb " << CPT_num << std::endl;
+	////std::cout << "team nb " << CPT_team << std::endl;
+	//
+	//(*currentPlayerTurn)->isPlaying = false;
+	//if (CPT_team == 0)
+	//	(*currentPlayerTurn) = teams[1]->units[(*currentPlayerTurn)->player_number];
+	//else if (CPT_team == 1)
+	//{
+	//	if (CPT_num == 2) // Max team's players
+	//		CPT_num = -1;
+	//	(*currentPlayerTurn) = teams[0]->units[CPT_num + 1];
+	//}
 
 	(*currentPlayerTurn)->isPlaying = true;
 
@@ -120,11 +138,28 @@ void Referee::changeCPT()
 void Referee::killPlayer()
 {
 	if ((*currentPlayerTurn)->life <= 0)
-		teams[(*currentPlayerTurn)->team_number]->units.erase(teams[(*currentPlayerTurn)->team_number]->units.begin() + (*currentPlayerTurn)->team_number);
-	std::cout << "Taille team : " << teams[(*currentPlayerTurn)->team_number]->units.size() << std::endl;
-	if (teams[(*currentPlayerTurn)->team_number]->units.size() == 0)
+	{
+		(*currentPlayerTurn)->isAlive = false;
+		//teams[(*currentPlayerTurn)->team_number]->units.erase(teams[(*currentPlayerTurn)->team_number]->units.begin() + (*currentPlayerTurn)->team_number);
+		//changeCPT();
+	}
+	if (teams[(*currentPlayerTurn)->team_number]->units[0]->isAlive == false
+		&& teams[(*currentPlayerTurn)->team_number]->units[1]->isAlive == false
+		&& teams[(*currentPlayerTurn)->team_number]->units[2]->isAlive == false)
 	{
 		std::cout << "WIN" << std::endl;
 		exit(0);
 	}
+}
+
+bool Referee::canCast(Spell *spell)
+{
+	if ((*currentPlayerTurn)->action_points /*+ (*currentPlayerTurn)->surcharge_action_points*/ >= spell->cost)
+		return (true);
+	return (false);
+}
+
+int Referee::distance(Pos *pos1, Pos *pos2)
+{
+	return (abs(pos1->x - pos2->x) + abs(pos1->y - pos2->y));
 }

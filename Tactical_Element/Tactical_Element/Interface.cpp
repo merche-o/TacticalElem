@@ -13,11 +13,34 @@ Interface::Interface(sf::RenderWindow & _window, Map & _map, Event & _event, std
 	pushBackElement("skill_description", new InterfaceElementText(NULL, Pos(100, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 100), 20, std::string("skill description Default Value"), sf::Color(255, 255, 255), interfaceFont));
 	pushBackElement("end_turn", new InterfaceElementText(&Interface::endTurnClick, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH - 105, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT + 20), 20, std::string("End Turn"), sf::Color(255, 255, 255), interfaceFont));
 
-	pushBackElement("CurrentPlayer_Team", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, Settings::HEIGHT / 2 + 10), 20, std::string("Team number Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("CurrentPlayer_Team", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, Settings::HEIGHT / 2 + 10), 18, std::string("Team number Default Value"), sf::Color(255, 255, 255), interfaceFont));
 	pushBackElement("CurrentPlayer_Image", new InterfaceElementImage(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, Settings::HEIGHT / 2 + 30), ressources.unitTexture[Unit::FIRE], ressources.unitTexture[Unit::FIRE]));
-	pushBackElement("CurrentPlayer_LifePoints", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, Settings::HEIGHT / 2 + 100), 20, std::string("Life Ppints Default Value"), sf::Color(255, 255, 255), interfaceFont));
-	pushBackElement("CurrentPlayer_MovementPoints", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, Settings::HEIGHT / 2 + 130), 20, std::string("Movements points Default Value"), sf::Color(255, 255, 255), interfaceFont));
-	pushBackElement("CurrentPlayer_ActionPoints", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, Settings::HEIGHT / 2 + 160), 20, std::string("Action points Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("CurrentPlayer_LifePoints", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, Settings::HEIGHT / 2 + 100), 18, std::string("Life Points Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("CurrentPlayer_MovementPoints", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, Settings::HEIGHT / 2 + 130), 18, std::string("Movements points Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("CurrentPlayer_ActionPoints", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, Settings::HEIGHT / 2 + 160), 18, std::string("Action points Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("CurrentPlayer_SurchargeActionPoints", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, Settings::HEIGHT / 2 + 190), 18, std::string("Surcharge Action points Default Value"), sf::Color(255, 255, 255), interfaceFont));
+
+	pushBackElement("HoverPlayer_Team", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, 10), 18, std::string("Team number Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("HoverPlayer_LifePoints", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, 100), 18, std::string("Life Points Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("HoverPlayer_MovementPoints", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, 130), 18, std::string("Movements points Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("HoverPlayer_ActionPoints", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, 160), 18, std::string("Action points Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("HoverPlayer_SurchargeActionPoints", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, 190), 18, std::string("Surcharge Action points Default Value"), sf::Color(255, 255, 255), interfaceFont));
+
+	pushBackElement("HoverCase_Title", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 50, Settings::HEIGHT / 4 + 20), 18, std::string("HoverCase_Title default value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("HoverCase_Duration", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 20, Settings::HEIGHT / 4 + 45), 18, std::string("HoverCase_Duration default value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("HoverCase_Effect_1", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 20, Settings::HEIGHT / 4 + 65), 18, std::string("HoverCase_Effect_1 default value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("HoverCase_Effect_2", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 20, Settings::HEIGHT / 4 + 85), 18, std::string("HoverCase_Effect_2 default value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("HoverCase_Effect_3", new InterfaceElementText(NULL, Pos(Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH + 20, Settings::HEIGHT / 4 + 105), 18, std::string("HoverCase_Effect_3 default value"), sf::Color(255, 255, 255), interfaceFont));
+
+
+	pushBackElement("PlayerTimeLine_1", new InterfaceElementImage(NULL, Pos((Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH) / 2, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT / 2), ressources.unitTexture[Unit::FIRE], ressources.unitTexture[Unit::FIRE]));
+	pushBackElement("PlayerTimeLine_2", new InterfaceElementImage(NULL, Pos((Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH) / 2 + 40, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT / 2), ressources.unitTexture[Unit::FIRE], ressources.unitTexture[Unit::FIRE]));
+	pushBackElement("PlayerTimeLine_3", new InterfaceElementImage(NULL, Pos((Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH) / 2 + 80, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT / 2), ressources.unitTexture[Unit::FIRE], ressources.unitTexture[Unit::FIRE]));
+	pushBackElement("PlayerTimeLine_4", new InterfaceElementImage(NULL, Pos((Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH) / 2 + 120, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT / 2), ressources.unitTexture[Unit::FIRE], ressources.unitTexture[Unit::FIRE]));
+	pushBackElement("PlayerTimeLine_5", new InterfaceElementImage(NULL, Pos((Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH) / 2 + 160, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT / 2), ressources.unitTexture[Unit::FIRE], ressources.unitTexture[Unit::FIRE]));
+	pushBackElement("PlayerTimeLine_6", new InterfaceElementImage(NULL, Pos((Settings::WIDTH - Settings::INTERFACE_RIGHT_WIDTH) / 2 + 200, Settings::HEIGHT - Settings::INTERFACE_BOTTOM_HEIGHT / 2), ressources.unitTexture[Unit::FIRE], ressources.unitTexture[Unit::FIRE]));
+	// faire fonction qui affiche un out of mana quand un clique sur un sort non lancable
+
 }
 
 
@@ -107,14 +130,24 @@ void Interface::pushBackElement(std::string id, InterfaceElement * interfaceElem
 void Interface::setHoverCase(void)
 {
 	Case * newHoverCase;
+	int posX = (event.mouse.getPosition(win).x - 10) / Settings::CASE_SIZE;
+	int posY = (event.mouse.getPosition(win).y - 10) / Settings::CASE_SIZE;
 
-	if (map.map[std::make_pair(event.mouse.getPosition(win).x / Settings::CASE_SIZE, event.mouse.getPosition(win).y / Settings::CASE_SIZE)])
-		newHoverCase = map.map[std::pair<int, int>((int)(event.mouse.getPosition(win).x /( Settings::CASE_SIZE + 2)), (int)(event.mouse.getPosition(win).y / (Settings::CASE_SIZE)))];
+	if (posX < Settings::MAP_WIDTH && posY < Settings::MAP_HEIGHT &&
+		event.mouse.getPosition(win).x >= (Settings::CASE_SIZE) * posX + 9 &&
+		event.mouse.getPosition(win).x <= (Settings::CASE_SIZE) * (posX + 1) + 4 &&
+		event.mouse.getPosition(win).y >= (Settings::CASE_SIZE) * posY + 9 &&
+		event.mouse.getPosition(win).y <= (Settings::CASE_SIZE) * (posY + 1) + 4)
+	{
+		newHoverCase = map.map[std::pair<int, int>(posX, posY)];
+	}
 	else
 		newHoverCase = NULL;
 	if (newHoverCase != hoverCase)
 	{
 		hoverCase = newHoverCase;
+		update_HoverCase();
+		update_HoverPlayer();
 	}
 }
 
@@ -158,9 +191,14 @@ void Interface::drawFrame(int posX, int posY, int width, int height)
 void Interface::endTurnClick(void *)
 {
 	//std::cout << "endTurn" << std::endl;
+	//************************************************************************************qjouter points surchqrge nouvelle fonction dqnq referee
 	(*referee)->changeCPT();
 	firstSpellClick(NULL);
 	update_CurrentPlayer();
+}
+
+void Interface::updateTimeLine()
+{
 }
 
 void Interface::firstSpellClick(void *)
@@ -189,6 +227,254 @@ void Interface::mainMenuClick(void *)
 // Fonctions de mise à jour des données de l'interface
 //
 
+void Interface::update_HoverCase(void)
+{
+	update_HoverCase_Title();
+	int effectNumber = 1;
+	int effectMax = 3;
+	update_HoverCase_Duration();
+	update_HoverCase_Life(& effectNumber);
+	update_HoverCase_Move(& effectNumber);
+	update_HoverCase_Action(& effectNumber);
+	update_HoverCase_Teleport(& effectNumber);
+	update_HoverCase_Displace(& effectNumber);
+	update_HoverCase_Wall(& effectNumber);
+	while (effectNumber <= effectMax)
+	{
+		((InterfaceElementText *) ressources.stringInterface["HoverCase_Effect_" + std::to_string((long double)effectNumber)])->updateString("");
+		effectNumber++;
+	}
+
+	
+}
+
+void Interface::update_HoverCase_Title(void)
+{
+	std::string newString;
+	if (hoverCase)
+	{
+		if (hoverCase->effect)
+			newString = "Case effect :";
+		else
+			newString = "No effect on this case"; 
+	}
+	else
+		newString = ""; 
+	((InterfaceElementText *) ressources.stringInterface["HoverCase_Title"])->updateString(newString);
+}
+
+void Interface::update_HoverCase_Duration(void)
+{
+	std::string newString;
+	if (hoverCase && hoverCase->effect)
+	{
+		if (hoverCase->effect->duration > 0)
+		{
+			newString = "Turns left : " + std::to_string((long double)hoverCase->effect->duration);
+		}
+		else
+		{
+			newString = "Infinite duration";
+		}
+	}
+	else
+	{
+		newString = "";
+	}
+
+	((InterfaceElementText *) ressources.stringInterface["HoverCase_Duration"])->updateString(newString);
+}
+
+void Interface::update_HoverCase_Life(int * effectNumber)
+{
+	std::string newString;
+
+	if (hoverCase && hoverCase->effect)
+	{
+		if (hoverCase->effect->life != 0)
+		{
+			newString = std::to_string((long double) hoverCase->effect->life) + " HP";
+		}
+		else
+			return;
+	}
+	else
+	{
+		return;
+	}
+	((InterfaceElementText *) ressources.stringInterface["HoverCase_Effect_" + std::to_string((long double)(* effectNumber))])->updateString(newString);
+	(* effectNumber)++;
+}
+
+void Interface::update_HoverCase_Move(int * effectNumber)
+{
+	std::string newString;
+
+	if (hoverCase && hoverCase->effect)
+	{
+		if (hoverCase->effect->move_points != 0)
+		{
+			newString += std::to_string((long double) hoverCase->effect->move_points) + " MP";
+		}
+		else
+			return;
+	}
+	else
+	{
+		return;
+	}
+	((InterfaceElementText *) ressources.stringInterface["HoverCase_Effect_" + std::to_string((long double)(* effectNumber))])->updateString(newString);
+	(* effectNumber)++;
+}
+
+void Interface::update_HoverCase_Action(int * effectNumber)
+{
+	std::string newString;
+
+	if (hoverCase && hoverCase->effect)
+	{
+		if (hoverCase->effect->action_points != 0)
+		{
+			newString += std::to_string((long double) hoverCase->effect->action_points) + " AP";
+		}
+		else
+			return;
+	}
+	else
+	{
+		return;
+	}
+	((InterfaceElementText *) ressources.stringInterface["HoverCase_Effect_" + std::to_string((long double)(* effectNumber))])->updateString(newString);
+	(* effectNumber)++;
+}
+
+void Interface::update_HoverCase_Teleport(int * effectNumber)
+{
+	std::string newString;
+
+	if (hoverCase && hoverCase->effect)
+	{
+		if (hoverCase->effect->teleport.x != -1 && hoverCase->effect->teleport.y != -1)
+		{
+			newString = "Teleport to [" + std::to_string((long double) hoverCase->effect->teleport.x) + ", " + std::to_string((long double) hoverCase->effect->teleport.y) +"]";
+		}
+		else
+			return;
+	}
+	else
+	{
+		return;
+	}
+	((InterfaceElementText *) ressources.stringInterface["HoverCase_Effect_" + std::to_string((long double)(* effectNumber))])->updateString(newString);
+	(* effectNumber)++;
+}
+
+void Interface::update_HoverCase_Displace(int * effectNumber)
+{
+	std::string newString;
+
+	if (hoverCase && hoverCase->effect)
+	{
+		if (hoverCase->effect->displace.x != 0 && hoverCase->effect->displace.y != 0)
+		{
+			newString = "Move from [" + std::to_string((long double) hoverCase->effect->displace.x) + ", " + std::to_string((long double) hoverCase->effect->displace.y) +"]";
+		}
+		else
+			return;
+	}
+	else
+	{
+		return;
+	}
+	((InterfaceElementText *) ressources.stringInterface["HoverCase_Effect_" + std::to_string((long double)(* effectNumber))])->updateString(newString);
+	(* effectNumber)++;
+}
+
+void Interface::update_HoverCase_Wall(int * effectNumber)
+{
+	std::string newString;
+
+	if (hoverCase && hoverCase->effect)
+	{
+		if (hoverCase->effect->isWall)
+		{
+			newString = "Wall";
+		}
+		else
+			return;
+	}
+	else
+	{
+		return;
+	}
+	((InterfaceElementText *) ressources.stringInterface["HoverCase_Effect_" + std::to_string((long double)(* effectNumber))])->updateString(newString);
+	(* effectNumber)++;
+}
+
+
+
+
+
+
+void Interface::update_HoverPlayer(void)
+{
+	if (hoverCase && hoverCase->unit)
+	{
+		update_HoverPlayer_Team();
+		update_HoverPlayer_LifePoints();
+		update_HoverPlayer_MovementsPoints();
+		update_HoverPlayer_ActionPoints();
+		update_HoverPlayer_SurchargeActionPoints();
+	}
+	else
+	{
+		((InterfaceElementText *) ressources.stringInterface["HoverPlayer_Team"])->updateString("");
+		((InterfaceElementText *) ressources.stringInterface["HoverPlayer_LifePoints"])->updateString("");
+		((InterfaceElementText *) ressources.stringInterface["HoverPlayer_MovementPoints"])->updateString("");
+		((InterfaceElementText *) ressources.stringInterface["HoverPlayer_ActionPoints"])->updateString("");
+		((InterfaceElementText *) ressources.stringInterface["HoverPlayer_SurchargeActionPoints"])->updateString("");
+	}
+}
+
+void Interface::update_HoverPlayer_Team(void)
+{
+	std::string newString;
+	newString = "Team : " +  std::to_string((long double)hoverCase->unit->team_number);
+	((InterfaceElementText *) ressources.stringInterface["HoverPlayer_Team"])->updateString(newString);
+}
+
+void Interface::update_HoverPlayer_LifePoints(void)
+{
+	std::string newString;
+	newString = "Life : " +  std::to_string((long double)hoverCase->unit->life);
+	((InterfaceElementText *) ressources.stringInterface["HoverPlayer_LifePoints"])->updateString(newString);
+}
+
+void Interface::update_HoverPlayer_MovementsPoints(void)
+{
+	std::string newString;
+	newString = "Movements : " +  std::to_string((long double)hoverCase->unit->move_points);
+	((InterfaceElementText *) ressources.stringInterface["HoverPlayer_MovementPoints"])->updateString(newString);
+}
+
+void Interface::update_HoverPlayer_ActionPoints(void)
+{
+	std::string newString;
+	newString = "Actions : " +  std::to_string((long double)hoverCase->unit->action_points);
+	((InterfaceElementText *) ressources.stringInterface["HoverPlayer_ActionPoints"])->updateString(newString);
+}
+
+void Interface::update_HoverPlayer_SurchargeActionPoints(void)
+{
+	std::string newString;
+	newString = "Surcharge action : " +  std::to_string((long double)hoverCase->unit->surcharge_action_points);
+	((InterfaceElementText *) ressources.stringInterface["HoverPlayer_SurchargeActionPoints"])->updateString(newString);
+}
+
+
+
+
+
 void Interface::update_CurrentPlayer(void)
 {
 	update_CurrentPlayer_Team();
@@ -196,6 +482,7 @@ void Interface::update_CurrentPlayer(void)
 	update_CurrentPlayer_LifePoints();
 	update_CurrentPlayer_MovementsPoints();
 	update_CurrentPlayer_ActionPoints();
+	update_CurrentPlayer_SurchargeActionPoints();
 }
 
 void Interface::update_CurrentPlayer_Team(void)
@@ -220,13 +507,20 @@ void Interface::update_CurrentPlayer_LifePoints(void)
 void Interface::update_CurrentPlayer_MovementsPoints(void)
 {
 	std::string newString;
-	newString = "Movements : " +  std::to_string((long double)(*currentPlayerTurn)->life);
+	newString = "Movements : " +  std::to_string((long double)(*currentPlayerTurn)->move_points);
 	((InterfaceElementText *) ressources.stringInterface["CurrentPlayer_MovementPoints"])->updateString(newString);
 }
 
 void Interface::update_CurrentPlayer_ActionPoints(void)
 {
 	std::string newString;
-	newString = "Actions : " +  std::to_string((long double)(*currentPlayerTurn)->life);
+	newString = "Actions : " +  std::to_string((long double)(*currentPlayerTurn)->action_points);
 	((InterfaceElementText *) ressources.stringInterface["CurrentPlayer_ActionPoints"])->updateString(newString);
+}
+
+void Interface::update_CurrentPlayer_SurchargeActionPoints(void)
+{
+	std::string newString;
+	newString = "Surcharge action : " +  std::to_string((long double)(*currentPlayerTurn)->surcharge_action_points);
+	((InterfaceElementText *) ressources.stringInterface["CurrentPlayer_SurchargeActionPoints"])->updateString(newString);
 }

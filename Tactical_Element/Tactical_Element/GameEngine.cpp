@@ -26,7 +26,7 @@ GameEngine::GameEngine(void)
 	teams.push_back(new Team());
 	teams.push_back(new Team());
 
-	ref = new Referee(teams, map, & currentPlayerTurn);
+	ref = new Referee(teams, timeLine, map, & currentPlayerTurn);
 	/////////////////////////////////////
 }
 
@@ -53,7 +53,10 @@ void GameEngine::run()
 				createTimeLine();
 				this->selectFirstPlayer();
 				intface.spell = currentPlayerTurn->spells[0];
-				//intface.update_CurrentPlayer();
+				intface.update_CurrentPlayer();
+				intface.update_HoverCase();
+				intface.update_HoverPlayer();
+				intface.firstSpellClick(NULL);
 				restart = false;
 			}
 			// Au tout debut du tour d'un pion, retirer 1 tour d'effet (case/zone/buff/debuff) a son nom sur la map
@@ -80,20 +83,19 @@ void GameEngine::run()
 				graphic.addTextEffect(tmp->x * Settings::CASE_SIZE, tmp->y * Settings::CASE_SIZE, std::string("-10"), sf::Color(255, 60, 0));
 			}
 			// To Move when Right Click
-			//else if (event.mouse.isButtonPressed(sf::Mouse::Button::Right))
-			//{
-			//	std::cout << " Right Click " << currentPlayerTurn->pos.x << "----" << currentPlayerTurn->pos.y << std::endl;
-			//	if (ref->checkMove(tmp) == true)
-			//	{
-			//		map.getCase(currentPlayerTurn->pos.x, currentPlayerTurn->pos.y)->unit = NULL;
-			//		//map.map[std::make_pair(currentPlayerTurn->pos.x, currentPlayerTurn->pos.y)]->unit = NULL;
-			//		map.getCase(tmp->x, tmp->y)->unit = currentPlayerTurn;
-			//		//map.map[std::make_pair(tmp->x, tmp->y)]->unit = currentPlayerTurn;
 
-			//		currentPlayerTurn->pos.x = tmp->x;
-			//		currentPlayerTurn->pos.y = tmp->y;
-			//	}
-			//}
+			else if (event.mouse.isButtonPressed(sf::Mouse::Button::Right))
+			{
+				if (ref->checkMove(tmp) == true && ref->distance(&currentPlayerTurn->pos, tmp) == 1)
+				{
+					map.getCase(currentPlayerTurn->pos.x, currentPlayerTurn->pos.y)->unit = NULL;
+					//map.map[std::make_pair(currentPlayerTurn->pos.x, currentPlayerTurn->pos.y)]->unit = NULL;
+					map.getCase(tmp->x, tmp->y)->unit = currentPlayerTurn;
+					intface.update_HoverPlayer();
+					//map.map[std::make_pair(tmp->x, tmp->y)]->unit = currentPlayerTurn;
+
+				}
+			}
 			
 
 			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);
@@ -148,10 +150,16 @@ void GameEngine::selectFirstPlayer()
 
 Pos *GameEngine::getMouseCoordinateOnMap()
 {
-	if (this->map.map[std::make_pair(event.mouse.getPosition(window).x / Settings::CASE_SIZE, 
-									event.mouse.getPosition(window).y / Settings::CASE_SIZE)])
-		return (new Pos(event.mouse.getPosition(window).x /( Settings::CASE_SIZE +  2), 
-						event.mouse.getPosition(window).y / (Settings::CASE_SIZE )));
+	int posX = (event.mouse.getPosition(window).x - 10) / Settings::CASE_SIZE;
+	int posY = (event.mouse.getPosition(window).y - 10) / Settings::CASE_SIZE;
+	if (posX < Settings::MAP_WIDTH && posY < Settings::MAP_HEIGHT &&
+		event.mouse.getPosition(window).x >= (Settings::CASE_SIZE) * posX + 9 &&
+		event.mouse.getPosition(window).x <= (Settings::CASE_SIZE) * (posX + 1) + 4 &&
+		event.mouse.getPosition(window).y >= (Settings::CASE_SIZE) * posY + 9 &&
+		event.mouse.getPosition(window).y <= (Settings::CASE_SIZE) * (posY + 1) + 4)
+	{
+		return (new Pos(posX, posY));
+	}
 	return (NULL);
 }
 

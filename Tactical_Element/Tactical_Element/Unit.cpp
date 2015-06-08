@@ -12,6 +12,7 @@ Unit::Unit(int X, int Y, sf::Texture & t)
 	this->factory[Unit::MAGIC] = &Unit::createMagicUnit;
 	*/
 	isPlaying = false;
+	isAlive = true;
 }
 
 
