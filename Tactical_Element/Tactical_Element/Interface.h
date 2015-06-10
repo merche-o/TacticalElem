@@ -42,6 +42,13 @@ public:
 	~Interface(void);
 	void run(void);
 	void draw(void);
+	void update_Skill(int);
+	void update_Skill_Duration(int);
+	void update_Skill_Life(int *, int);
+	void update_Skill_Move(int *, int);
+	void update_Skill_Action(int *, int);
+	void update_Skill_Teleport(int *, int);
+	void update_Skill_Displace(int *, int);
 
 	void update_HoverCase(void);
 	void update_HoverCase_Title(void);
@@ -58,7 +65,6 @@ public:
 	void update_HoverPlayer_LifePoints(void);
 	void update_HoverPlayer_MovementsPoints(void);
 	void update_HoverPlayer_ActionPoints(void);
-	void update_HoverPlayer_SurchargeActionPoints(void);
 
 	void update_CurrentPlayer(void);
 	void update_CurrentPlayer_Team(void);
@@ -66,7 +72,6 @@ public:
 	void update_CurrentPlayer_LifePoints(void);
 	void update_CurrentPlayer_MovementsPoints(void);
 	void update_CurrentPlayer_ActionPoints(void);
-	void update_CurrentPlayer_SurchargeActionPoints(void);
 	void firstSpellClick(void *);
 	void setTimeLine(void);
 
@@ -75,6 +80,7 @@ private:
 	void drawFrame(int x, int y, int width, int height);
 	void setHoverCase(void);
 	void updateTimeLine(void);
+	void drawDeadTokens(void);
 
 	void endTurnClick(void *);
 	void secondSpellClick(void *);

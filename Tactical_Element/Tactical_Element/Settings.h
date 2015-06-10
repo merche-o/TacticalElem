@@ -15,6 +15,8 @@ public:
 	static const int INTERFACE_HOVER_PLAYER[];
 	static const int INTERFACE_HOVER_CASE[];
 	static const int INTERFACE_CURRENT_PLAYER[];
+	static const int INTERFACE_TIMELINE[];
+	static const int INTERFACE_SPELLS[];
 	static const std::string GAME_NAME;
 };
 
