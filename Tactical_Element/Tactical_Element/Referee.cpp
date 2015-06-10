@@ -5,7 +5,7 @@
 Referee::Referee(std::vector<Team*> & Teams, std::vector<Unit*> & TimeLine, Map & Map, Unit ** Unit)
 	: teams(Teams), timeLine(TimeLine), map(Map), currentPlayerTurn(Unit)
 {
-
+	indexTimeLine = 0;
 }
 
 Referee::~Referee(void)
@@ -47,20 +47,23 @@ bool Referee::canPlay(Unit unit)
 
 bool Referee::checkMove(Pos *pos)
 {
-	Case *tmp;
-	tmp = map.getCase(pos->x, pos->y);
+		if ((*currentPlayerTurn)->move_points >= 1)
+		{
+		Case *tmp;
+		tmp = map.getCase(pos->x, pos->y);
 
-	if (tmp->effect == NULL)
-	{
-		if (tmp->unit != NULL)
-			return (false);
-		return (true);
-	}
-	else
-	{
-		if (tmp->effect->isWall == true || tmp->unit != NULL)
-			return (false);
-		return (true);
+		if (tmp->effect == NULL)
+		{
+			if (tmp->unit != NULL)
+				return (false);
+			return (true);
+		}
+		else
+		{
+			if (tmp->effect->isWall == true || tmp->unit != NULL)
+				return (false);
+			return (true);
+		}
 	}
 		return (false);
 }
@@ -90,59 +93,6 @@ void Referee::castSpell(Spell *spell, std::map<std::pair<int, int>, bool> affect
 
 void Referee::changeCPT()
 {
-	applyEffectToPlayer(map.getCase((*currentPlayerTurn)->pos.x, (*currentPlayerTurn)->pos.y));
-	// Ajouter le dot damage
-	killPlayer();
-
-	// Change player turn
-	(*currentPlayerTurn)->isPlaying = false;
-	indexTimeLine++;
-	if (indexTimeLine >= timeLine.size())
-		indexTimeLine = 0;
-	(*currentPlayerTurn) = timeLine[indexTimeLine];
-	(*currentPlayerTurn)->isPlaying = true;
-	for (int i = indexTimeLine; timeLine[indexTimeLine]->isAlive == false; ++i)
-	{
-		(*currentPlayerTurn)->isPlaying = false;
-		if (i >= timeLine.size())
-			indexTimeLine = 0;
-		(*currentPlayerTurn) = timeLine[i];
-		(*currentPlayerTurn)->isPlaying = true;
-	}
-
-	//int CPT_team = (*currentPlayerTurn)->team_number;
-	//int CPT_num = (*currentPlayerTurn)->player_number;
-
-	////log
-	////std::cout << "-----" << std::endl << "player nb " << CPT_num << std::endl;
-	////std::cout << "team nb " << CPT_team << std::endl;
-	//
-	//(*currentPlayerTurn)->isPlaying = false;
-	//if (CPT_team == 0)
-	//	(*currentPlayerTurn) = teams[1]->units[(*currentPlayerTurn)->player_number];
-	//else if (CPT_team == 1)
-	//{
-	//	if (CPT_num == 2) // Max team's players
-	//		CPT_num = -1;
-	//	(*currentPlayerTurn) = teams[0]->units[CPT_num + 1];
-	//}
-
-	(*currentPlayerTurn)->isPlaying = true;
-
-	//log
-	//(*currentPlayerTurn) = teams[0]->units[1];
-	//std::cout << "-----" << std::endl << "player nb " << teams[0]->units[1]->player_number << std::endl;
-	 //std::cout << "team nb " << teams[0]->units[1]->team_number << std::endl;
-}
-
-void Referee::killPlayer()
-{
-	if ((*currentPlayerTurn)->life <= 0)
-	{
-		(*currentPlayerTurn)->isAlive = false;
-		//teams[(*currentPlayerTurn)->team_number]->units.erase(teams[(*currentPlayerTurn)->team_number]->units.begin() + (*currentPlayerTurn)->team_number);
-		//changeCPT();
-	}
 	if (teams[(*currentPlayerTurn)->team_number]->units[0]->isAlive == false
 		&& teams[(*currentPlayerTurn)->team_number]->units[1]->isAlive == false
 		&& teams[(*currentPlayerTurn)->team_number]->units[2]->isAlive == false)
@@ -150,11 +100,45 @@ void Referee::killPlayer()
 		std::cout << "WIN" << std::endl;
 		exit(0);
 	}
+
+	// Change player turn
+	(*currentPlayerTurn)->isPlaying = false;
+
+	indexTimeLine++;
+	if (indexTimeLine >= timeLine.size())
+			indexTimeLine = 0;
+	while (timeLine[indexTimeLine]->isAlive == false)
+	{
+		indexTimeLine++;
+		if (indexTimeLine >= timeLine.size())
+			indexTimeLine = 0;
+	}
+
+	(*currentPlayerTurn) = timeLine[indexTimeLine];
+	(*currentPlayerTurn)->isPlaying = true;
+
+	applyEffectToPlayer(map.getCase((*currentPlayerTurn)->pos.x, (*currentPlayerTurn)->pos.y));
+	// Ajouter le dot damage
+	killPlayer();
+}
+
+void Referee::killPlayer()
+{
+	if ((*currentPlayerTurn)->life <= 0)
+	{
+		(*currentPlayerTurn)->isAlive = false;
+		map.getCase((*currentPlayerTurn)->pos.x, (*currentPlayerTurn)->pos.y)->unit = NULL;
+		(*currentPlayerTurn)->pos.x = -1;
+		(*currentPlayerTurn)->pos.y = -1;
+		changeCPT();
+		//teams[(*currentPlayerTurn)->team_number]->units.erase(teams[(*currentPlayerTurn)->team_number]->units.begin() + (*currentPlayerTurn)->team_number);
+		//changeCPT();
+	}
 }
 
 bool Referee::canCast(Spell *spell)
 {// retirer le cout du sort
-	if ((*currentPlayerTurn)->action_points /*+ (*currentPlayerTurn)->surcharge_action_points*/ >= spell->cost)
+	if ((*currentPlayerTurn)->action_points >= spell->cost)
 		return (true);
 	return (false);
 }

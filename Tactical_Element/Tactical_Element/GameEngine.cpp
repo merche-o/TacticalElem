@@ -84,16 +84,19 @@ void GameEngine::run()
 			}
 			// To Move when Right Click
 
-			else if (event.mouse.isButtonPressed(sf::Mouse::Button::Right))
+			else if (event.mouse.isButtonPressed(sf::Mouse::Button::Right) && tmp != NULL)
 			{
 				if (ref->checkMove(tmp) == true && ref->distance(&currentPlayerTurn->pos, tmp) == 1)
 				{
 					map.getCase(currentPlayerTurn->pos.x, currentPlayerTurn->pos.y)->unit = NULL;
 					//map.map[std::make_pair(currentPlayerTurn->pos.x, currentPlayerTurn->pos.y)]->unit = NULL;
-					map.getCase(tmp->x, tmp->y)->unit = currentPlayerTurn;
-					intface.update_HoverPlayer();
 					//map.map[std::make_pair(tmp->x, tmp->y)]->unit = currentPlayerTurn;
-
+					map.getCase(tmp->x, tmp->y)->unit = currentPlayerTurn;
+					currentPlayerTurn->pos.x = tmp->x;
+					currentPlayerTurn->pos.y = tmp->y;
+					currentPlayerTurn->move_points -= 1;
+					intface.update_HoverPlayer();
+					intface.update_CurrentPlayer_MovementsPoints();
 				}
 			}
 			
@@ -110,8 +113,11 @@ void GameEngine::run()
 					//teams[i]->units[j]->pos.x = 2 + (j * 3);
 					//teams[i]->units[j]->pos.y = 1 + (i * 9);
 					//std::cout <<"team unit vie :" << teams[i]->units[j]->life << std::endl;
-					setPlayerOnMap(teams[i]->units[j]);
-					graphic.loadUnit(teams[i]->units[j]);
+					if (teams[i]->units[j]->isAlive == true)
+					{
+						setPlayerOnMap(teams[i]->units[j]);
+						graphic.loadUnit(teams[i]->units[j]);
+					}
 				}
 			}
 			graphic.display();

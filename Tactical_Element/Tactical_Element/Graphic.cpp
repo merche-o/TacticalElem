@@ -54,7 +54,8 @@ void Graphic::drawUnits()
 	{
 		for (int j = 0; j < teams[i]->units.size(); ++j)
 		{
-			loadUnit(teams[i]->units[j]);
+			if (teams[i]->units[j]->isAlive == true)
+				loadUnit(teams[i]->units[j]);
 		}
 	}
 }

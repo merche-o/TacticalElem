@@ -44,11 +44,14 @@ void Display::loadUnit(Unit* unit)
 {
 	sf::Sprite	Sprite;
 
-	Sprite.setPosition(unit->pos.x * Settings::CASE_SIZE + 14, unit->pos.y * Settings::CASE_SIZE + 14);
-	if (unit->isPlaying == true)
-		loadCircle(unit->pos.x * Settings::CASE_SIZE + 10, unit->pos.y * Settings::CASE_SIZE + 10, 20, sf::Color(250, 250, 60));
-	Sprite.setTexture(unit->texture);
-	win.draw(Sprite);
+	if (unit->isAlive == true)
+	{
+		Sprite.setPosition(unit->pos.x * Settings::CASE_SIZE + 14, unit->pos.y * Settings::CASE_SIZE + 14);
+		if (unit->isPlaying == true)
+			loadCircle(unit->pos.x * Settings::CASE_SIZE + 10, unit->pos.y * Settings::CASE_SIZE + 10, 20, sf::Color(250, 250, 60));
+		Sprite.setTexture(unit->texture);
+		win.draw(Sprite);
+	}
 }
 
 void Display::loadText(float x, float y, sf::Font font, std::string str, int size, int r, int g, int b)
