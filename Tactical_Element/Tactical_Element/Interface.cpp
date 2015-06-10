@@ -286,7 +286,9 @@ void Interface::update_Skill_Duration(int skillNumber)
 	{
 		if ((*currentPlayerTurn)->spells[skillNumber]->effect->duration > 0)
 		{
-			newString =  std::to_string((long double)(*currentPlayerTurn)->spells[skillNumber]->effect->duration) + "  turns";
+			newString = std::to_string((long double)(*currentPlayerTurn)->spells[skillNumber]->effect->duration) + "  turn";
+			if ((*currentPlayerTurn)->spells[skillNumber]->effect->duration > 1)
+				newString += "s"; 
 		}
 		else
 		{
@@ -498,7 +500,11 @@ void Interface::update_HoverCase_Duration(void)
 	{
 		if (hoverCase->effect->duration > 0)
 		{
-			newString =  std::to_string((long double)hoverCase->effect->duration) + "  turns left";
+			newString = std::to_string((long double)hoverCase->effect->duration) + "  turn";
+			if (hoverCase->effect->duration > 1)
+				newString += "s left";
+			else
+				newString += " left";
 		}
 		else
 		{
@@ -759,20 +765,26 @@ void Interface::update_CurrentPlayer_Image(void)
 void Interface::update_CurrentPlayer_LifePoints(void)
 {
 	std::string newString;
-	newString = std::to_string((long double)(*currentPlayerTurn)->life) + "   Heal Points";
+	newString = std::to_string((long double)(*currentPlayerTurn)->life) + "   Heal Point";
+	if ((*currentPlayerTurn)->life > 1)
+		newString += "s";
 	((InterfaceElementText *) ressources.stringInterface["CurrentPlayer_LifePoints"])->updateString(newString);
 }
 
 void Interface::update_CurrentPlayer_MovementsPoints(void)
 {
 	std::string newString;
-	newString = std::to_string((long double)(*currentPlayerTurn)->move_points) + "   Movement Points";
+	newString = std::to_string((long double)(*currentPlayerTurn)->move_points) + "   Movement Point";
+	if ((*currentPlayerTurn)->move_points > 1)
+		newString += "s";
 	((InterfaceElementText *) ressources.stringInterface["CurrentPlayer_MovementPoints"])->updateString(newString);
 }
 
 void Interface::update_CurrentPlayer_ActionPoints(void)
 {
 	std::string newString;
-	newString = std::to_string((long double)(*currentPlayerTurn)->action_points) + "   Action Points";
+	newString = std::to_string((long double)(*currentPlayerTurn)->action_points) + "   Action Point";
+	if ((*currentPlayerTurn)->action_points > 1)
+		newString += "s";
 	((InterfaceElementText *) ressources.stringInterface["CurrentPlayer_ActionPoints"])->updateString(newString);
 }
