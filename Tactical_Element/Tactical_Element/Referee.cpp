@@ -24,6 +24,9 @@ void Referee::applyEffectToPlayer(Case *_case)
 		_case->unit->pos.y += _case->effect->displace.y;
 		_case->unit->action_points += _case->effect->action_points;
 		_case->unit->move_points += _case->effect->move_points;
+		_case->duration -= 1;
+		if (_case->duration <= 0)
+			_case->effect = NULL;
 	}
 }
 
@@ -33,6 +36,7 @@ void Referee::applyEffectOnCase(Case *_case, Effect *effect)
 	{
 		_case->effect = new Effect();
 		_case->effect = effect;
+		_case->duration = effect->duration;
 	}
 }
 
@@ -86,6 +90,7 @@ void Referee::castSpell(Spell *spell, std::map<std::pair<int, int>, bool> affect
 			if (this->map.map[std::make_pair(x, y)] && affectArea[std::make_pair(x,y)] == true)
 			{
 				applyEffectOnCase(this->map.map[std::make_pair(x, y)], spell->effect);
+				(*currentPlayerTurn)->action_points -= spell->cost;
 			}
 		}
 	}
@@ -120,6 +125,7 @@ void Referee::changeCPT()
 	applyEffectToPlayer(map.getCase((*currentPlayerTurn)->pos.x, (*currentPlayerTurn)->pos.y));
 	// Ajouter le dot damage
 	killPlayer();
+	(*currentPlayerTurn)->move_points = (*currentPlayerTurn)->initMove;
 }
 
 void Referee::killPlayer()

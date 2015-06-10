@@ -50,6 +50,7 @@ Unit *CharacterFactory::createWaterUnit(int nTeam, int nPlayer, Ressources &_res
 	character->action_points = 8;
 	character->surcharge_action_points = 0;
 	character->move_points = 5;
+	character->initMove = character->move_points;
 	
 	//push les spells suivant le type dans la spell list du character
 	character->spells.push_back(new Spell(2, 0, "Water 1 : Damage"));
@@ -79,6 +80,7 @@ Unit *CharacterFactory::createLightningUnit(int nTeam, int nPlayer, Ressources &
 	character->action_points = 8;
 	character->surcharge_action_points = 0;
 	character->move_points = 5;
+	character->initMove = character->move_points;
 	
 	//push les spells suivant le type dans la spell list du character
 	character->spells.push_back(new Spell(2, 0, "L 1 : Damage"));
@@ -107,7 +109,8 @@ Unit *CharacterFactory::createHeartUnit(int nTeam, int nPlayer, Ressources &_res
 	character->action_points = 8;
 	character->surcharge_action_points = 0;
 	character->move_points = 5;
-	
+	character->initMove = character->move_points;
+
 	//push les spells suivant le type dans la spell list du character
 	character->spells.push_back(new Spell(2, 0, "H 1 : Damage"));
 	character->spells.push_back(new Spell(2, 0, "H 2 : Heal"));
@@ -135,13 +138,15 @@ Unit *CharacterFactory::createFireUnit(int nTeam, int nPlayer, Ressources &_res)
 	character->action_points = 8;
 	character->surcharge_action_points = 0;
 	character->move_points = 5;
+	character->initMove = character->move_points;
 	
 	//push les spells suivant le type dans la spell list du character
-	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));
-	character->spells.push_back(new Spell(2, 0, "F 2 : Heal"));
-	character->spells.push_back(new Spell(2, 0, "F 3 : Create a wall"));
+	character->spells.push_back(new Spell(2, 2, "F 1 : Damage"));
+	character->spells.push_back(new Spell(2, 2, "F 2 : Heal"));
+	character->spells.push_back(new Spell(2, 2, "F 3 : Create a wall"));
 	
-	character->spells[0]->effect->setLife(-3);
+	character->spells[0]->effect->setLife(-1);
+	character->spells[0]->effect->setDuration(2);
 	character->spells[1]->effect->setLife(1);
 	character->spells[2]->effect->setWall(true);
 	
@@ -163,7 +168,8 @@ Unit *CharacterFactory::createBarbarianUnit(int nTeam, int nPlayer, Ressources &
 	character->action_points = 8;
 	character->surcharge_action_points = 0;
 	character->move_points = 5;
-	
+	character->initMove = character->move_points;
+
 	//push les spells suivant le type dans la spell list du character
 	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));
 	character->spells.push_back(new Spell(2, 0, "F 2 : Heal"));
@@ -185,6 +191,7 @@ Unit *CharacterFactory::createMagicUnit(int nTeam, int nPlayer, Ressources &_res
 	character->action_points = 8;
 	character->surcharge_action_points = 0;
 	character->move_points = 5;
+	character->initMove = character->move_points;
 	
 	//push les spells suivant le type dans la spell list du character
 	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));
@@ -207,6 +214,7 @@ Unit *CharacterFactory::createGhostUnit(int nTeam, int nPlayer, Ressources &_res
 	character->action_points = 8;
 	character->surcharge_action_points = 0;
 	character->move_points = 5;
+	character->initMove = character->move_points;
 	
 	//push les spells suivant le type dans la spell list du character
 	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));
@@ -229,6 +237,7 @@ Unit *CharacterFactory::createKoreaUnit(int nTeam, int nPlayer, Ressources &_res
 	character->action_points = 8;
 	character->surcharge_action_points = 0;
 	character->move_points = 5;
+	character->initMove = character->move_points;
 	
 	//push les spells suivant le type dans la spell list du character
 	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));
@@ -251,6 +260,7 @@ Unit *CharacterFactory::createPlantUnit(int nTeam, int nPlayer, Ressources &_res
 	character->action_points = 8;
 	character->surcharge_action_points = 0;
 	character->move_points = 5;
+	character->initMove = character->move_points;
 	
 	//push les spells suivant le type dans la spell list du character
 	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));
@@ -273,6 +283,7 @@ Unit *CharacterFactory::createYinYangUnit(int nTeam, int nPlayer, Ressources &_r
 	character->action_points = 8;
 	character->surcharge_action_points = 0;
 	character->move_points = 5;
+	character->initMove = character->move_points;
 	
 	//push les spells suivant le type dans la spell list du character
 	character->spells.push_back(new Spell(2, 0, "F 1 : Damage"));

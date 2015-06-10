@@ -79,8 +79,9 @@ void GameEngine::run()
 			
 			if (event.mouse.isButtonPressed(sf::Mouse::Button::Left) && tmp != NULL && map.effectArea.size() > 0)
 			{
-				ref->castSpell(intface.spell, map.effectArea);
-				graphic.addTextEffect(tmp->x * Settings::CASE_SIZE, tmp->y * Settings::CASE_SIZE, std::string("-10"), sf::Color(255, 60, 0));
+				if (currentPlayerTurn->action_points >= intface.spell->cost && currentPlayerTurn->action_points > 0)
+					ref->castSpell(intface.spell, map.effectArea);
+				//graphic.addTextEffect(tmp->x * Settings::CASE_SIZE, tmp->y * Settings::CASE_SIZE, std::string("-10"), sf::Color(255, 60, 0));
 			}
 			// To Move when Right Click
 

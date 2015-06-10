@@ -27,6 +27,7 @@ public:
 	int life;
 	int initiative;
 	int move_points;
+	int initMove;
 	int action_points;
 	int surcharge_action_points;
 	std::vector<Spell*> spells;
