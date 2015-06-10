@@ -137,7 +137,7 @@ void Referee::killPlayer()
 }
 
 bool Referee::canCast(Spell *spell)
-{
+{// retirer le cout du sort
 	if ((*currentPlayerTurn)->action_points /*+ (*currentPlayerTurn)->surcharge_action_points*/ >= spell->cost)
 		return (true);
 	return (false);
