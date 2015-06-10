@@ -90,21 +90,32 @@ void Referee::castSpell(Spell *spell, std::map<std::pair<int, int>, bool> affect
 			if (this->map.map[std::make_pair(x, y)] && affectArea[std::make_pair(x,y)] == true)
 			{
 				applyEffectOnCase(this->map.map[std::make_pair(x, y)], spell->effect);
-				(*currentPlayerTurn)->action_points -= spell->cost;
 			}
 		}
 	}
+	(*currentPlayerTurn)->action_points -= spell->cost;
+}
+
+bool Referee::gameOver()
+{
+	if (teams[((*currentPlayerTurn)->team_number + 1) % 2]->units[0]->isAlive == false
+	&& teams[((*currentPlayerTurn)->team_number + 1) % 2]->units[1]->isAlive == false
+	&& teams[((*currentPlayerTurn)->team_number + 1) % 2]->units[2]->isAlive == false)
+	{
+		return true;
+	}
+	return false;
 }
 
 void Referee::changeCPT()
 {
-	if (teams[(*currentPlayerTurn)->team_number]->units[0]->isAlive == false
-		&& teams[(*currentPlayerTurn)->team_number]->units[1]->isAlive == false
-		&& teams[(*currentPlayerTurn)->team_number]->units[2]->isAlive == false)
-	{
-		std::cout << "WIN" << std::endl;
-		exit(0);
-	}
+	//if (teams[(*currentPlayerTurn)->team_number]->units[0]->isAlive == false
+	//	&& teams[(*currentPlayerTurn)->team_number]->units[1]->isAlive == false
+	//	&& teams[(*currentPlayerTurn)->team_number]->units[2]->isAlive == false)
+	//{
+	//	std::cout << "WIN" << std::endl;
+	//	exit(0);
+	//}
 
 	// Change player turn
 	(*currentPlayerTurn)->isPlaying = false;
@@ -126,6 +137,7 @@ void Referee::changeCPT()
 	// Ajouter le dot damage
 	killPlayer();
 	(*currentPlayerTurn)->move_points = (*currentPlayerTurn)->initMove;
+	(*currentPlayerTurn)->action_points += 2;
 }
 
 void Referee::killPlayer()

@@ -44,7 +44,7 @@ void GameMenu::createMenu(void)
 	elemMenu.push_back(new TextMenu(win, 600, 650, ElementMenu::TEAM_SELECTION, &GameMenu::menuMain, "Back", 48, font, 250, 150, 60));
 
 	elemMenu.push_back(new TextMenu(win, 350, 0, ElementMenu::CREDITS, NULL, "Credits", 96, font, 250, 60, 60));
-	elemMenu.push_back(new TextMenu(win, 200, 200, ElementMenu::CREDITS, NULL, "Map & Referee :\tOlivier", 48, font, 250, 60, 60));
+	elemMenu.push_back(new TextMenu(win, 200, 200, ElementMenu::CREDITS, NULL, "Map :\tOlivier", 48, font, 250, 60, 60));
 	elemMenu.push_back(new TextMenu(win, 200, 300, ElementMenu::CREDITS, NULL, "Graphic & Menu :\tMarc", 48, font, 250, 60, 60));
 	elemMenu.push_back(new TextMenu(win, 200, 400, ElementMenu::CREDITS, NULL, "Spell & Referee :\tJoris", 48, font, 250, 60, 60));
 	elemMenu.push_back(new TextMenu(win, 200, 500, ElementMenu::CREDITS, NULL, "Inteface :\tAxel", 48, font, 250, 60, 60));
@@ -136,6 +136,7 @@ void GameMenu::menuMain()
 void GameMenu::menuQuit()
 {
 	win.close();
+	exit(0);
 }
 
 void GameMenu::createElemOnlyOnce(ElementMenu* e)

@@ -765,7 +765,7 @@ void Interface::update_CurrentPlayer_Image(void)
 void Interface::update_CurrentPlayer_LifePoints(void)
 {
 	std::string newString;
-	newString = std::to_string((long double)(*currentPlayerTurn)->life) + "   Heal Point";
+	newString = std::to_string((long double)(*currentPlayerTurn)->life) + "   Health Point";
 	if ((*currentPlayerTurn)->life > 1)
 		newString += "s";
 	((InterfaceElementText *) ressources.stringInterface["CurrentPlayer_LifePoints"])->updateString(newString);

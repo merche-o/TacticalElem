@@ -46,6 +46,7 @@ private:
 	std::vector<Unit*> timeLine;
 	Unit* currentPlayerTurn;
 	bool restart;
+	bool released;
 
 	Pos *getMouseCoordinateOnMap();
 	void playerTurn();

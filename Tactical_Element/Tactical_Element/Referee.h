@@ -30,7 +30,7 @@ public:
 
 	void decreaseDuration(Case *_case);
 
-	bool gameOver(std::vector<Team*>teams);
+	bool gameOver();
 
 	void changeCPT(void);
 

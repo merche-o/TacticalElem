@@ -3,9 +3,10 @@
 
 int main()
 {
-	GameEngine ge;
-
-	ge.run();
-
+	while (42)
+	{
+		GameEngine ge;
+		ge.run();
+	}
 	return (0);
 }

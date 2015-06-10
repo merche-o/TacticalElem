@@ -42,7 +42,10 @@ void Event::menuEvent(int & pos, bool & push, bool & refresh)
 		else if (event.type == sf::Event::KeyPressed)
 		{
 			if (event.key.code == sf::Keyboard::Escape)
+			{
 				win.close();
+				exit(0);
+			}
 			//else if (event.key.code == sf::Keyboard::Return)
 			//{
 			//	push = true;

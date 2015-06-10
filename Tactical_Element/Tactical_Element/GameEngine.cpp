@@ -27,6 +27,7 @@ GameEngine::GameEngine(void)
 	teams.push_back(new Team());
 
 	ref = new Referee(teams, timeLine, map, & currentPlayerTurn);
+	released = true;
 	/////////////////////////////////////
 }
 
@@ -59,6 +60,7 @@ void GameEngine::run()
 				intface.firstSpellClick(NULL);
 				intface.setTimeLine();
 				restart = false;
+				released = true;
 			}
 			// Au tout debut du tour d'un pion, retirer 1 tour d'effet (case/zone/buff/debuff) a son nom sur la map
 	
@@ -73,19 +75,35 @@ void GameEngine::run()
 			// graphic.drawUnits();
 
 			if (tmp != NULL)
-				map.showEffectArea(tmp->x, tmp->y, intface.spell->range, false);
+			{
+				if (intface.spell->effect->isWall == true)
+					map.showEffectArea(tmp->x, tmp->y, intface.spell->range, true);
+				else
+					map.showEffectArea(tmp->x, tmp->y, intface.spell->range, false);
+			}
 			else
 				map.effectArea.clear();
 			
 			if (event.mouse.isButtonPressed(sf::Mouse::Button::Left) && tmp != NULL && map.effectArea.size() > 0)
 			{
-				if (currentPlayerTurn->action_points >= intface.spell->cost && currentPlayerTurn->action_points > 0)
-					ref->castSpell(intface.spell, map.effectArea);
+				released = false;
 				//graphic.addTextEffect(tmp->x * Settings::CASE_SIZE, tmp->y * Settings::CASE_SIZE, std::string("-10"), sf::Color(255, 60, 0));
 			}
+			else if (!event.mouse.isButtonPressed(sf::Mouse::Button::Left) && tmp != NULL && map.effectArea.size() > 0)
+			{
+				if (released == false)
+				{
+					if (currentPlayerTurn->action_points >= intface.spell->cost && currentPlayerTurn->action_points > 0)
+					{
+						ref->castSpell(intface.spell, map.effectArea);
+						intface.update_CurrentPlayer_ActionPoints();
+					}
+					released = true;
+				}
+			}
+			
 			// To Move when Right Click
-
-			else if (event.mouse.isButtonPressed(sf::Mouse::Button::Right) && tmp != NULL)
+			if (event.mouse.isButtonPressed(sf::Mouse::Button::Right) && tmp != NULL)
 			{
 				if (ref->checkMove(tmp) == true && ref->distance(&currentPlayerTurn->pos, tmp) == 1)
 				{
@@ -122,6 +140,12 @@ void GameEngine::run()
 				}
 			}
 			graphic.display();
+
+			if (ref->gameOver() == true)
+			{
+				state = MENU;
+				return;
+			}
 			//////////
 		}
 	}
