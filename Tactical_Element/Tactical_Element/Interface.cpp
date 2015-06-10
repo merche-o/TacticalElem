@@ -286,7 +286,7 @@ void Interface::update_Skill_Duration(int skillNumber)
 	{
 		if ((*currentPlayerTurn)->spells[skillNumber]->effect->duration > 0)
 		{
-			newString = std::to_string((long double)(*currentPlayerTurn)->spells[skillNumber]->effect->duration) + "  turn";
+			newString = std::to_string((long double)(*currentPlayerTurn)->spells[skillNumber]->effect->duration) + "  hit";
 			if ((*currentPlayerTurn)->spells[skillNumber]->effect->duration > 1)
 				newString += "s"; 
 		}
@@ -498,10 +498,10 @@ void Interface::update_HoverCase_Duration(void)
 	std::string newString;
 	if (hoverCase && hoverCase->effect)
 	{
-		if (hoverCase->effect->duration > 0)
+		if (hoverCase->duration > 0)
 		{
-			newString = std::to_string((long double)hoverCase->effect->duration) + "  turn";
-			if (hoverCase->effect->duration > 1)
+			newString = std::to_string((long double)hoverCase->duration) + "  hit";
+			if (hoverCase->duration > 1)
 				newString += "s left";
 			else
 				newString += " left";

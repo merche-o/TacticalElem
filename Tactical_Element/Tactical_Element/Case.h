@@ -10,6 +10,7 @@ public:
 	Unit	*unit;
 	bool	immune;
 	int		duration;
+
 public:
 	Case(void);
 	~Case(void);
