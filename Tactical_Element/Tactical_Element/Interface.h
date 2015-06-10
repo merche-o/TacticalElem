@@ -62,6 +62,7 @@ public:
 
 	void update_HoverPlayer(void);
 	void update_HoverPlayer_Team(void);
+	void update_HoverPlayer_Image(void);
 	void update_HoverPlayer_LifePoints(void);
 	void update_HoverPlayer_MovementsPoints(void);
 	void update_HoverPlayer_ActionPoints(void);

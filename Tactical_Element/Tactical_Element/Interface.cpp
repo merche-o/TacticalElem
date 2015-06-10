@@ -10,22 +10,24 @@ Interface::Interface(sf::RenderWindow & _window, Map & _map, Event & _event, std
 	pushBackElement("Skill_1", new InterfaceElementImage(&Interface::firstSpellClick, Pos(Settings::INTERFACE_SPELLS[0] + 50, Settings::INTERFACE_SPELLS[1]), & ressources.texture["skill_1"], & ressources.texture["skill_1_pressed"]));
 	pushBackElement("Skill_2", new InterfaceElementImage(&Interface::secondSpellClick, Pos(Settings::INTERFACE_SPELLS[0] + 180, Settings::INTERFACE_SPELLS[1]), & ressources.texture["skill_2"], & ressources.texture["skill_2_pressed"]));
 	pushBackElement("Skill_3", new InterfaceElementImage(&Interface::thirdSpellClick, Pos(Settings::INTERFACE_SPELLS[0] + 310, Settings::INTERFACE_SPELLS[1]), & ressources.texture["skill_3"], & ressources.texture["skill_3_pressed"]));
-	pushBackElement("Skill_description", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_SPELLS[0] + 100, Settings::INTERFACE_SPELLS[1] + 70), 20, std::string("skill description Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("Skill_Cost", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_SPELLS[0], Settings::INTERFACE_SPELLS[1] + 70), 18, std::string("skill Cost Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("Skill_Description", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_SPELLS[0] + 120, Settings::INTERFACE_SPELLS[1] + 70), 20, std::string("skill description Default Value"), sf::Color(255, 255, 255), interfaceFont));
 	pushBackElement("Skill_Duration", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_SPELLS[0] + 10, Settings::INTERFACE_SPELLS[1] + 110), 18, std::string("HoverCase_Duration default value"), sf::Color(255, 255, 255), interfaceFont));
 	pushBackElement("Skill_Effect_1", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_SPELLS[0] + 150, Settings::INTERFACE_SPELLS[1] + 110), 18, std::string("HoverCase_Effect_1 default value"), sf::Color(255, 255, 255), interfaceFont));
 	pushBackElement("Skill_Effect_2", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_SPELLS[0] + 10, Settings::INTERFACE_SPELLS[1] + 150), 18, std::string("HoverCase_Effect_2 default value"), sf::Color(255, 255, 255), interfaceFont));
 	pushBackElement("Skill_Effect_3", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_SPELLS[0] + 150, Settings::INTERFACE_SPELLS[1] + 150), 18, std::string("HoverCase_Effect_3 default value"), sf::Color(255, 255, 255), interfaceFont));
 
 	pushBackElement("CurrentPlayer_Team", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_CURRENT_PLAYER[0] + 65, Settings::INTERFACE_CURRENT_PLAYER[1] + 5), 18, std::string("Team number Default Value"), sf::Color(255, 255, 255), interfaceFont));
-	pushBackElement("CurrentPlayer_Image", new InterfaceElementImage(NULL, Pos(Settings::INTERFACE_CURRENT_PLAYER[0] + 125, Settings::INTERFACE_CURRENT_PLAYER[1]), & ressources.unitTexture[Unit::GHOST], & ressources.unitTexture[Unit::GHOST]));
+	pushBackElement("CurrentPlayer_Image", new InterfaceElementImage(NULL, Pos(Settings::INTERFACE_CURRENT_PLAYER[0] + 130, Settings::INTERFACE_CURRENT_PLAYER[1]), & ressources.unitTexture[Unit::GHOST], & ressources.unitTexture[Unit::GHOST]));
 	pushBackElement("CurrentPlayer_LifePoints", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_CURRENT_PLAYER[0] + 20, Settings::INTERFACE_CURRENT_PLAYER[1] + 70), 18, std::string("Life Points Default Value"), sf::Color(255, 255, 255), interfaceFont));
 	pushBackElement("CurrentPlayer_MovementPoints", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_CURRENT_PLAYER[0] + 20, Settings::INTERFACE_CURRENT_PLAYER[1] + 105), 18, std::string("Movements points Default Value"), sf::Color(255, 255, 255), interfaceFont));
 	pushBackElement("CurrentPlayer_ActionPoints", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_CURRENT_PLAYER[0] + 20, Settings::INTERFACE_CURRENT_PLAYER[1] + 140), 18, std::string("Action points Default Value"), sf::Color(255, 255, 255), interfaceFont));
 
-	pushBackElement("HoverPlayer_Team", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_HOVER_PLAYER[0] + 80, Settings::INTERFACE_HOVER_PLAYER[1]), 18, std::string("Team number Default Value"), sf::Color(255, 255, 255), interfaceFont));
-	pushBackElement("HoverPlayer_LifePoints", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_HOVER_PLAYER[0] + 40, Settings::INTERFACE_HOVER_PLAYER[1] + 45), 18, std::string("Life Points Default Value"), sf::Color(255, 255, 255), interfaceFont));
-	pushBackElement("HoverPlayer_MovementPoints", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_HOVER_PLAYER[0] + 140, Settings::INTERFACE_HOVER_PLAYER[1] + 45), 18, std::string("Movements points Default Value"), sf::Color(255, 255, 255), interfaceFont));
-	pushBackElement("HoverPlayer_ActionPoints", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_HOVER_PLAYER[0] + 40, Settings::INTERFACE_HOVER_PLAYER[1] + 85), 18, std::string("Action points Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("HoverPlayer_Team", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_HOVER_PLAYER[0] + 140, Settings::INTERFACE_HOVER_PLAYER[1]), 18, std::string("Team number Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("HoverPlayer_Image", new InterfaceElementImage(NULL, Pos(Settings::INTERFACE_HOVER_PLAYER[0] + 150, Settings::INTERFACE_HOVER_PLAYER[1] + 30), & ressources.unitTexture[Unit::GHOST], & ressources.unitTexture[Unit::GHOST]));
+	pushBackElement("HoverPlayer_LifePoints", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_HOVER_PLAYER[0] + 40, Settings::INTERFACE_HOVER_PLAYER[1]), 18, std::string("Life Points Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("HoverPlayer_MovementPoints", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_HOVER_PLAYER[0] + 40, Settings::INTERFACE_HOVER_PLAYER[1] + 40), 18, std::string("Movements points Default Value"), sf::Color(255, 255, 255), interfaceFont));
+	pushBackElement("HoverPlayer_ActionPoints", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_HOVER_PLAYER[0] + 40, Settings::INTERFACE_HOVER_PLAYER[1] + 80), 18, std::string("Action points Default Value"), sf::Color(255, 255, 255), interfaceFont));
 
 	pushBackElement("HoverCase_Title", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_HOVER_CASE[0] + 20, Settings::INTERFACE_HOVER_CASE[1]), 18, std::string("HoverCase_Title default value"), sf::Color(255, 255, 255), interfaceFont));
 	pushBackElement("HoverCase_Duration", new InterfaceElementText(NULL, Pos(Settings::INTERFACE_HOVER_CASE[0], Settings::INTERFACE_HOVER_CASE[1] + 45), 18, std::string("HoverCase_Duration default value"), sf::Color(255, 255, 255), interfaceFont));
@@ -259,7 +261,8 @@ void Interface::thirdSpellClick(void *)
 
 void Interface::update_Skill(int skillNumber)
 {
-	((InterfaceElementText *) ressources.stringInterface["Skill_description"])->updateString((*currentPlayerTurn)->spells[skillNumber]->description);
+	((InterfaceElementText *) ressources.stringInterface["Skill_Description"])->updateString((*currentPlayerTurn)->spells[skillNumber]->description);
+	((InterfaceElementText *) ressources.stringInterface["Skill_Cost"])->updateString("Cost  " + std::to_string((long double)(*currentPlayerTurn)->spells[skillNumber]->cost) + " AP");
 	spell = (*currentPlayerTurn)->spells[skillNumber];
 	int effectNumber = 1;
 	int effectMax = 3;
@@ -679,6 +682,7 @@ void Interface::update_HoverPlayer(void)
 	if (hoverCase && hoverCase->unit)
 	{
 		update_HoverPlayer_Team();
+		update_HoverPlayer_Image();
 		update_HoverPlayer_LifePoints();
 		update_HoverPlayer_MovementsPoints();
 		update_HoverPlayer_ActionPoints();
@@ -689,6 +693,7 @@ void Interface::update_HoverPlayer(void)
 		((InterfaceElementText *) ressources.stringInterface["HoverPlayer_LifePoints"])->updateString("");
 		((InterfaceElementText *) ressources.stringInterface["HoverPlayer_MovementPoints"])->updateString("");
 		((InterfaceElementText *) ressources.stringInterface["HoverPlayer_ActionPoints"])->updateString("");
+		((InterfaceElementImage *) ressources.stringInterface["HoverPlayer_Image"])->updateTexture(& ressources.texture["Empty_Token"]);
 	}
 }
 
@@ -697,6 +702,11 @@ void Interface::update_HoverPlayer_Team(void)
 	std::string newString;
 	newString = "Team " +  std::to_string((long double)hoverCase->unit->team_number + 1);
 	((InterfaceElementText *) ressources.stringInterface["HoverPlayer_Team"])->updateString(newString);
+}
+
+void Interface::update_HoverPlayer_Image(void)
+{
+	((InterfaceElementImage *) ressources.stringInterface["HoverPlayer_Image"])->updateTexture(& ressources.unitTexture[hoverCase->unit->type]);
 }
 
 void Interface::update_HoverPlayer_LifePoints(void)

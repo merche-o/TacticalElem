@@ -29,6 +29,7 @@ void Ressources::loadTexturesFromFile()
 	texture["corner_BL"].loadFromFile("../Ressources/Images/corner_BL.png");
 	texture["border_TB"].loadFromFile("../Ressources/Images/border_TB.png");
 	texture["border_LR"].loadFromFile("../Ressources/Images/border_LR.png");
+	texture["Empty_Token"].loadFromFile("../Ressources/Images/Token_Empty.png");
 
 
 
