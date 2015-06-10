@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <cstdlib>
 
-Referee::Referee(std::vector<Team*> & Teams, Map & Map, Unit ** Unit)
-	: teams(Teams), map(Map), currentPlayerTurn(Unit)
+Referee::Referee(std::vector<Team*> & Teams, std::vector<Unit*> & TimeLine, Map & Map, Unit ** Unit)
+	: teams(Teams), timeLine(TimeLine), map(Map), currentPlayerTurn(Unit)
 {
 
 }
@@ -30,10 +30,10 @@ void Referee::applyEffectToPlayer(Case *_case)
 void Referee::applyEffectOnCase(Case *_case, Effect *effect)
 {
 	if (_case->effect == NULL)
-		{
-			_case->effect = new Effect();
-			_case->effect = effect;
-		}
+	{
+		_case->effect = new Effect();
+		_case->effect = effect;
+	}
 }
 
 
@@ -94,22 +94,38 @@ void Referee::changeCPT()
 	// Ajouter le dot damage
 	killPlayer();
 
-	int CPT_team = (*currentPlayerTurn)->team_number;
-	int CPT_num = (*currentPlayerTurn)->player_number;
-
-	//log
-	//std::cout << "-----" << std::endl << "player nb " << CPT_num << std::endl;
-	//std::cout << "team nb " << CPT_team << std::endl;
-	
+	// Change player turn
 	(*currentPlayerTurn)->isPlaying = false;
-	if (CPT_team == 0)
-		(*currentPlayerTurn) = teams[1]->units[(*currentPlayerTurn)->player_number];
-	else if (CPT_team == 1)
+	indexTimeLine++;
+	if (indexTimeLine >= timeLine.size())
+		indexTimeLine = 0;
+	(*currentPlayerTurn) = timeLine[indexTimeLine];
+	(*currentPlayerTurn)->isPlaying = true;
+	for (int i = indexTimeLine; timeLine[indexTimeLine]->isAlive == false; ++i)
 	{
-		if (CPT_num == 2) // Max team's players
-			CPT_num = -1;
-		(*currentPlayerTurn) = teams[0]->units[CPT_num + 1];
+		(*currentPlayerTurn)->isPlaying = false;
+		if (i >= timeLine.size())
+			indexTimeLine = 0;
+		(*currentPlayerTurn) = timeLine[i];
+		(*currentPlayerTurn)->isPlaying = true;
 	}
+
+	//int CPT_team = (*currentPlayerTurn)->team_number;
+	//int CPT_num = (*currentPlayerTurn)->player_number;
+
+	////log
+	////std::cout << "-----" << std::endl << "player nb " << CPT_num << std::endl;
+	////std::cout << "team nb " << CPT_team << std::endl;
+	//
+	//(*currentPlayerTurn)->isPlaying = false;
+	//if (CPT_team == 0)
+	//	(*currentPlayerTurn) = teams[1]->units[(*currentPlayerTurn)->player_number];
+	//else if (CPT_team == 1)
+	//{
+	//	if (CPT_num == 2) // Max team's players
+	//		CPT_num = -1;
+	//	(*currentPlayerTurn) = teams[0]->units[CPT_num + 1];
+	//}
 
 	(*currentPlayerTurn)->isPlaying = true;
 

@@ -57,8 +57,23 @@ void Graphic::drawUnits()
 			loadUnit(teams[i]->units[j]);
 		}
 	}
-
 }
+
+void Graphic::addTextEffect(float x, float y, std::string & s, sf::Color color)
+{
+	textEffect.push_back(new TextEffect(win, x, y, s, font, color.r, color.g, color.b));
+}
+
+void Graphic::drawTextEffect()
+{
+	for (int i = 0; i < textEffect.size(); ++i)
+	{
+		if (textEffect[i]->time <= 0)
+			textEffect.erase(textEffect.begin() + i);
+		textEffect[i]->draw();
+	}
+}
+
 
 /*void Graphic::drawInterface(void)
 {

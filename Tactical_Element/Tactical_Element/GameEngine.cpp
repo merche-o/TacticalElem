@@ -7,7 +7,7 @@ GameEngine::GameEngine(void)
 	menu(window, event, ressources, teams, factoryUnit, restart),
 	sound(),
 	map(),
-	intface(window, map, event, teams, & currentPlayerTurn, ressources, & ref),
+	intface(window, map, event, teams, & currentPlayerTurn, ressources, & ref, timeLine),
 	graphic(window, map, ressources, teams),
 	event(window)
 {
@@ -26,7 +26,7 @@ GameEngine::GameEngine(void)
 	teams.push_back(new Team());
 	teams.push_back(new Team());
 
-	ref = new Referee(teams, map, & currentPlayerTurn);
+	ref = new Referee(teams, timeLine, map, & currentPlayerTurn);
 	/////////////////////////////////////
 }
 
@@ -50,16 +50,17 @@ void GameEngine::run()
 		{
 			if (restart == true)
 			{
+				createTimeLine();
 				this->selectFirstPlayer();
 				intface.spell = currentPlayerTurn->spells[0];
 				intface.update_CurrentPlayer();
 				intface.update_HoverCase();
 				intface.update_HoverPlayer();
 				intface.firstSpellClick(NULL);
+				intface.setTimeLine();
 				restart = false;
 			}
 			// Au tout debut du tour d'un pion, retirer 1 tour d'effet (case/zone/buff/debuff) a son nom sur la map
-		
 	
 			// Action Functions
 			event.checkEvent();
@@ -69,17 +70,20 @@ void GameEngine::run()
 			
 			// Display Functions
 			window.clear();
-		//		graphic.drawUnits();
+			// graphic.drawUnits();
+
 			if (tmp != NULL)
 				map.showEffectArea(tmp->x, tmp->y, intface.spell->range, false);
 			else
 				map.effectArea.clear();
+			
 			if (event.mouse.isButtonPressed(sf::Mouse::Button::Left) && tmp != NULL && map.effectArea.size() > 0)
 			{
 				ref->castSpell(intface.spell, map.effectArea);
+				graphic.addTextEffect(tmp->x * Settings::CASE_SIZE, tmp->y * Settings::CASE_SIZE, std::string("-10"), sf::Color(255, 60, 0));
 			}
-
 			// To Move when Right Click
+
 			else if (event.mouse.isButtonPressed(sf::Mouse::Button::Right))
 			{
 				if (ref->checkMove(tmp) == true && ref->distance(&currentPlayerTurn->pos, tmp) == 1)
@@ -90,16 +94,16 @@ void GameEngine::run()
 					intface.update_HoverPlayer();
 					//map.map[std::make_pair(tmp->x, tmp->y)]->unit = currentPlayerTurn;
 
-					currentPlayerTurn->pos.x = tmp->x;
-					currentPlayerTurn->pos.y = tmp->y;
 				}
 			}
-			//
+			
 
-			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);	
+			graphic.drawMap(sf::Color(70, 46, 28, 255), tmp);
 			intface.draw();
-		// doit etre dans graphic (team dans graphic est pas bien set)
-				for (int i = 0; i < teams.size(); ++i)
+			graphic.drawTextEffect();
+
+			// doit etre dans graphic (team dans graphic est pas bien set)
+			for (int i = 0; i < teams.size(); ++i)
 			{
 				for (int j = 0; j < teams[i]->units.size(); ++j)
 				{
@@ -116,11 +120,12 @@ void GameEngine::run()
 	}
 }
 
+// After Character Selection
 void GameEngine::setPlayerOnMap(Unit *u)
 {
 	this->map.map[std::make_pair(u->pos.x, u->pos.y)]->unit = u;
 }
-// After Character Selection
+
 void GameEngine::selectFirstPlayer()
 {
 	// Faire tri a bulle pour ordonner les units par initiative
@@ -141,23 +146,6 @@ void GameEngine::selectFirstPlayer()
 	currentPlayerTurn = teams[0]->units[0];
 	teams[0]->units[0]->isPlaying = true;
 }
-///
-/// ChangeCPT est maintenant dans le refere, ce qui permet a l'interface d'y acceder
-///
-/*void GameEngine::changeCPT()
-{
-	int CPT_team = currentPlayerTurn->team_number;
-	int CPT_num = currentPlayerTurn->player_number;
-	
-	if (CPT_team == 0)
-		currentPlayerTurn = teams[1]->units[currentPlayerTurn->player_number];
-	else
-	{
-		if (CPT_num == 2) // Max team's players
-			CPT_num = -1;
-		currentPlayerTurn = teams[0]->units[CPT_num + 1];
-	}
-}*/
 
 Pos *GameEngine::getMouseCoordinateOnMap()
 {
@@ -172,6 +160,16 @@ Pos *GameEngine::getMouseCoordinateOnMap()
 		return (new Pos(posX, posY));
 	}
 	return (NULL);
+}
+
+void GameEngine::createTimeLine()
+{
+	timeLine.push_back(teams[0]->units[0]);
+	timeLine.push_back(teams[1]->units[0]);
+	timeLine.push_back(teams[0]->units[1]);
+	timeLine.push_back(teams[1]->units[1]);
+	timeLine.push_back(teams[0]->units[2]);
+	timeLine.push_back(teams[1]->units[2]);
 }
 
 //spell pas besoin de confirmation

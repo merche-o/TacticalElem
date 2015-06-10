@@ -21,14 +21,14 @@ void GameMenu::createMenu(void)
 	currentState = MAIN;
 	cursorPtr = NULL;
 	
-	elemMenu.push_back(new TextMenu(win, 350, 0, ElementMenu::MAIN, NULL, "Menu", 96, font, 250, 60, 60));
+	elemMenu.push_back(new TextMenu(win, 300, 100, ElementMenu::MAIN, NULL, "TACTICAL ELEMENT", 64, fontSpecial, 250, 60, 60));
 	elemMenu.push_back(new TextMenu(win, 200, 300, ElementMenu::MAIN, &GameMenu::menuSelection, "Character Selection", 48, font, 250, 150, 60));
 	elemMenu.push_back(new TextMenu(win, 200, 400, ElementMenu::MAIN, &GameMenu::menuCredits, "Credits", 48, font, 250, 150, 60));
 	elemMenu.push_back(new TextMenu(win, 200, 500, ElementMenu::MAIN, &GameMenu::menuQuit, "Quit", 48, font, 250, 150, 60));
 
-	elemMenu.push_back(new TextMenu(win, 100, 0, ElementMenu::TEAM_SELECTION, NULL, "Character\n\tSelection", 96, font, 250, 60, 60));
-	elemMenu.push_back(new TextMenu(win, 100, 300, ElementMenu::TEAM_SELECTION, NULL, "Team 1", 48, font, 60, 60, 250));
-	elemMenu.push_back(new TextMenu(win, 100, 350, ElementMenu::TEAM_SELECTION, NULL, "Team 2", 48, font, 60, 60, 250));
+	elemMenu.push_back(new TextMenu(win, 100, 0, ElementMenu::TEAM_SELECTION, NULL, "CHARACTER\n\tSELECTION", 64, fontSpecial, 250, 60, 60));
+	elemMenu.push_back(new TextMenu(win, 100, 300, ElementMenu::TEAM_SELECTION, NULL, "Team 1", 48, font, 60, 150, 250));
+	elemMenu.push_back(new TextMenu(win, 100, 350, ElementMenu::TEAM_SELECTION, NULL, "Team 2", 48, font, 60, 150, 250));
 	elemMenu.push_back(new TextMenu(win, 800, 40, ElementMenu::TEAM_SELECTION, NULL, "Characters", 48, font, 222, 222, 222));
 	elemMenu.push_back(new ImageMenu(win, 850, 100, ElementMenu::TEAM_SELECTION, &GameMenu::selectUnit, factoryUnit.createWaterUnit(0, 0, ress)));
 	elemMenu.push_back(new ImageMenu(win, 900, 100, ElementMenu::TEAM_SELECTION, &GameMenu::selectUnit, factoryUnit.createFireUnit(0, 0, ress)));
@@ -44,10 +44,10 @@ void GameMenu::createMenu(void)
 	elemMenu.push_back(new TextMenu(win, 600, 650, ElementMenu::TEAM_SELECTION, &GameMenu::menuMain, "Back", 48, font, 250, 150, 60));
 
 	elemMenu.push_back(new TextMenu(win, 350, 0, ElementMenu::CREDITS, NULL, "Credits", 96, font, 250, 60, 60));
-	elemMenu.push_back(new TextMenu(win, 200, 200, ElementMenu::CREDITS, NULL, "Nothing :\tOlivier", 48, font, 250, 60, 60));
-	elemMenu.push_back(new TextMenu(win, 200, 300, ElementMenu::CREDITS, NULL, "Nothing :\tMarc", 48, font, 250, 60, 60));
-	elemMenu.push_back(new TextMenu(win, 200, 400, ElementMenu::CREDITS, NULL, "Nothing :\tJoris", 48, font, 250, 60, 60));
-	elemMenu.push_back(new TextMenu(win, 200, 500, ElementMenu::CREDITS, NULL, "Nothing :\tAxel", 48, font, 250, 60, 60));
+	elemMenu.push_back(new TextMenu(win, 200, 200, ElementMenu::CREDITS, NULL, "Map & Referee :\tOlivier", 48, font, 250, 60, 60));
+	elemMenu.push_back(new TextMenu(win, 200, 300, ElementMenu::CREDITS, NULL, "Graphic & Menu :\tMarc", 48, font, 250, 60, 60));
+	elemMenu.push_back(new TextMenu(win, 200, 400, ElementMenu::CREDITS, NULL, "Spell & Referee :\tJoris", 48, font, 250, 60, 60));
+	elemMenu.push_back(new TextMenu(win, 200, 500, ElementMenu::CREDITS, NULL, "Inteface :\tAxel", 48, font, 250, 60, 60));
 	elemMenu.push_back(new TextMenu(win, 200, 600, ElementMenu::CREDITS, &GameMenu::menuMain, "Back", 48, font, 250, 150, 60));
 
 
@@ -100,6 +100,16 @@ void GameMenu::displayCurrentMenu()
 			else
 				elemMenu[i]->draw();
 		}
+	}
+	if (currentState == TEAM_SELECTION)
+	{
+		sf::RectangleShape rect;
+		rect.setOutlineColor(sf::Color(255, 255, 255));
+		rect.setFillColor(sf::Color(0, 0, 0, 0));
+		rect.setOutlineThickness(3);
+		rect.setPosition(790, 50);
+		rect.setSize(sf::Vector2f(350, 140));
+		win.draw(rect);
 	}
 }
 
